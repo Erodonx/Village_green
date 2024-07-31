@@ -16,3 +16,4 @@ c49e58,127.0.0.1,GET,https://localhost:8000/accueil,1721916367,,200,request
 cbec88,127.0.0.1,GET,https://localhost:8000/accueil,1721916368,,200,request
 e0ccc0,127.0.0.1,GET,https://localhost:8000/accueil,1721916368,,200,request
 20af1f,127.0.0.1,GET,https://localhost:8000/accueil,1721916369,,200,request
+d0cde7,127.0.0.1,GET,https://127.0.0.1:8000/,1722415156,,404,request
