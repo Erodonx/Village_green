@@ -35,7 +35,7 @@ class Produit
 
     public function getNom(): ?string
     {
-        return $this->nom_produit;
+        return $this->nom;
     }
 
     public function setNom(string $nom): static

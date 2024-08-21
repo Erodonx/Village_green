@@ -273,3 +273,13 @@ b33430,127.0.0.1,GET,https://127.0.0.1:8000/produit,1724232053,,200,request
 1d194d,127.0.0.1,GET,https://127.0.0.1:8000/accueil,1724232055,,200,request
 299379,127.0.0.1,GET,https://127.0.0.1:8000/,1724232056,,200,request
 628653,127.0.0.1,GET,https://127.0.0.1:8000/,1724232056,,200,request
+75282d,127.0.0.1,GET,https://127.0.0.1:8000/,1724232557,,200,request
+9127ec,127.0.0.1,GET,https://127.0.0.1:8000/assets/styles/bootstrap.css,1724232557,1656b1,404,request
+1656b1,127.0.0.1,GET,https://127.0.0.1:8000/assets/styles/bootstrap.css,1724232557,,404,request
+75dfa6,127.0.0.1,GET,https://127.0.0.1:8000/assets/styles/style.css,1724232557,2f8c46,404,request
+2f8c46,127.0.0.1,GET,https://127.0.0.1:8000/assets/styles/style.css,1724232557,,404,request
+04c2ad,127.0.0.1,GET,https://127.0.0.1:8000/,1724232558,,200,request
+a31e14,127.0.0.1,GET,https://127.0.0.1:8000/assets/styles/bootstrap.css,1724232558,fd6ce7,404,request
+fd6ce7,127.0.0.1,GET,https://127.0.0.1:8000/assets/styles/bootstrap.css,1724232558,,404,request
+20b93a,127.0.0.1,GET,https://127.0.0.1:8000/assets/styles/style.css,1724232558,d100fe,404,request
+d100fe,127.0.0.1,GET,https://127.0.0.1:8000/assets/styles/style.css,1724232558,,404,request
