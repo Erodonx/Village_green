@@ -67,8 +67,41 @@ class __TwigTemplate_27d6046a67b840d55d7643cc9647a130 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 3
-        yield "         <h1>Première page web avec SymfonyZzzzz</h1>
-        <p>Hello World !!!</p>";
+        yield "         
+<div class=\"container\">
+    <h2>Nos produits</h2>
+    <div class=\"row flex\">
+    ";
+        // line 7
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["produits"]) || array_key_exists("produits", $context) ? $context["produits"] : (function () { throw new RuntimeError('Variable "produits" does not exist.', 7, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["produit"]) {
+            // line 8
+            yield "    <div class=\"col-3\">
+        <div class=\"card\">
+        <div class=\"card-body\">
+            <h5 class=\"card-title\">
+                <a href=\"#\">";
+            // line 12
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 12), "html", null, true);
+            yield "</a>
+            </h5>
+        <p class=\"card-text\">";
+            // line 14
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 14), "html", null, true);
+            yield "</p>
+        <div class=\"text-primary\">";
+            // line 15
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "PrixHT", [], "any", false, false, false, 15), "html", null, true);
+            yield " € </div>
+        </div>
+        </div>
+    </div>
+";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['produit'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -78,7 +111,7 @@ class __TwigTemplate_27d6046a67b840d55d7643cc9647a130 extends Template
         return; yield '';
     }
 
-    // line 5
+    // line 21
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -118,15 +151,31 @@ class __TwigTemplate_27d6046a67b840d55d7643cc9647a130 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  82 => 5,  70 => 3,  60 => 2,  37 => 1,);
+        return array (  115 => 21,  95 => 15,  91 => 14,  86 => 12,  80 => 8,  76 => 7,  70 => 3,  60 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{%extends 'base.html.twig' %}
         {% block body %}
-         <h1>Première page web avec SymfonyZzzzz</h1>
-        <p>Hello World !!!</p>{% endblock %}
-        {% block javascripts %}{% endblock %}", "accueil/index.html.twig", "/home/charles/Documents/Village_green/Village_green/templates/accueil/index.html.twig");
+         
+<div class=\"container\">
+    <h2>Nos produits</h2>
+    <div class=\"row flex\">
+    {% for produit in produits %}
+    <div class=\"col-3\">
+        <div class=\"card\">
+        <div class=\"card-body\">
+            <h5 class=\"card-title\">
+                <a href=\"#\">{{produit.nom}}</a>
+            </h5>
+        <p class=\"card-text\">{{produit.description}}</p>
+        <div class=\"text-primary\">{{produit.PrixHT}} € </div>
+        </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
+        {% block javascripts %}{% endblock %}", "accueil/index.html.twig", "/home/charles/Documents/Village_green/templates/accueil/index.html.twig");
     }
 }

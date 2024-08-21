@@ -160,6 +160,6 @@ class __TwigTemplate_6e2c0104cd61c621f41a8a3a236a0b07 extends Template
     </ul>
 </div>
 {% endblock %}
-", "produit/index.html.twig", "/home/charles/Documents/Village_green/Village_green/templates/produit/index.html.twig");
+", "produit/index.html.twig", "/home/charles/Documents/Village_green/templates/produit/index.html.twig");
     }
 }

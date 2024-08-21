@@ -416,6 +416,6 @@ h1, p {
          {% endblock %}
     {% block importmap %}{{ importmap('app') }}{% endblock %}
     </body>
-</html>", "base.html.twig", "/home/charles/Documents/Village_green/Village_green/templates/base.html.twig");
+</html>", "base.html.twig", "/home/charles/Documents/Village_green/templates/base.html.twig");
     }
 }

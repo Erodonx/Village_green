@@ -1,5 +1,21 @@
 {%extends 'base.html.twig' %}
         {% block body %}
-         <h1>Première page web avec SymfonyZzzzz</h1>
-        <p>Hello World !!!</p>{% endblock %}
+         
+<div class="container">
+    <h2>Nos produits</h2>
+    <div class="row flex">
+    {% for produit in produits %}
+    <div class="col-3">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="#">{{produit.nom}}</a>
+            </h5>
+        <p class="card-text">{{produit.description}}</p>
+        <div class="text-primary">{{produit.PrixHT}} € </div>
+        </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
         {% block javascripts %}{% endblock %}

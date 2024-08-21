@@ -16,6 +16,17 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+
+    public function findAllVisible() // un exemple test de la vidéo graphicart, a réadapter au contexte.
+    {
+        $nom='violon';
+        return $this->createQueryBuilder('p')
+        ->where('p.nom = :nom')
+        ->setParameter('nom',$nom)
+        ->getQuery()
+        ->getResult();
+
+    }
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */
