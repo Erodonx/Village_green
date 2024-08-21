@@ -318,6 +318,6 @@ class __TwigTemplate_a98cc09db664e02a4873f6bcb8ed193e extends Template
         {% block body '' %}
     </body>
 </html>
-", "@WebProfiler/Profiler/base.html.twig", "/home/charles/Documents/Village_green/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/base.html.twig");
+", "@WebProfiler/Profiler/base.html.twig", "/home/charles/Documents/Village_green/Village_green/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/base.html.twig");
     }
 }

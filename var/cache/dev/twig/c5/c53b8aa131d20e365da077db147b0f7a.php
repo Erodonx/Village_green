@@ -1474,6 +1474,6 @@ class __TwigTemplate_a7eddb804736ad967df633394c2052e3 extends Template
         <span>{{ route|default(controller) }}</span>
     {%- endif %}
 {% endmacro %}
-", "@WebProfiler/Collector/request.html.twig", "/home/charles/Documents/Village_green/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
+", "@WebProfiler/Collector/request.html.twig", "/home/charles/Documents/Village_green/Village_green/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
     }
 }

@@ -997,6 +997,6 @@ class __TwigTemplate_dcdf29728dec49155a4b49f5eea0d980 extends Template
         </table>
     {% endif %}
 {% endblock %}
-", "@WebProfiler/Collector/config.html.twig", "/home/charles/Documents/Village_green/vendor/symfony/web-profiler-bundle/Resources/views/Collector/config.html.twig");
+", "@WebProfiler/Collector/config.html.twig", "/home/charles/Documents/Village_green/Village_green/vendor/symfony/web-profiler-bundle/Resources/views/Collector/config.html.twig");
     }
 }

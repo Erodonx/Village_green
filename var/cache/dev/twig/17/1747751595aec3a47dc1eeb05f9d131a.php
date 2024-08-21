@@ -903,6 +903,6 @@ class __TwigTemplate_6f2a3b028dd816b246b9438254de6c77 extends Template
         </tbody>
     </table>
 {% endmacro %}
-", "@WebProfiler/Collector/translation.html.twig", "/home/charles/Documents/Village_green/vendor/symfony/web-profiler-bundle/Resources/views/Collector/translation.html.twig");
+", "@WebProfiler/Collector/translation.html.twig", "/home/charles/Documents/Village_green/Village_green/vendor/symfony/web-profiler-bundle/Resources/views/Collector/translation.html.twig");
     }
 }

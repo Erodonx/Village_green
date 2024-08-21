@@ -127,7 +127,7 @@ class __TwigTemplate_27d6046a67b840d55d7643cc9647a130 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 10
-        yield "         <h1>Première page web avec Symfony</h1>
+        yield "         <h1>Première page web avec SymfonyZzzzz</h1>
         <p>Hello World !!!</p>";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -184,10 +184,10 @@ class __TwigTemplate_27d6046a67b840d55d7643cc9647a130 extends Template
     </head>
     <body>
         {% block body %}
-         <h1>Première page web avec Symfony</h1>
+         <h1>Première page web avec SymfonyZzzzz</h1>
         <p>Hello World !!!</p>{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
-</html>", "accueil/index.html.twig", "/home/charles/Documents/Village_green/templates/accueil/index.html.twig");
+</html>", "accueil/index.html.twig", "/home/charles/Documents/Village_green/Village_green/templates/accueil/index.html.twig");
     }
 }

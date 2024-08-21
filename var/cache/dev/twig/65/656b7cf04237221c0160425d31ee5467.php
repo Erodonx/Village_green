@@ -1850,6 +1850,6 @@ class __TwigTemplate_19e3adcbd57f28540d415ca13de11d49 extends Template
         </tbody>
     </table>
 {% endmacro %}
-", "@Doctrine/Collector/db.html.twig", "/home/charles/Documents/Village_green/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
+", "@Doctrine/Collector/db.html.twig", "/home/charles/Documents/Village_green/Village_green/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
     }
 }

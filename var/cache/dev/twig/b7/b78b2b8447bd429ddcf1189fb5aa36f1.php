@@ -458,6 +458,6 @@ class __TwigTemplate_b90b1c6d2bc4098bef9410f92d806d61 extends Template
         </div>
     {% endfor %}
 {% endblock %}
-", "@Debug/Profiler/dump.html.twig", "/home/charles/Documents/Village_green/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
+", "@Debug/Profiler/dump.html.twig", "/home/charles/Documents/Village_green/Village_green/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
     }
 }
