@@ -40,10 +40,12 @@ class ProduitController extends AbstractController
             if($produit->getNom()=='Violon')
             {
              $produit->setNom('Violoncelle');
+             $produit->setPrixHT(150000);
             }
             else
             {
              $produit->setNom('Violon');
+             $produit->setPrixHT(11);
             }
             /*$this->*/$manager->getManager()->persist($produit);
             /*$this->*/$manager->getManager()->flush();
@@ -51,5 +53,22 @@ class ProduitController extends AbstractController
         return $this->render('produit/index.html.twig', [
             'controller_name' => 'ProduitController',
         ]);
+    }
+    #[Route('/produit/{slug}-{id}', name: 'app_produit_show', requirements: ['slug' => '[a-z0-9\-]*'])]
+    //public function show($slug, $id): Response
+    public function show(Produit $produit, string $slug)
+    {
+     //$produit = $this->produitRepository->find($id);
+     if ($produit->getSlug() !== $slug)
+     {
+        return $this->redirectToRoute('app_produit_show', [
+            'id' => $produit->getId(),
+            'slug' => $produit->getSlug()
+        ], 301);
+     }
+     return $this->render('produit/show.html.twig' , [
+        'produit' => $produit,
+        'current_menu' => 'properties'
+     ]);
     }
 }

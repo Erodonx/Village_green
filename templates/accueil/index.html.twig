@@ -9,10 +9,10 @@
         <div class="card">
         <div class="card-body">
             <h5 class="card-title">
-                <a href="#">{{produit.nom}}</a>
+                <a href="{{ path('app_produit_show', {id: produit.id, slug: produit.slug}) }}">{{produit.nom}}</a>
             </h5>
         <p class="card-text">{{produit.description}}</p>
-        <div class="text-primary">{{produit.PrixHT}} € </div>
+        <div class="text-primary" style="font-weight: bold; font-size: 2rem;">{{produit.formattedPrice}} € </div>
         </div>
         </div>
     </div>

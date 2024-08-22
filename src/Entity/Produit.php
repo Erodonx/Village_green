@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify; //transformer une chaîne de caractères en Slug.
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -91,5 +92,14 @@ class Produit
         $this->stock = $stock;
 
         return $this;
+    }
+
+    public function getFormattedPrice(): string
+    {
+        return number_format($this->prix_HT, 0 ,'',' '); //Tuto graphicart, ça renvoie une chaîne de caractère pour une plus belle mise en page.
+    }
+    public function getSlug(): string 
+    {
+        return $slugify = (new Slugify())->slugify($this->nom);
     }
 }

@@ -81,8 +81,10 @@ class __TwigTemplate_27d6046a67b840d55d7643cc9647a130 extends Template
         <div class=\"card\">
         <div class=\"card-body\">
             <h5 class=\"card-title\">
-                <a href=\"#\">";
+                <a href=\"";
             // line 12
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_produit_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "id", [], "any", false, false, false, 12), "slug" => CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "slug", [], "any", false, false, false, 12)]), "html", null, true);
+            yield "\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "nom", [], "any", false, false, false, 12), "html", null, true);
             yield "</a>
             </h5>
@@ -90,9 +92,9 @@ class __TwigTemplate_27d6046a67b840d55d7643cc9647a130 extends Template
             // line 14
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "description", [], "any", false, false, false, 14), "html", null, true);
             yield "</p>
-        <div class=\"text-primary\">";
+        <div class=\"text-primary\" style=\"font-weight: bold; font-size: 2rem;\">";
             // line 15
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "PrixHT", [], "any", false, false, false, 15), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["produit"], "formattedPrice", [], "any", false, false, false, 15), "html", null, true);
             yield " € </div>
         </div>
         </div>
@@ -151,7 +153,7 @@ class __TwigTemplate_27d6046a67b840d55d7643cc9647a130 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  115 => 21,  95 => 15,  91 => 14,  86 => 12,  80 => 8,  76 => 7,  70 => 3,  60 => 2,  37 => 1,);
+        return array (  117 => 21,  97 => 15,  93 => 14,  86 => 12,  80 => 8,  76 => 7,  70 => 3,  60 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -167,10 +169,10 @@ class __TwigTemplate_27d6046a67b840d55d7643cc9647a130 extends Template
         <div class=\"card\">
         <div class=\"card-body\">
             <h5 class=\"card-title\">
-                <a href=\"#\">{{produit.nom}}</a>
+                <a href=\"{{ path('app_produit_show', {id: produit.id, slug: produit.slug}) }}\">{{produit.nom}}</a>
             </h5>
         <p class=\"card-text\">{{produit.description}}</p>
-        <div class=\"text-primary\">{{produit.PrixHT}} € </div>
+        <div class=\"text-primary\" style=\"font-weight: bold; font-size: 2rem;\">{{produit.formattedPrice}} € </div>
         </div>
         </div>
     </div>

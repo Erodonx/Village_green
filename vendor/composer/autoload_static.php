@@ -158,6 +158,7 @@ class ComposerStaticInit54c05e64f01f49eb136e9af7b3075bdd
         'C' => 
         array (
             'Composer\\Semver\\' => 16,
+            'Cocur\\Slugify\\' => 14,
         ),
         'A' => 
         array (
@@ -584,6 +585,10 @@ class ComposerStaticInit54c05e64f01f49eb136e9af7b3075bdd
         'Composer\\Semver\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/semver/src',
+        ),
+        'Cocur\\Slugify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cocur/slugify/src',
         ),
         'App\\Tests\\' => 
         array (

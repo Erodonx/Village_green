@@ -20,8 +20,10 @@ return [
     'app_accueil' => [[], ['_controller' => 'App\\Controller\\AccueilController::index'], [], [['text', '/accueil']], [], [], []],
     'app_instruments' => [[], ['_controller' => 'App\\Controller\\InstrumentsController::index'], [], [['text', '/instruments']], [], [], []],
     'app_produit' => [[], ['_controller' => 'App\\Controller\\ProduitController::index'], [], [['text', '/produit']], [], [], []],
+    'app_produit_show' => [['slug', 'id'], ['_controller' => 'App\\Controller\\ProduitController::show'], ['slug' => '[a-z0-9\\-]*'], [['variable', '-', '[^/]++', 'id', true], ['variable', '/', '[a-z0-9\\-]*', 'slug', true], ['text', '/produit']], [], [], []],
     'home' => [[], ['_controller' => 'App\\Controller\\AccueilController::index'], [], [['text', '/']], [], [], []],
     'App\Controller\AccueilController::index' => [[], ['_controller' => 'App\\Controller\\AccueilController::index'], [], [['text', '/accueil']], [], [], []],
     'App\Controller\InstrumentsController::index' => [[], ['_controller' => 'App\\Controller\\InstrumentsController::index'], [], [['text', '/instruments']], [], [], []],
     'App\Controller\ProduitController::index' => [[], ['_controller' => 'App\\Controller\\ProduitController::index'], [], [['text', '/produit']], [], [], []],
+    'App\Controller\ProduitController::show' => [['slug', 'id'], ['_controller' => 'App\\Controller\\ProduitController::show'], ['slug' => '[a-z0-9\\-]*'], [['variable', '-', '[^/]++', 'id', true], ['variable', '/', '[a-z0-9\\-]*', 'slug', true], ['text', '/produit']], [], [], []],
 ];
