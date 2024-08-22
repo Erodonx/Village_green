@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\ProduitRepository;
 class AccueilController extends AbstractController
 {
-    #[Route('/accueil', name: 'app_accueil')]
+    #[Route('/', name: 'home')]
     public function index(ProduitRepository $produitRepository): Response
     {
         $produits = $produitRepository->findAll();

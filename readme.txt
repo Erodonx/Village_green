@@ -6,3 +6,5 @@ php bin/console doctrine:database:create -> créé la base de données sur le se
 transformer une chaîne en slug
 
 composer require cocur/slugify
+
+composer require symfonycasts/verify-email-bundle

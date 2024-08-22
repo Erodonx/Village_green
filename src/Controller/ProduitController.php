@@ -71,4 +71,12 @@ class ProduitController extends AbstractController
         'current_menu' => 'properties'
      ]);
     }
+    #[Route('/produit/{slug}-{id}/edit', name: 'app_produit_edit', requirements: ['slug' => '[a-z0-9\-]*'])]
+    public function edit(Produit $produit, string $slug)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        return $this->render('produit/edit.html.twig', [
+            'produit' => $produit
+        ]);
+    }
 }

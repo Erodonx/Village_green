@@ -14,10 +14,12 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-        '/accueil' => [[['_route' => 'app_accueil', '_controller' => 'App\\Controller\\AccueilController::index'], null, null, null, false, false, null]],
+        '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\AccueilController::index'], null, null, null, false, false, null]],
+        '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/instruments' => [[['_route' => 'app_instruments', '_controller' => 'App\\Controller\\InstrumentsController::index'], null, null, null, false, false, null]],
         '/produit' => [[['_route' => 'app_produit', '_controller' => 'App\\Controller\\ProduitController::index'], null, null, null, false, false, null]],
-        '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\AccueilController::index'], null, null, null, false, false, null]],
+        '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
+        '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -39,7 +41,10 @@ return [
                         .')'
                     .')'
                 .')'
-                .'|/produit/([a-z0-9\\-]*)\\-([^/]++)(*:234)'
+                .'|/produit/(?'
+                    .'|([a-z0-9\\-]*)\\-([^/]++)(*:237)'
+                    .'|([a-z0-9\\-]*)\\-([^/]++)/edit(*:273)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -51,8 +56,9 @@ return [
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        234 => [
-            [['_route' => 'app_produit_show', '_controller' => 'App\\Controller\\ProduitController::show'], ['slug', 'id'], null, null, false, true, null],
+        237 => [[['_route' => 'app_produit_show', '_controller' => 'App\\Controller\\ProduitController::show'], ['slug', 'id'], null, null, false, true, null]],
+        273 => [
+            [['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitController::edit'], ['slug', 'id'], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
