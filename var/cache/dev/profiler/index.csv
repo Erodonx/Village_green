@@ -59,3 +59,17 @@ f72fb0,127.0.0.1,GET,https://localhost:8000/assets/styles/bootstrap.css,17247528
 d537d0,127.0.0.1,GET,https://localhost:8000/assets/styles/style.css,1724752827,f9cb74,404,request
 f9cb74,127.0.0.1,GET,https://localhost:8000/assets/styles/style.css,1724752827,,404,request
 14b299,127.0.0.1,GET,https://localhost:8000/,1724752829,,200,request
+0c3c02,127.0.0.1,GET,https://localhost:8000/,1724752882,2db119,500,request
+2db119,127.0.0.1,GET,https://localhost:8000/,1724752882,,500,request
+37908b,127.0.0.1,GET,https://localhost:8000/,1724752882,4752b6,500,request
+4752b6,127.0.0.1,GET,https://localhost:8000/,1724752882,,500,request
+e4557a,127.0.0.1,GET,https://localhost:8000/,1724752882,54a326,500,request
+54a326,127.0.0.1,GET,https://localhost:8000/,1724752882,,500,request
+12e0d5,127.0.0.1,GET,https://localhost:8000/,1724752883,b0e100,500,request
+b0e100,127.0.0.1,GET,https://localhost:8000/,1724752883,,500,request
+069319,127.0.0.1,GET,https://localhost:8000/,1724752883,c99fd5,500,request
+c99fd5,127.0.0.1,GET,https://localhost:8000/,1724752883,,500,request
+0ae82a,127.0.0.1,GET,https://localhost:8000/,1724752960,214be2,500,request
+214be2,127.0.0.1,GET,https://localhost:8000/,1724752960,,500,request
+41120d,127.0.0.1,GET,https://localhost:8000/,1724752960,be84f9,500,request
+be84f9,127.0.0.1,GET,https://localhost:8000/,1724752960,,500,request
