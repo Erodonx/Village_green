@@ -7,6 +7,8 @@ use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 
 class ContactController extends AbstractController
@@ -15,11 +17,24 @@ class ContactController extends AbstractController
     public function contact(Request $request, MailerInterface $mailer): Response
     {
         $data = new ContactDTO();
+        
+        $data->name = 'John Doe' ;
+        $data->email = 'zozozoz@afpa.fr';
+        $data->message = 'Super bonne ta citronnade ! ';
+        
         $form = $this->createForm(ContactType::class, $data);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            // Envoyer Email
+            $mail = (new TemplatedEmail())
+                ->to('contact@demo.fr')
+                ->from($data->email)
+                ->subject('Demande de contact')
+                ->htmlTemplate('emails/contact.html.twig')
+                ->context(['data' => $data]);
+            $mailer->send($mail);
+            $this->addFlash('success','Votre email a bien été envoyé');
+            $this->redirectToRoute('app_contact');
         }
         return $this->render('contact/contact.html.twig', [
             'form' => $form,
