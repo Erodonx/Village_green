@@ -31,3 +31,5 @@ e3e7a1,127.0.0.1,GET,https://localhost:8000/assets/styles/bootstrap.css,17243316
 f93b3d,127.0.0.1,GET,https://localhost:8000/assets/styles/bootstrap.css,1724331625,,404,request
 45f98b,127.0.0.1,GET,https://localhost:8000/assets/styles/style.css,1724331625,3c4adf,404,request
 3c4adf,127.0.0.1,GET,https://localhost:8000/assets/styles/style.css,1724331625,,404,request
+f4afea,127.0.0.1,GET,https://localhost:8000/,1724751901,be654d,500,request
+be654d,127.0.0.1,GET,https://localhost:8000/,1724751901,,500,request
