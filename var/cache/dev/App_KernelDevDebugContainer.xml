@@ -450,7 +450,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.iMK5Y4_"/>
+      <argument type="service" id=".service_locator.xcRGzTq"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3360,7 +3360,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.iMK5Y4_"/>
+      <argument type="service" id=".service_locator.xcRGzTq"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7589,15 +7589,6 @@
         <argument key="produitRepository" type="service_closure" id="App\Repository\ProduitRepository"/>
       </argument>
     </service>
-    <service id=".errored.IQWv8PO" class="App\Controller\Request">
-      <tag name="container.error" message="Cannot determine controller argument for &quot;App\Controller\ContactController::contact()&quot;: the $request argument is type-hinted with the non-existent class or interface: &quot;App\Controller\Request&quot;. Did you forget to add a use statement?"/>
-    </service>
-    <service id=".service_locator.GMjKNNN" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="request" type="service_closure" id=".errored.IQWv8PO"/>
-      </argument>
-    </service>
     <service id=".service_locator.IwuOEF6" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7623,11 +7614,10 @@
         <argument key="translator" type="service_closure" id="translator.data_collector"/>
       </argument>
     </service>
-    <service id=".service_locator.iMK5Y4_" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.xcRGzTq" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AccueilController::index" type="service_closure" id=".service_locator.vRUAr7Q"/>
-        <argument key="App\Controller\ContactController::contact" type="service_closure" id=".service_locator.GMjKNNN"/>
         <argument key="App\Controller\ProduitController::edit" type="service_closure" id=".service_locator.ViXcClx"/>
         <argument key="App\Controller\ProduitController::index" type="service_closure" id=".service_locator.IwuOEF6"/>
         <argument key="App\Controller\ProduitController::show" type="service_closure" id=".service_locator.ViXcClx"/>
@@ -7638,7 +7628,6 @@
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="App\Controller\AccueilController:index" type="service_closure" id=".service_locator.vRUAr7Q"/>
-        <argument key="App\Controller\ContactController:contact" type="service_closure" id=".service_locator.GMjKNNN"/>
         <argument key="App\Controller\ProduitController:edit" type="service_closure" id=".service_locator.ViXcClx"/>
         <argument key="App\Controller\ProduitController:index" type="service_closure" id=".service_locator.IwuOEF6"/>
         <argument key="App\Controller\ProduitController:show" type="service_closure" id=".service_locator.ViXcClx"/>
@@ -9849,7 +9838,7 @@
     <service id="SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface" alias="symfonycasts.verify_email.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.w7.f4fT" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.iMK5Y4_"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.xcRGzTq"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9875,7 +9864,7 @@
     <service id=".service_locator.ZBZXtOS" alias=".service_locator.NZdAz3P"/>
     <service id=".service_locator.bJ.4HC5" alias=".service_locator.w7.f4fT"/>
     <service id=".service_locator.V6D1oJY" alias=".service_locator.e_4zbH4"/>
-    <service id=".service_locator.vELCcKU" alias=".service_locator.iMK5Y4_"/>
+    <service id=".service_locator.18hwGKM" alias=".service_locator.xcRGzTq"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
     <service id=".service_locator.lsOEl7r" alias=".service_locator.1khrmes"/>
     <service id=".service_locator.XtmiKbi" alias=".service_locator.MfxSDRP"/>
