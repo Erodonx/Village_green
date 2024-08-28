@@ -18,6 +18,7 @@ return [
         '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::contact'], null, null, null, false, false, null]],
         '/instruments' => [[['_route' => 'app_instruments', '_controller' => 'App\\Controller\\InstrumentsController::index'], null, null, null, false, false, null]],
         '/produit' => [[['_route' => 'app_produit', '_controller' => 'App\\Controller\\ProduitController::index'], null, null, null, false, false, null]],
+        '/produit/create' => [[['_route' => 'app_produit_create', '_controller' => 'App\\Controller\\ProduitController::create'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
     ],
@@ -43,7 +44,10 @@ return [
                 .')'
                 .'|/produit/(?'
                     .'|([a-z0-9\\-]*)\\-([^/]++)(*:237)'
-                    .'|([a-z0-9\\-]*)\\-([^/]++)/edit(*:273)'
+                    .'|([^/]++)(?'
+                        .'|/edit(*:261)'
+                        .'|(*:269)'
+                    .')'
                 .')'
             .')/?$}sDu',
     ],
@@ -57,8 +61,9 @@ return [
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         237 => [[['_route' => 'app_produit_show', '_controller' => 'App\\Controller\\ProduitController::show'], ['slug', 'id'], null, null, false, true, null]],
-        273 => [
-            [['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitController::edit'], ['slug', 'id'], null, null, false, false, null],
+        261 => [[['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitController::edit'], ['id'], null, null, false, false, null]],
+        269 => [
+            [['_route' => 'app_produit_delete', '_controller' => 'App\\Controller\\ProduitController::remove'], ['id'], ['DELETE' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

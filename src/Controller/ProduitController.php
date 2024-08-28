@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Produit;
+use App\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
@@ -9,21 +10,24 @@ use Doctrine\ORM\EntityManagerInterface;
 //use Doctrine\Bundle\DoctrineBundle\Registry;
 //use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 use App\Repository\ProduitRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry; //CET ATTRIBUT POUR MODIFIER LES CHAMPS PAS L'OBJECT MANAGER.
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 
 class ProduitController extends AbstractController
 {
-    private $produitRepository;
-    public function __construct(ProduitRepository $produitRepository, /*ManagerRegistry $manager*/)
-    {
-        $this->produitRepository = $produitRepository;
+   /* private $produitRepository;
+    public function __construct(ProduitRepository $produitRepository, /*ManagerRegistry $manager*///)
+   /* {
+        /*$this->produitRepository = $produitRepository;
         //$this->manager = $manager;
-    }
+    }*/
     #[Route('/produit', name: 'app_produit')]
-    public function index(ManagerRegistry $manager): Response
+    public function index(ProduitRepository $produitRepository): Response
     {
+        $produits = $produitRepository->findAll();
   /*    $produit= new Produit();
         $produit->setNom('Violon')
                 ->setDescription('Un super violon avec les cordes bien bien tendues')
@@ -33,8 +37,7 @@ class ProduitController extends AbstractController
         $em = $doctrine->getManager();
         $em->persist($produit);
         $em->flush();*/
-        $produits = $this->produitRepository->findAll();
-        dump($produits);
+        /*dump($produits);
         foreach ($produits as $produit)
         {
             if($produit->getNom()=='Violon')
@@ -47,11 +50,11 @@ class ProduitController extends AbstractController
              $produit->setNom('Violon');
              $produit->setPrixHT(11);
             }
-            /*$this->*/$manager->getManager()->persist($produit);
-            /*$this->*/$manager->getManager()->flush();
-        }
+            /*$this->*//*$manager->getManager()->persist($produit);
+            /*$this->*//*$manager->getManager()->flush();/*
+        }*/
         return $this->render('produit/index.html.twig', [
-            'controller_name' => 'ProduitController',
+            'produits' => $produits
         ]);
     }
     #[Route('/produit/{slug}-{id}', name: 'app_produit_show', requirements: ['slug' => '[a-z0-9\-]*'])]
@@ -71,12 +74,46 @@ class ProduitController extends AbstractController
         'current_menu' => 'properties'
      ]);
     }
-    #[Route('/produit/{slug}-{id}/edit', name: 'app_produit_edit', requirements: ['slug' => '[a-z0-9\-]*'])]
-    public function edit(Produit $produit, string $slug)
+    #[Route('/produit/{id}/edit', name: 'app_produit_edit')]
+    public function edit(Produit $produit, Request $request, EntityManagerInterface $em)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        //$this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $form = $this->createForm(ProduitType::class, $produit);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em->flush();
+            $this->addFlash('success', 'La modification du produit concerné a été enregistrée.');
+            return $this->redirectToRoute('app_produit');
+        }
         return $this->render('produit/edit.html.twig', [
-            'produit' => $produit
+            'produit' => $produit,
+            'form' => $form
         ]);
+    }
+    #[Route('/produit/create', name:'app_produit_create')]
+    public function create(Request $request, EntityManagerInterface $em)
+    {
+        $produit = new Produit();
+        $form = $this->createForm(ProduitType::class, $produit);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em->persist($produit);
+            $em->flush();
+            $this->addFlash('success', 'L\'ajout du produit dans la table a été effectué');
+            return $this->redirectToRoute('app_produit');
+        }
+        return $this->render('produit/create.html.twig' , [
+            'form' => $form
+        ]);
+    }
+    #[Route('/produit/{id}', name: 'app_produit_delete', methods:['DELETE'])]
+    public function remove(Produit $produit, EntityManagerInterface $em)
+    {
+        $em->remove($produit);
+        $em->flush();
+        $this->addFlash('success', 'Le produit a bien été supprimé');
+        return $this->redirectToRoute('app_produit');
     }
 }
