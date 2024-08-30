@@ -38,3 +38,18 @@ framework.yaml 28:23 symfony 7 formulaires video yt
 /!\ GESTION DES COMMIT /!\ : 
 
 - COMMIT LES FICHIERS PAR THEMES AVEC DES MESSAGES DE COMMIT COHÉRENTS ET LISIBLES EX : (Service de mail, ajouter les fichiers concernés et faire un message de commit cohérent)
+
+
+
+
+ETA /!\
+
+
+
+30/08/24
+
+La suite :
+
+- Continuer le tuto graphicart, basculer produit sur la table admin.
+
+- Réajouter des placeholder pour Mentions légales et à propos.
