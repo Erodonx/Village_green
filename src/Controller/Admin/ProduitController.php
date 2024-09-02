@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,9 +27,16 @@ class ProduitController extends AbstractController
         //$this->manager = $manager;
     }*/
     #[Route('/', name: 'index')]
-    public function index(ProduitRepository $produitRepository): Response
+    public function index(ProduitRepository $produitRepository, CategorieRepository $categorieRepository, /*EntityManagerInterface $em*/): Response
     {
+        /*$cordes = $categorieRepository->findOneBy(['nom' => 'Instruments à cordes']);
         $produits = $produitRepository->findAll();
+        foreach ($produits as $produit)
+        {
+        $produit->setCategorie($cordes);
+        $em->persist($produit);
+        $em->flush();
+        }*/
   /*    $produit= new Produit();
         $produit->setNom('Violon')
                 ->setDescription('Un super violon avec les cordes bien bien tendues')
@@ -85,7 +93,7 @@ class ProduitController extends AbstractController
         {
             $em->flush();
             $this->addFlash('success', 'La modification du produit concerné a été enregistrée.');
-            return $this->redirectToRoute('app_admin_produit');
+            return $this->redirectToRoute('app_admin_produit_index');
         }
         return $this->render('admin/produit/edit.html.twig', [
             'produit' => $produit,
@@ -103,7 +111,7 @@ class ProduitController extends AbstractController
             $em->persist($produit);
             $em->flush();
             $this->addFlash('success', 'L\'ajout du produit dans la table a été effectué');
-            return $this->redirectToRoute('app_admin_produit');
+            return $this->redirectToRoute('app_admin_produit_index');
         }
         return $this->render('admin/produit/create.html.twig' , [
             'form' => $form
@@ -115,6 +123,6 @@ class ProduitController extends AbstractController
         $em->remove($produit);
         $em->flush();
         $this->addFlash('success', 'Le produit a bien été supprimé');
-        return $this->redirectToRoute('app_admin_produit');
+        return $this->redirectToRoute('app_admin_produit_index');
     }
 }

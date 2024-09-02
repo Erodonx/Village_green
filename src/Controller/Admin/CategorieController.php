@@ -46,7 +46,7 @@ class CategorieController extends AbstractController{
 
     }
 
-    #[Route('/{id}', name:'edit', requirements:['id' => Requirement::DIGITS])]
+    #[Route('/{id}/edit', name:'edit', requirements:['id' => Requirement::DIGITS])]
     public function edit(Categorie $categorie,Request $request, EntityManagerInterface $em)
     {
         $form = $this->createForm(CategorieType::class, $categorie);
@@ -63,7 +63,7 @@ class CategorieController extends AbstractController{
         ]);
     }
 
-    #[Route('/{id}', name:'delete', requirements:['id' => Requirement::DIGITS], methods:['DELETE'])]
+    #[Route('/{id}', name:'delete', methods:['DELETE'])]
     public function remove(Categorie $categorie, EntityManagerInterface $em)
     {
         $em->remove($categorie);
