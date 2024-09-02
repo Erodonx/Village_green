@@ -5,13 +5,14 @@ namespace App\Controller\Admin;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use PharIo\Manifest\Requirement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
-#[Route('/admin/categorie', name: 'app_admin_categorie')]
+
+
+#[Route('/admin/categorie', name: 'app_admin_categorie_')]
 class CategorieController extends AbstractController{
 
 

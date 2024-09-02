@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
 {
@@ -14,9 +17,13 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max:200)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 3, max:200)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]

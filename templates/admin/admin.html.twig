@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Village Green{% endblock %}</title>
+        <title>{% block title %}Administration{% endblock %}</title>
        
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -42,6 +42,9 @@ h1, p {
       <ul class="navbar-nav">
         <li class="nav-item me-auto">
           <a class="nav-link {{ app.current_route == 'app_admin_produit_' ? 'active' : ''}}" href="{{ path ('app_admin_produit_index')}}">Produits</a>
+        </li>
+        <li class="nav-item me-auto">
+          <a class="nav-link {{ app.current_route == 'app_admin_categorie_' ? 'active' : ''}}" href="{{ path ('app_admin_categorie_index')}}">Catégories</a>
         </li>
       </ul>
     </div>
