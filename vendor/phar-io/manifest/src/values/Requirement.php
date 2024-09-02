@@ -11,4 +11,5 @@
 namespace PharIo\Manifest;
 
 interface Requirement {
+public const DIGITS = '[0-9]+';
 }

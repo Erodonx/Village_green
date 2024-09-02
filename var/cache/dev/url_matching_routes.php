@@ -15,10 +15,10 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\AccueilController::index'], null, null, null, false, false, null]],
+        '/admin/produit' => [[['_route' => 'app_admin_produit_index', '_controller' => 'App\\Controller\\Admin\\ProduitController::index'], null, null, null, true, false, null]],
+        '/admin/produit/create' => [[['_route' => 'app_admin_produit_create', '_controller' => 'App\\Controller\\Admin\\ProduitController::create'], null, null, null, false, false, null]],
         '/contact' => [[['_route' => 'app_contact', '_controller' => 'App\\Controller\\ContactController::contact'], null, null, null, false, false, null]],
         '/instruments' => [[['_route' => 'app_instruments', '_controller' => 'App\\Controller\\InstrumentsController::index'], null, null, null, false, false, null]],
-        '/produit' => [[['_route' => 'app_produit', '_controller' => 'App\\Controller\\ProduitController::index'], null, null, null, false, false, null]],
-        '/produit/create' => [[['_route' => 'app_produit_create', '_controller' => 'App\\Controller\\ProduitController::create'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/verify/email' => [[['_route' => 'app_verify_email', '_controller' => 'App\\Controller\\RegistrationController::verifyUserEmail'], null, null, null, false, false, null]],
     ],
@@ -42,12 +42,10 @@ return [
                         .')'
                     .')'
                 .')'
-                .'|/produit/(?'
-                    .'|([a-z0-9\\-]*)\\-([^/]++)(*:237)'
-                    .'|([^/]++)(?'
-                        .'|/edit(*:261)'
-                        .'|(*:269)'
-                    .')'
+                .'|/admin/produit/(?'
+                    .'|produit/([a-z0-9\\-]*)\\-([^/]++)(*:251)'
+                    .'|([0-9]+)/edit(*:272)'
+                    .'|([^/]++)(*:288)'
                 .')'
             .')/?$}sDu',
     ],
@@ -60,10 +58,10 @@ return [
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        237 => [[['_route' => 'app_produit_show', '_controller' => 'App\\Controller\\ProduitController::show'], ['slug', 'id'], null, null, false, true, null]],
-        261 => [[['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitController::edit'], ['id'], null, null, false, false, null]],
-        269 => [
-            [['_route' => 'app_produit_delete', '_controller' => 'App\\Controller\\ProduitController::remove'], ['id'], ['DELETE' => 0], null, false, true, null],
+        251 => [[['_route' => 'app_admin_produit_show', '_controller' => 'App\\Controller\\Admin\\ProduitController::show'], ['slug', 'id'], null, null, false, true, null]],
+        272 => [[['_route' => 'app_admin_produit_edit', '_controller' => 'App\\Controller\\Admin\\ProduitController::edit'], ['id'], null, null, false, false, null]],
+        288 => [
+            [['_route' => 'app_admin_produit_delete', '_controller' => 'App\\Controller\\Admin\\ProduitController::remove'], ['id'], ['DELETE' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

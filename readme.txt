@@ -53,3 +53,6 @@ La suite :
 - Continuer le tuto graphicart, basculer produit sur la table admin.
 
 - Réajouter des placeholder pour Mentions légales et à propos.
+
+
+Rajouter public const DIGITS = '[0-9]+'; dans interface de phar io dans le Requirement.php

@@ -51,7 +51,7 @@ h1, p {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if app.current_route starts with 'app_produit' %}active{% endif %}" href="{{ path('app_produit')}}">Nos produits</a>
+          <a class="nav-link {% if app.current_route starts with 'app_admin_produit_index' %}active{% endif %}" href="{{ path('app_admin_produit_index')}}">Nos produits</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if app.request.attributes.get('_route') == 'app_categories' %}active{% endif %}" href="/categories">Par Catégories</a>
@@ -61,7 +61,7 @@ h1, p {
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">A propos</a>
-          <div class="dropdown-menu">
+          <div class="dropdown-menu"> 
             <a class="dropdown-item" href="">Mentions légales</a>
             <a class="dropdown-item" href="{{ path('app_contact' )}}">Nous contacter</a>
             <a class="dropdown-item" href="">Politique de confidentialité</a>

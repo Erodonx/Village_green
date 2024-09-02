@@ -1,0 +1,24 @@
+{% extends 'admin/admin.html.twig' %}
+{% block title "Produit : " ~ produit.nom %} {# Pas besoin de mettre un endblock si ça tient sur une seule ligne #}
+{% block body %}
+
+ <div class="container mt-4">
+    
+    <div class="row">
+        <div class="col-md-8" style="background-image: url(/images/{{produit.image}})">
+        
+
+        </div>
+            <div class="col-md-4">
+                <h1>{{produit.nom}}</h1>
+                <div class="text-primary" style="font-size: 4rem; font-weight:bold;">{{produit.formattedPrice}} €</div>
+                <a href="#" class="btn btn-primary">Acheter</a>
+            
+        </div>
+    </div>
+    <p>
+    {{produit.description | nl2br}}
+    </p>
+ </div>
+{% endblock %}
+
