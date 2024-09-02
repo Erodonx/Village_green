@@ -13,6 +13,7 @@
     <thead>
     <tr>
         <th>Titre</th>
+        <th>Categorie</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -22,6 +23,7 @@
         <td>  
             <a href="{{ path('app_admin_produit_show', { id: produit.getId , slug:produit.getSlug }) }}">{{ produit.getNom }}</a>
         </td>
+        <td>{{ produit.categorie.nom | default('') }}</td>
         <td> 
             <div class="d-flex gap-1">
                 <a class="btn btn-primary btn-sm" href="{{ path('app_admin_produit_edit', { id: produit.id }) }}">Éditer</a>

@@ -29,9 +29,9 @@ class ProduitController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(ProduitRepository $produitRepository, CategorieRepository $categorieRepository, /*EntityManagerInterface $em*/): Response
     {
-        /*$cordes = $categorieRepository->findOneBy(['nom' => 'Instruments à cordes']);
+        /*$cordes = $categorieRepository->findOneBy(['nom' => 'Instruments à cordes']);*/
         $produits = $produitRepository->findAll();
-        foreach ($produits as $produit)
+        /*foreach ($produits as $produit)
         {
         $produit->setCategorie($cordes);
         $em->persist($produit);
