@@ -22,7 +22,8 @@ class CategorieType extends AbstractType
                 'class' => Produit::class,
                 'choice_label' => 'nom',
                 'multiple' => true,
-                'by_reference' => false
+                'by_reference' => false,
+                'required' => false
             ])
             ->add('save',SubmitType::class, [
                 'label' => 'Sauvegarder les changements' ])
