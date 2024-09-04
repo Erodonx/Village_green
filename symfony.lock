@@ -109,7 +109,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "6.4",
-            "ref": "a91c965766ad3ff2ae15981801643330eb42b6a5"
+            "ref": "32126346f25e1cee607cc4aa6783d46034920554"
         },
         "files": [
             "config/packages/cache.yaml",
@@ -261,7 +261,7 @@
         ]
     },
     "symfony/ux-turbo": {
-        "version": "v2.18.0"
+        "version": "v2.19.3"
     },
     "symfony/validator": {
         "version": "6.4",
@@ -292,6 +292,6 @@
         "version": "v1.17.0"
     },
     "twig/extra-bundle": {
-        "version": "v3.10.0"
+        "version": "v3.12.0"
     }
 }
