@@ -14,6 +14,7 @@ use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry; //CET ATTRIBUT POUR MODIFIER LES CHAMPS PAS L'OBJECT MANAGER.
 use PharIo\Manifest\Requirement;
+use Vich\UploaderBundle;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -29,6 +30,7 @@ class ProduitController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(ProduitRepository $produitRepository, CategorieRepository $categorieRepository, /*EntityManagerInterface $em*/): Response
     {
+        //$this->denyAccessUnlessGranted('ROLE_USER');
         /*$cordes = $categorieRepository->findOneBy(['nom' => 'Instruments à cordes']);*/
         $produits = $produitRepository->findAll();
         /*foreach ($produits as $produit)
@@ -110,7 +112,7 @@ class ProduitController extends AbstractController
         {
             $em->persist($produit);
             $em->flush();
-            $this->addFlash('success', 'L\'ajout du produit dans la table a été effectué');
+            $this->addFlash('success', 'L\'ajout du produit dans la table a été effectué, n\'hésitez pas a utiliser éditer pour modifier l\'image.');
             return $this->redirectToRoute('app_admin_produit_index');
         }
         return $this->render('admin/produit/create.html.twig' , [

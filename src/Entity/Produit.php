@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify; //transformer une chaîne de caractères en Slug.
-
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[Vich\Uploadable]
 class Produit
 {
     #[ORM\Id]
@@ -25,6 +28,10 @@ class Produit
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'products', fileNameProperty:'image')]
+    #[Assert\Image()]
+    private ?File $imageFile = null;
 
     #[ORM\Column]
     private ?int $stock = null;
@@ -115,6 +122,16 @@ class Produit
     {
         $this->categorie = $categorie;
 
+        return $this;
+    }
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+    public function setImageFile(?File $imageFile): static
+    {
+        $this->imageFile = $imageFile;
+        
         return $this;
     }
 }

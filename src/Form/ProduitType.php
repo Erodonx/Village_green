@@ -6,9 +6,11 @@ use App\Entity\Categorie;
 use App\Entity\Produit;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ProduitType extends AbstractType
 {
@@ -18,7 +20,7 @@ class ProduitType extends AbstractType
             ->add('nom')
             ->add('description')
             ->add('prix_HT')
-            ->add('image')
+            ->add('imageFile', FileType::class)
             ->add('stock')
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
