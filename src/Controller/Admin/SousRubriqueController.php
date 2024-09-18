@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 
-#[Route('/admin/rubrique', name: 'app_admin_sousRubrique_')]
+#[Route('/admin/sousRubrique', name: 'app_admin_sousRubrique_')]
 class SousRubriqueController extends AbstractController{
 
 
