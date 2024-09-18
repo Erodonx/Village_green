@@ -33,7 +33,8 @@ class VillageFixt extends Fixture
         ->setDescription('TAMTAMTAMTAM')
         ->setPrixHT(10.50)
         ->setImage('tambour-66eac2191b2f9399319867.png')
-        ->setStock(1000);
+        ->setStock(1000)
+        ->setSousRubrique($sousRubrique1);
         $manager->persist($produit1);
 
 

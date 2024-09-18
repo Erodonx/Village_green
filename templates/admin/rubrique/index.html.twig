@@ -1,0 +1,35 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title "Administration" %}
+
+
+{% block body %}
+
+<p>
+    <a class="btn btn-primary btn-sm" href="{{ path('app_admin_rubrique_create') }}">Créer une nouvelle Rubrique</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Titre</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for rubrique in rubriques %}
+    <tr>
+        <td>  
+            <a href="{{ path('app_admin_rubrique_edit', {id: rubrique.id}) }}" style="text-decoration:none">{{ rubrique.getNom }}</a>
+        </td>
+        <td>    
+                <div class="d-flex gap-1">
+                <a class="btn btn-primary btn-sm" href="{{ path('app_admin_rubrique_edit', { id: rubrique.id }) }}">Éditer</a>
+                <form action="{{ path('app_admin_rubrique_delete' , {id: rubrique.id}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                </form>          
+           </div>
+        </td>
+    {% endfor %}
+
+{% endblock %}

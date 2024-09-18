@@ -20,7 +20,7 @@
     {% for sousRubrique in sousRubriques %}
     <tr>
         <td>  
-            <a href="{{ path('app_admin_sousRubrique_index') }}">{{ sousRubrique.getNom }}</a>
+            <a href="{{ path('app_admin_sousRubrique_edit', {id: sousRubrique.id}) }}" style="text-decoration:none">{{ sousRubrique.getNom }}</a>
         </td>
         <td> {{ sousRubrique.Rubrique.nom | default('') }} </td>
         <td>    
