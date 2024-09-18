@@ -2,44 +2,37 @@
 
 namespace App\Entity;
 
-use App\Repository\CategorieRepository;
+use App\Repository\RubriqueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-use Symfony\Component\Validator\Constraints as Assert;
-
-
-#[ORM\Entity(repositoryClass: CategorieRepository::class)]
-class Categorie
+#[ORM\Entity(repositoryClass: RubriqueRepository::class)]
+class Rubrique
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 3, max:200)]
+    #[ORM\Column(length: 55)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 3, max:200)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     /**
-     * @var Collection<int, Produit>
+     * @var Collection<int, SousRubrique>
      */
-    #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'categorie')]
-    private Collection $produits;
+    #[ORM\OneToMany(targetEntity: SousRubrique::class, mappedBy: 'rubrique')]
+    private Collection $sousrubrique;
 
     public function __construct()
     {
-        $this->produits = new ArrayCollection();
+        $this->sousrubrique = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,29 +77,29 @@ class Categorie
     }
 
     /**
-     * @return Collection<int, Produit>
+     * @return Collection<int, SousRubrique>
      */
-    public function getProduits(): Collection
+    public function getSousrubrique(): Collection
     {
-        return $this->produits;
+        return $this->sousrubrique;
     }
 
-    public function addProduit(Produit $produit): static
+    public function addSousrubrique(SousRubrique $sousrubrique): static
     {
-        if (!$this->produits->contains($produit)) {
-            $this->produits->add($produit);
-            $produit->setCategorie($this);
+        if (!$this->sousrubrique->contains($sousrubrique)) {
+            $this->sousrubrique->add($sousrubrique);
+            $sousrubrique->setRubrique($this);
         }
 
         return $this;
     }
 
-    public function removeProduit(Produit $produit): static
+    public function removeSousrubrique(SousRubrique $sousrubrique): static
     {
-        if ($this->produits->removeElement($produit)) {
+        if ($this->sousrubrique->removeElement($sousrubrique)) {
             // set the owning side to null (unless already changed)
-            if ($produit->getCategorie() === $this) {
-                $produit->setCategorie(null);
+            if ($sousrubrique->getRubrique() === $this) {
+                $sousrubrique->setRubrique(null);
             }
         }
 

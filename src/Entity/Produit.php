@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify; //transformer une chaîne de caractères en Slug.
 use Symfony\Component\HttpFoundation\File\File;
@@ -37,8 +39,19 @@ class Produit
     private ?int $stock = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
-    private ?Categorie $categorie = null;
+    private ?SousRubrique $sousRubrique = null;
 
+    /**
+     * @var Collection<int, Fournit>
+     */
+    #[ORM\OneToMany(targetEntity: Fournit::class, mappedBy: 'produit')]
+    private Collection $fournisseurs;
+
+    public function __construct()
+    {
+        $this->fournisseurs = new ArrayCollection();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -113,14 +126,14 @@ class Produit
         return $slugify = (new Slugify())->slugify($this->nom);
     }
 
-    public function getCategorie(): ?Categorie
+    public function getSousRubrique(): ?SousRubrique
     {
-        return $this->categorie;
+        return $this->sousRubrique;
     }
 
-    public function setCategorie(?Categorie $categorie): static
+    public function setSousRubrique(?SousRubrique $sousRubrique): static
     {
-        $this->categorie = $categorie;
+        $this->sousRubrique = $sousRubrique;
 
         return $this;
     }
@@ -132,6 +145,36 @@ class Produit
     {
         $this->imageFile = $imageFile;
         
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Fournit>
+     */
+    public function getFournisseurs(): Collection
+    {
+        return $this->fournisseurs;
+    }
+
+    public function addFournisseur(Fournit $fournisseur): static
+    {
+        if (!$this->fournisseurs->contains($fournisseur)) {
+            $this->fournisseurs->add($fournisseur);
+            $fournisseur->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFournisseur(Fournit $fournisseur): static
+    {
+        if ($this->fournisseurs->removeElement($fournisseur)) {
+            // set the owning side to null (unless already changed)
+            if ($fournisseur->getProduit() === $this) {
+                $fournisseur->setProduit(null);
+            }
+        }
+
         return $this;
     }
 }

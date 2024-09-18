@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
+use App\Entity\SousRubrique;
 use App\Entity\Produit;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -22,8 +22,8 @@ class ProduitType extends AbstractType
             ->add('prix_HT')
             ->add('imageFile', FileType::class)
             ->add('stock')
-            ->add('categorie', EntityType::class, [
-                'class' => Categorie::class,
+            ->add('sousRubrique', EntityType::class, [
+                'class' => SousRubrique::class,
                 'choice_label' => 'nom',
             ])
             ->add('save',SubmitType::class, [

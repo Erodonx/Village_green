@@ -1,7 +1,7 @@
 {% extends 'admin/admin.html.twig' %}
- {% block title "Créer une nouvelle catégorie" %}
+ {% block title "Sous-rubrique : " ~ sousRubrique.Nom %}
 {% block body %}
-    <h1> Créer une nouvelle catégorie. </h1>
+    <h1> {{ sousRubrique.Nom }} </h1>
     
     {{form_start(form)}}
     

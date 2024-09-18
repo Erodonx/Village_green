@@ -1,0 +1,37 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title "Administration" %}
+
+
+{% block body %}
+
+<p>
+    <a class="btn btn-primary btn-sm" href="{{ path('app_admin_sousRubrique_create') }}">Créer une nouvelle sous-rubrique</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Titre</th>
+        <th>Rubrique</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for sousRubrique in sousRubriques %}
+    <tr>
+        <td>  
+            <a href="{{ path('app_admin_sousRubrique_index') }}">{{ sousRubrique.getNom }}</a>
+        </td>
+        <td> {{ sousRubrique.Rubrique.nom | default('') }} </td>
+        <td>    
+                <div class="d-flex gap-1">
+                <a class="btn btn-primary btn-sm" href="{{ path('app_admin_sousRubrique_edit', { id: sousRubrique.id }) }}">Éditer</a>
+                <form action="{{ path('app_admin_sousRubrique_delete' , {id: sousRubrique.id}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                </form>          
+           </div>
+        </td>
+    {% endfor %}
+
+{% endblock %}

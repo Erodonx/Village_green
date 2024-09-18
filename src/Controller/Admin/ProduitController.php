@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 use App\Entity\Produit;
 use App\Form\ProduitType;
-use App\Repository\CategorieRepository;
+use App\Repository\SousRubriqueRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,7 +28,7 @@ class ProduitController extends AbstractController
         //$this->manager = $manager;
     }*/
     #[Route('/', name: 'index')]
-    public function index(ProduitRepository $produitRepository, CategorieRepository $categorieRepository, /*EntityManagerInterface $em*/): Response
+    public function index(ProduitRepository $produitRepository, SousRubriqueRepository $sousRubriqueRepository, /*EntityManagerInterface $em*/): Response
     {
         //$this->denyAccessUnlessGranted('ROLE_USER');
         /*$cordes = $categorieRepository->findOneBy(['nom' => 'Instruments à cordes']);*/
