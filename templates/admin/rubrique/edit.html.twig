@@ -1,7 +1,7 @@
 {% extends 'admin/admin.html.twig' %}
- {% block title "Rubrique : " ~ Rubrique.Nom %}
+ {% block title "Rubrique : " ~ rubrique.Nom %}
 {% block body %}
-    <h1> {{ Rubrique.Nom }} </h1>
+    <h1> {{ rubrique.Nom }} </h1>
     
     {{form_start(form)}}
     

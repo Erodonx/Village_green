@@ -8,7 +8,7 @@
 <p>
     <a class="btn btn-primary btn-sm" href="{{ path('app_admin_rubrique_create') }}">Créer une nouvelle Rubrique</a>
 </p>
-<table class="table">
+<table class="table bg-warning">
     <thead>
     <tr>
         <th>Titre</th>
@@ -30,6 +30,9 @@
                 </form>          
            </div>
         </td>
+    </tr>
     {% endfor %}
+    </tbody>
+    </table>
 
 {% endblock %}
