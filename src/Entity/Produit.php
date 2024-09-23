@@ -44,7 +44,7 @@ class Produit
     /**
      * @var Collection<int, Fournit>
      */
-    #[ORM\OneToMany(targetEntity: Fournit::class, mappedBy: 'produit')]
+    #[ORM\OneToMany(targetEntity: Fournit::class, mappedBy: 'produit', cascade:['remove'])]
     private Collection $fournisseurs;
 
     public function __construct()
