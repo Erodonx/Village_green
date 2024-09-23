@@ -3,19 +3,27 @@
          
 <div class="container">
     <h2>Nos produits</h2>
-    <div class="row flex">
+    <div class="row">
     {% for produit in produits %}
-    <div class="col-3">
-        <div class="card bg-white">
+    
+        <div class="col-md-3 card bg-white fit-content">
         <div class="card-body">
+        <div class="row"><img src="/images/produits/{{produit.image}}">
+        </div>
+        <div class="row">
             <h5 class="card-title">
                 <a href="{{ path('app_admin_produit_show', {id: produit.id, slug: produit.slug}) }}">{{produit.nom}}</a>
             </h5>
-        <p class="card-text">{{produit.description}}</p>
+        <p class="card-text text-dark">{{produit.description}}</p>
         <div class="text-primary" style="font-weight: bold; font-size: 2rem;">{{produit.formattedPrice}} € </div>
         </div>
-        </div>
     </div>
-{% endfor %}
+    </div>
+    {% if produit.id == 4 %}
+    </div>
+    <div class="row">
+    {% endif %}    
+        {% endfor %}
+    </div>
 {% endblock %}
         {% block javascripts %}{% endblock %}
