@@ -30,7 +30,8 @@ class VillageFixt extends Fixture
         $manager->persist($sousRubrique1);
         $produit1 = new Produit();
         $produit1->setNom('Luth')
-        ->setDescription('7 coeurs, des incrustations magnifiques, manche corps et tête en lacewood.\nChevilles en bois de coco')
+        ->setDescription('7 coeurs, des incrustations magnifiques, manche corps et tête en lacewood.
+        Chevilles en bois de coco')
         ->setPrixHT(555.50)
         ->setImage('Luthrenaissance.png')
         ->setStock(300)
@@ -54,7 +55,9 @@ class VillageFixt extends Fixture
 
         $produit3 = new Produit();
         $produit3->setNom('Adams BDTV 32/24 Thomann Bass Drum')
-                 ->setDescription('Diamètre: 32\'\' \nProfondeur: 24\'\' \nFût en acajou. ')
+                 ->setDescription('Diamètre: 32\'\' 
+                 Profondeur: 24\'\'
+                 Fût en acajou. ')
                  ->setPrixHT(1745.00)
                  ->setImage('Tambourthomann.png')
                  ->setStock(275)
@@ -63,7 +66,10 @@ class VillageFixt extends Fixture
         
         $produit4 = new Produit();
         $produit4->setNom('Thomann THTX 3.0 Xylophone')
-                 ->setDescription('Format de table\n3 octaves\nCadre en bois\n Housse avec sangles sac à dos, support et maillets inclus.')
+                 ->setDescription('Format de table
+                 3 octaves
+                 Cadre en bois
+                 Housse avec sangles sac à dos, support et maillets inclus.')
                  ->setPrixHT(298.00)
                  ->setImage('Xylophonethomann.png')
                  ->setStock(225)
@@ -107,7 +113,8 @@ class VillageFixt extends Fixture
 
         $produit7 = new Produit();
         $produit7->setNom('Millenium MX420 Studio Set BL')
-                 ->setDescription('Version studio, très grosse caisse 20\'\'x16\'\'\nPour ceux qui veulent se la péter avec leur très très grosse caisse.')
+                 ->setDescription('Version studio, très grosse caisse 20\'\'x16\'\'
+                 Pour ceux qui veulent se la péter avec leur très très grosse caisse.')
                  ->setPrixHT(444.00)
                  ->setImage('MilleniumMX420.png')
                  ->setStock(375)
@@ -116,12 +123,25 @@ class VillageFixt extends Fixture
 
         $produit8 = new Produit();
         $produit8->setNom('DW PDP CM7 Satin Charcoal B.')
-                 ->setDescription('Fûts F.A.S.T. 100% érable\n(Personnellement je préfère les fûts 100% bière...')
+                 ->setDescription('Fûts F.A.S.T. 100% érable
+                 (Personnellement je préfère les fûts 100% bière...)')
                  ->setPrixHT(1498.00)
                  ->setImage('Satincharcoal.png')
                  ->setStock(400)
                  ->setSousRubrique($sousRubrique4);
         $manager->persist($produit8);
+
+        $produit9 = new Produit();
+        $produit9->setNom('DW PDP CM7 Satin Charcoal B.')
+                 ->setDescription('Fûts F.A.S.T. 100% érable
+                 (Personnellement je préfère les fûts 100% bière...)')
+                 ->setPrixHT(1498.00)
+                 ->setImage('Satincharcoal.png')
+                 ->setStock(400)
+                 ->setSousRubrique($sousRubrique4);
+        $manager->persist($produit9);
+
+
                 
 
         $fournisseur1 = new Fournisseur();
@@ -189,12 +209,12 @@ class VillageFixt extends Fixture
         $fournit7->setFournisseur($fournisseur1);
         $manager->persist($fournit7);
 
-        $fournit8 = new Fournit();
-        $fournit8->setQuantiteLivree(400);
-        $fournit8->setDateLivraison(new DateTime("now"));
-        $fournit8->setProduit($produit8);
-        $fournit8->setFournisseur($fournisseur1);
-        $manager->persist($fournit8);
+        $fournit9 = new Fournit();
+        $fournit9->setQuantiteLivree(400);
+        $fournit9->setDateLivraison(new DateTime("now"));
+        $fournit9->setProduit($produit9);
+        $fournit9->setFournisseur($fournisseur1);
+        $manager->persist($fournit9);
 
         $manager-> flush();
 

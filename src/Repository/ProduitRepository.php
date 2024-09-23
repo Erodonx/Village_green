@@ -28,6 +28,14 @@ class ProduitRepository extends ServiceEntityRepository
         ->getResult();
 
     }
+    public function countId()
+    {
+        $qb = $this->createQueryBuilder('t')
+            ->select('count(t.id)')
+            ->getQuery()
+            ->getSingleResult();
+        return $qb;
+    }
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */

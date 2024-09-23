@@ -12,9 +12,11 @@ class AccueilController extends AbstractController
     public function index(ProduitRepository $produitRepository): Response
     {
         $produits = $produitRepository->findAll();
+        $total = $produitRepository->countId();
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
-            'produits' => $produits
+            'produits' => $produits,
+            'total' => $total
         ]);
     }
 }
