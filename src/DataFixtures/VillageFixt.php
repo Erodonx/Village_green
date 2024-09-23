@@ -94,7 +94,7 @@ class VillageFixt extends Fixture
         $produit6->setNom('Paiste 2002 Classic 18" Crash')
                  ->setDescription('Je comprends rien aux instruments de musiques trop de termes savants compliqués')
                  ->setPrixHT(289.00)
-                 ->setImage('Cymbalethomann.png')
+                 ->setImage('Cymbalepaiste.png')
                  ->setStock(350)
                  ->setSousRubrique($sousRubrique3);
         $manager->persist($produit6);
