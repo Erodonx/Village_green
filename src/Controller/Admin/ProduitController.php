@@ -68,23 +68,6 @@ class ProduitController extends AbstractController
             'produits' => $produits
         ]);
     }
-    #[Route('/produit/{slug}-{id}', name: 'show', requirements: ['slug' => '[a-z0-9\-]*'])]
-    //public function show($slug, $id): Response
-    public function show(Produit $produit, string $slug)
-    {
-     //$produit = $this->produitRepository->find($id);
-     if ($produit->getSlug() !== $slug)
-     {
-        return $this->redirectToRoute('app_admin_produit_show', [
-            'id' => $produit->getId(),
-            'slug' => $produit->getSlug()
-        ], 301);
-     }
-     return $this->render('admin/produit/show.html.twig' , [
-        'produit' => $produit,
-        'current_menu' => 'properties'
-     ]);
-    }
     #[Route('/{id}/edit', name: 'edit', requirements: ['id' => Requirement::DIGITS])]
     public function edit(Produit $produit, Request $request, EntityManagerInterface $em)
     {

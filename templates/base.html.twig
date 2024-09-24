@@ -51,7 +51,7 @@ h1, p {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if app.current_route starts with 'app_admin_produit_index' %}active{% endif %}" href="{{ path('app_admin_produit_index')}}">Nos produits</a>
+          <a class="nav-link {% if app.current_route starts with 'app_produit' %}active{% endif %}" href="{{ path('app_produit')}}">Nos produits</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if app.request.attributes.get('_route') == 'app_categories' %}active{% endif %}" href="/categories">Par Catégories</a>
