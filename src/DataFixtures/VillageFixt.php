@@ -34,7 +34,7 @@ class VillageFixt extends Fixture
         Chevilles en bois de coco')
         ->setPrixHT(555.50)
         ->setImage('Luthrenaissance.png')
-        ->setStock(300)
+        ->setStock(0)
         ->setSousRubrique($sousRubrique1);
         $manager->persist($produit1);
 
@@ -43,7 +43,7 @@ class VillageFixt extends Fixture
                  ->setDescription('36 cordes, 31 levier de demi-ton, corps en frêne, table en épicéa, cordes en nylon (clé d\'accordage et housse incluse)')
                  ->setPrixHT('998.0')
                  ->setImage('Harpeceltique.png')
-                 ->setStock(250)
+                 ->setStock(0)
                  ->setSousRubrique($sousRubrique1);
         $manager->persist($produit2);
 
@@ -60,7 +60,7 @@ class VillageFixt extends Fixture
                  Fût en acajou. ')
                  ->setPrixHT(1745.00)
                  ->setImage('Tambourthomann.png')
-                 ->setStock(275)
+                 ->setStock(0)
                  ->setSousRubrique($sousRubrique2);
         $manager->persist($produit3);
         
@@ -72,7 +72,7 @@ class VillageFixt extends Fixture
                  Housse avec sangles sac à dos, support et maillets inclus.')
                  ->setPrixHT(298.00)
                  ->setImage('Xylophonethomann.png')
-                 ->setStock(225)
+                 ->setStock(0)
                  ->setSousRubrique($sousRubrique2);
         $manager->persist($produit4);
         
@@ -92,7 +92,7 @@ class VillageFixt extends Fixture
                  ->setDescription('Juste besoin d\'avoir l\'image pour avoir le son dans la tête')
                  ->setPrixHT(111.00)
                  ->setImage('Gongthomann.png')
-                 ->setStock(325)
+                 ->setStock(0)
                  ->setSousRubrique($sousRubrique3);
         $manager->persist($produit5);
 
@@ -101,7 +101,7 @@ class VillageFixt extends Fixture
                  ->setDescription('Je comprends rien aux instruments de musiques trop de termes savants compliqués')
                  ->setPrixHT(289.00)
                  ->setImage('Cymbalepaiste.png')
-                 ->setStock(350)
+                 ->setStock(0)
                  ->setSousRubrique($sousRubrique3);
         $manager->persist($produit6);
 
@@ -117,7 +117,7 @@ class VillageFixt extends Fixture
                  Pour ceux qui veulent se la péter avec leur très très grosse caisse.')
                  ->setPrixHT(444.00)
                  ->setImage('MilleniumMX420.png')
-                 ->setStock(375)
+                 ->setStock(0)
                  ->setSousRubrique($sousRubrique4);
         $manager->persist($produit7);
 
@@ -127,19 +127,9 @@ class VillageFixt extends Fixture
                  (Personnellement je préfère les fûts 100% bière...)')
                  ->setPrixHT(1498.00)
                  ->setImage('Satincharcoal.png')
-                 ->setStock(400)
+                 ->setStock(0)
                  ->setSousRubrique($sousRubrique4);
         $manager->persist($produit8);
-
-        $produit9 = new Produit();
-        $produit9->setNom('DW PDP CM7 Satin Charcoal B.')
-                 ->setDescription('Fûts F.A.S.T. 100% érable
-                 (Personnellement je préfère les fûts 100% bière...)')
-                 ->setPrixHT(1498.00)
-                 ->setImage('Satincharcoal.png')
-                 ->setStock(400)
-                 ->setSousRubrique($sousRubrique4);
-        $manager->persist($produit9);
 
 
                 
@@ -209,12 +199,12 @@ class VillageFixt extends Fixture
         $fournit7->setFournisseur($fournisseur1);
         $manager->persist($fournit7);
 
-        $fournit9 = new Fournit();
-        $fournit9->setQuantiteLivree(400);
-        $fournit9->setDateLivraison(new DateTime("now"));
-        $fournit9->setProduit($produit9);
-        $fournit9->setFournisseur($fournisseur1);
-        $manager->persist($fournit9);
+        $fournit8 = new Fournit();
+        $fournit8->setQuantiteLivree(400);
+        $fournit8->setDateLivraison(new DateTime("now"));
+        $fournit8->setProduit($produit8);
+        $fournit8->setFournisseur($fournisseur1);
+        $manager->persist($fournit8);
 
         $manager-> flush();
 

@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Repository\ProduitRepository;
+use App\Repository\FournitRepository;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,14 +14,15 @@ use Symfony\Component\Routing\Attribute\Route;
 class ProduitController extends AbstractController
 {
     #[Route('/produit', name: 'app_produit')]
-    public function index(ProduitRepository $produitRepository): Response
+    public function index(ProduitRepository $produitRepository, FournitRepository $fournis): Response
     {
         $produits = $produitRepository->findAll();
         $total = $produitRepository->countId();
         return $this->render('produit/index.html.twig', [
             'controller_name' => 'ProduitController',
             'produits' => $produits,
-            'total' => $total
+            'total' => $total,
+
         ]);
     }
     #[Route('/produit/{slug}-{id}', name: 'app_produit_show', requirements: ['slug' => '[a-z0-9\-]*'])]
@@ -36,5 +40,16 @@ class ProduitController extends AbstractController
         'produit' => $produit,
         'current_menu' => 'properties'
      ]);
+    }
+    #[Route('/produit/stock', name:'app_produit_update')]
+    public function updateStock(FournitRepository $fournit,EntityManagerInterface $em)
+    {
+       $tab=$fournit->update_stock_produit(new DateTime("now"));
+       foreach ($tab as $livraison)
+       {
+        $livraison->getProduit()->setStock($livraison->getQuantiteLivree());
+       }
+       $em->flush();
+       return $this->redirectToRoute('app_produit');
     }
 }

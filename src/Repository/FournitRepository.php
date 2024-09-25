@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Fournit;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +15,17 @@ class FournitRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Fournit::class);
+    }
+
+    public function update_stock_produit(DateTime $date)
+    {
+        $qb = $this->createQueryBuilder('t')
+            // ->select('t.produit,t.quantiteLivree')
+            ->setParameter('date', $date)
+            ->where('t.dateLivraison < :date')
+            ->getQuery()
+            ->getResult();
+        return $qb;
     }
 
     //    /**
