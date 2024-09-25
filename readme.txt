@@ -44,8 +44,6 @@ framework.yaml 28:23 symfony 7 formulaires video yt
 
 ETA /!\
 
-
-
 30/08/24
 
 La suite :
@@ -56,6 +54,12 @@ La suite :
 
 
 Rajouter public const DIGITS = '[0-9]+'; dans interface de phar io dans le Requirement.php
+
+25/09
+
+Comprendre et implémenter des évènements pour l'update automatique de la BDD.
+
+Gérer les commandes et faire les entités, fixtures correspondantes au cahier des charge.
 
 
 Fixtures produit : 
