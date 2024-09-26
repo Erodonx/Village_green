@@ -41,27 +41,4 @@ class ProduitController extends AbstractController
         'current_menu' => 'properties'
      ]);
     }
-    #[Route('/produit/stock', name:'app_produit_update')]
-    public function updateStock(FournitRepository $fournit,EntityManagerInterface $em)
-    {
-       $tab=$fournit->update_stock_produit(new DateTime("now"));
-       $total=array();
-       foreach ($tab as $livraison)
-       {
-        if (!isset($total[$livraison->getProduit()->getId()]))
-        {
-         $total[$livraison->getProduit()->getId()]=0;
-        }
-        $total[$livraison->getProduit()->getId()]=$total[$livraison->getProduit()->getId()]+$livraison->getQuantiteLivree();
-        //$livraison->getProduit()->setStock($livraison->getProduit()->getStock()+$livraison->getQuantiteLivree());
-       }
-       foreach ($tab as $livraison)
-       {
-        if ($livraison->getProduit()->getStock()!=$total[$livraison->getProduit()->getId()])
-        $livraison->getProduit()->setStock($total[$livraison->getProduit()->getId()]);
-       }
-
-       $em->flush();
-       return $this->redirectToRoute('app_produit');
-    }
 }
