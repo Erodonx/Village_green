@@ -19,7 +19,7 @@ class FournitController extends AbstractController
     #[Route('/', name: 'index')]
      public function index(FournitRepository $fournitRepository/*, FournisseurRepository $fournisseurRepository, ProduitRepository $produitRepository*/): Response
     {
-        $fournit = $fournitRepository->findAll();
+        $fournit = $fournitRepository->OrderByDate();
         return $this->render('admin/fournit/index.html.twig', [
             'fournis' => $fournit,
         ]);

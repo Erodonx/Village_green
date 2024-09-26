@@ -42,13 +42,15 @@ h1, p {
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
         <li class="nav-item me-auto">
-          <a class="nav-link {{ app.current_route == 'app_admin_produit_' ? 'active' : ''}}" href="{{ path ('app_admin_produit_index')}}">Produits</a>
+          <a class="nav-link {{ app.current_route == 'app_admin_produit_index' ? 'active' : ''}}" href="{{ path ('app_admin_produit_index')}}">Produits</a>
         </li>
         <li class="nav-item me-auto">
-          <a class="nav-link {{ app.current_route == 'app_admin_sousRubrique_' ? 'active' : ''}}" href="{{ path ('app_admin_sousRubrique_index')}}">Sous-rubrique</a>
+          <a class="nav-link {{ app.current_route == 'app_admin_sousRubrique_index' ? 'active' : ''}}" href="{{ path ('app_admin_sousRubrique_index')}}">Sous-rubrique</a>
         </li>
         <li class="nav-item me-auto">
-        <a class="nav-link {{ app.current_route == 'app_admin_rubrique_' ? 'active' : ''}}" href ="{{ path ('app_admin_rubrique_index')}}">Rubrique</a>
+        <a class="nav-link {{ app.current_route == 'app_admin_rubrique_index' ? 'active' : ''}}" href ="{{ path ('app_admin_rubrique_index')}}">Rubrique</a>
+        <li class="nav-item me-auto">
+        <a class="nav-link {{ app.current_route == 'app_admin_commande_fournisseur_index' ? 'active' : ''}}" href="{{ path ('app_admin_commande_fournisseur_index')}}">Commmandes Fournisseur</a>
       </ul>
     </div>
   </div>

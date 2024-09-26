@@ -27,6 +27,13 @@ class FournitRepository extends ServiceEntityRepository
             ->getResult();
         return $qb;
     }
+    public function OrderByDate()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.dateLivraison',)
+            ->getQuery()
+            ->getResult();
+    }
 
     //    /**
     //     * @return Fournit[] Returns an array of Fournit objects
