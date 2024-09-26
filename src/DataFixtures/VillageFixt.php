@@ -206,6 +206,16 @@ class VillageFixt extends Fixture
         $fournit8->setFournisseur($fournisseur1);
         $manager->persist($fournit8);
 
+
+        $date = new DateTime("now");
+        $date->modify('+1 month');
+        $fournit9 = new Fournit();
+        $fournit9->setQuantiteLivree(25);
+        $fournit9->setDateLivraison($date);
+        $fournit9->setProduit($produit8);
+        $fournit9->setFournisseur($fournisseur1);
+        $manager->persist($fournit9);
+
         $manager-> flush();
 
     }

@@ -1,0 +1,33 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title "Administration" %}
+
+{% block body %}
+<p>
+    <a class="btn btn-primary btn-sm" href="{{ path('app_admin_commande_fournisseur_create') }}">Passer une nouvelle commande fournisseur</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id de la commande</th>
+        <th>Nom du produit</th>
+        <th>Nom du fournisseur</th>
+        <th>Date de livraison de la commande</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for fourni in fournis %}
+    <tr>
+        <td>  
+            <a href="">{{ fourni.getId }}</a>
+        </td>
+        <td>{{ fourni.Produit.getNom | default('') }}</td>
+        <td>{{ fourni.Fournisseur.getNom | default('')}}
+        </td>
+        <td>{{ fourni.getDateLivraison | date('d/m/y')}}
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
+
