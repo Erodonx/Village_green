@@ -39,7 +39,7 @@ framework.yaml 28:23 symfony 7 formulaires video yt
 
 - COMMIT LES FICHIERS PAR THEMES AVEC DES MESSAGES DE COMMIT COHÉRENTS ET LISIBLES EX : (Service de mail, ajouter les fichiers concernés et faire un message de commit cohérent)
 
-
+Rajouter public const DIGITS = '[0-9]+'; dans interface de phar io dans le Requirement.php
 
 
 ETA /!\
@@ -52,14 +52,19 @@ La suite :
 
 - Réajouter des placeholder pour Mentions légales et à propos.
 
-
-Rajouter public const DIGITS = '[0-9]+'; dans interface de phar io dans le Requirement.php
-
 25/09
 
 Comprendre et implémenter des évènements pour l'update automatique de la BDD.
 
 Gérer les commandes et faire les entités, fixtures correspondantes au cahier des charge.
+
+27/09
+
+Faire le formulaire de commande.
+
+- Rajout de l'entité livre et bon de livraison par la suite.
+
+- Réfléchir a comment faire livrer des produits à des dates différentes ? (Stock de 0, produit LOURD + 2 jrs sur le délai de livraison ????).
 
 
 Fixtures produit : 
