@@ -36,14 +36,8 @@ class ProduitController extends AbstractController
             'slug' => $produit->getSlug()
         ], 301);
      }
-     if (!isset($_SESSION))
-     {
-        session_start();
-        $_SESSION['quantite']=0;
-     }
      return $this->render('produit/show.html.twig' , [
         'produit' => $produit,
-        'session' => $_SESSION,
         'current_menu' => 'properties'
      ]);
     }
