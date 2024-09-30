@@ -12,7 +12,21 @@
             <div class="col-md-4">
                 <h1>{{produit.nom}}</h1>
                 <div class="text-primary" style="font-size: 4rem; font-weight:bold;">{{produit.formattedPrice}} €</div>
-                <a href="{{ path('app_panier_ajout', {id: produit.id}) }}" class="btn btn-primary">Acheter</a>
+                 <form action="{{ path('app_panier_ajout' , {id: produit.id}) }}" method="post">
+               <label for="quantite">Quantité :</label>
+                <select class="form-select" name="quantite" id="quantite">
+                <option selected value="1">Choisissez la quantité</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Acheter</a>
             
         </div>
     </div>

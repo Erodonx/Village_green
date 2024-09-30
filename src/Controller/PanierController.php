@@ -33,16 +33,14 @@ class PanierController extends AbstractController
     }
     #[Route('/ajout/{id}', name: '_ajout')]
     public function ajout(Produit $produit,SessionInterface $session)
-    {
-     
+    {     
     $id = $produit->getId();
-
     $panier = $session->get('panier', []);
 
     if(empty($panier[$id])){
-        $panier[$id]=1;
+        $panier[$id]=$_REQUEST['quantite'];
     }else{
-        $panier[$id]++;
+        $panier[$id]=$panier[$id]+$_REQUEST['quantite'];
     }
      $session->set('panier', $panier);
      return $this->redirectToRoute('app_panier_index');
