@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+
+{% block body %}
+<div class="row mb-5">
+<div class="col-12">
+    <h1>Validation de la commande</h1>
+</div>
+</div>
+<div class="row justify-content-center  d-grid">
+    {{ form_errors(commande) }}
+    {{ form_start(commande) }}
+        {{ form_row(commande.adresseLivraison) }}
+        {{ form_row(commande.villeLivraison)}}
+        {{ form_row(commande.adresseFacturation)}}
+        {{ form_row(commande.villeFacturation)}}
+        {{ form_row(commande.moyenDePaiement)}}
+        {{ form_row(commande.CGU_validation)}}
+
+        <button type="submit" class="btn">Commander</button>
+    {{ form_end(commande) }}
+
+</div>
+{% endblock %}
+  {% block javascripts %}
+  {% endblock %}

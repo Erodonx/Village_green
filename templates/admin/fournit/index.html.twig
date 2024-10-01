@@ -11,20 +11,25 @@
     <tr>
         <th>Id de la commande</th>
         <th>Nom du produit</th>
+        <th>Quantité commandé</th>
         <th>Nom du fournisseur</th>
+        <th>Type Fournisseur</th>
         <th>Date de livraison de la commande</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    {% for fourni in fournis %}
+    {% for fourni in fournit %}
     <tr>
         <td>  
             <a href="">{{ fourni.getId }}</a>
         </td>
         <td>{{ fourni.Produit.getNom | default('') }}</td>
-        <td>{{ fourni.Fournisseur.getNom | default('')}}
-        </td>
-        <td>{{ fourni.getDateLivraison | date('d/m/y')}}
+        <td>{{fourni.getQuantiteLivree}}</td>
+        <td>{{ fourni.Fournisseur.getNom | default('')}}</td>
+        <td>{{ fourni.Fournisseur.getType}}</td>
+        <td>{{ fourni.getDateLivraison | date('d/m/y')}}</td>
+        <td><a class="btn btn-primary btn-sm" href="{{ path('app_admin_commande_fournisseur_edit', { id: fourni.id }) }}">Éditer</a></td>
     </tr>
     {% endfor %}
     </tbody>

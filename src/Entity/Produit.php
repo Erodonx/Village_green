@@ -42,6 +42,16 @@ class Produit
     private ?SousRubrique $sousRubrique = null;
 
     /**
+     * @var Collection<int, Details>
+     */
+    #[ORM\OneToMany(mappedBy:'produit', targetEntity:Detail::class)]
+    private Collection $details;
+    public function __construct1()
+    {
+        $this->details = new ArrayCollection();
+    }
+
+    /**
      * @var Collection<int, Fournit>
      */
     #[ORM\OneToMany(targetEntity: Fournit::class, mappedBy: 'produit', cascade:['remove'])]
@@ -50,6 +60,7 @@ class Produit
     public function __construct()
     {
         $this->fournisseurs = new ArrayCollection();
+        
     }
     
     public function getId(): ?int
@@ -176,5 +187,14 @@ class Produit
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Detail>
+     */
+
+    public function getDetails(): Collection
+    {
+        return $this->details;
     }
 }

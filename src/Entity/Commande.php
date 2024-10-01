@@ -53,6 +53,9 @@ class Commande
     #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'Commande', orphanRemoval: true)]
     private Collection $details;
 
+    #[ORM\Column(length: 100)]
+    private ?string $adresseLivraison = null;
+
     public function __construct()
     {
         $this->details = new ArrayCollection();
@@ -210,6 +213,18 @@ class Commande
                 $detail->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAdresseLivraison(): ?string
+    {
+        return $this->adresseLivraison;
+    }
+
+    public function setAdresseLivraison(string $adresseLivraison): static
+    {
+        $this->adresseLivraison = $adresseLivraison;
 
         return $this;
     }

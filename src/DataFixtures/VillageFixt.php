@@ -136,17 +136,17 @@ class VillageFixt extends Fixture
 
         $fournisseur1 = new Fournisseur();
         $fournisseur1->setNom('GROBRIGAND');
-        $fournisseur1->setTypeFournisseur('Constructeur');
+        $fournisseur1->setType('Constructeur');
         $manager->persist($fournisseur1);
 
         $fournisseur2 = new Fournisseur();
         $fournisseur2->setNom('GPARESPECTELIMITATIONVITESSE')
-                     ->setTypeFournisseur('Constructeur');
+                     ->setType('Constructeur');
         $manager->persist($fournisseur2);
         
         $fournisseur3 = new Fournisseur();
         $fournisseur3->setNom('CULQUIGRATTE')
-                     ->setTypeFournisseur('Constructeur');
+                     ->setType('Constructeur');
         $manager->persist($fournisseur3);
         
         

@@ -40,7 +40,7 @@ class PanierController extends AbstractController
     if(empty($panier[$id])){
         $panier[$id]=$_REQUEST['quantite'];
     }else{
-        $panier[$id]=$panier[$id]+$_REQUEST['quantite'];
+        $panier[$id]++;
     }
      $session->set('panier', $panier);
      return $this->redirectToRoute('app_panier_index');

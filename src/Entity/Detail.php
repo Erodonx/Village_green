@@ -15,22 +15,23 @@ class Detail
 
 
     #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id=null;
+
     #[ORM\ManyToOne(inversedBy: 'details')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Commande $Commande = null;
 
-    #[ORM\Id]
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy:'details')]
     private ?Produit $Produit = null;
 
     #[ORM\Column]
     private ?int $quantiteCommandee = null;
 
-    // public function getId(): ?int
-    // {
-    //     return $this->id;
-    // }
+    public function getId(): ?int
+    {
+         return $this->id;
+    }
 
     public function getCommande(): ?Commande
     {

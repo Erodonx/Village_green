@@ -19,7 +19,7 @@ class Fournisseur
     private ?string $nom = null;
 
     #[ORM\Column(length: 55)]
-    private ?string $type_fournisseur = null;
+    private ?string $type = null;
 
     /**
      * @var Collection<int, Fournit>
@@ -49,14 +49,14 @@ class Fournisseur
         return $this;
     }
 
-    public function getTypeFournisseur(): ?string
+    public function getType(): ?string
     {
-        return $this->type_fournisseur;
+        return $this->type;
     }
 
-    public function setTypeFournisseur(string $type_fournisseur): static
+    public function setType(string $type): static
     {
-        $this->type_fournisseur = $type_fournisseur;
+        $this->type = $type;
 
         return $this;
     }

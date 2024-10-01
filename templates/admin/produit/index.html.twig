@@ -9,7 +9,8 @@
 <table class="table">
     <thead>
     <tr>
-        <th>Titre</th>
+        <th>Nom du produit</th>
+        <th>Stock</th>
         <th>Sous-rubrique</th>
         <th>Actions</th>
     </tr>
@@ -19,6 +20,8 @@
     <tr>
         <td>  
             <a href="{{ path('app_admin_produit_edit', { id: produit.getId  }) }}">{{ produit.getNom }}</a>
+        </td>
+        <td>{{produit.stock}}
         </td>
         <td>{{ produit.sousRubrique.nom | default('') }}</td>
         <td> 

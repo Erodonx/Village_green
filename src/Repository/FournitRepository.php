@@ -20,7 +20,7 @@ class FournitRepository extends ServiceEntityRepository
     public function update_stock_produit(DateTime $date)
     {
         $qb = $this->createQueryBuilder('t')
-            // ->select('t.produit,t.quantiteLivree')
+            //->select('c.produit,t.quantiteLivree')
             ->setParameter('date', $date)
             ->where('t.dateLivraison < :date')
             ->getQuery()
