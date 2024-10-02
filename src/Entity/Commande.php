@@ -44,7 +44,7 @@ class Commande
     private ?bool $reduction = null;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, /*referencedColumnName:'email'*/)]
     private ?User $utilisateur = null;
 
     /**
