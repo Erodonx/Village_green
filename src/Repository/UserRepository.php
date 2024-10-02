@@ -47,6 +47,22 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     //            ->getResult()
     //        ;
     //    }
+    public function getlaydi($email)
+    {
+        return $this->createQueryBuilder('c')
+        ->where('c.email = :email')
+        ->setParameter('email',$email)
+        ->getQuery()
+        ->getResult();
+    }
+    public function getLesCommande($id)
+    {
+        return $this->createQueryBuilder('c')
+        ->where('c.id = :id')
+        ->setParameter('id',$id)
+        ->getQuery()
+        ->getResult();
+    }
 
     //    public function findOneBySomeField($value): ?User
     //    {

@@ -30,6 +30,23 @@ class CommandeRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
+    public function getlaydi($email)
+    {
+        return $this->createQueryBuilder('c')
+        ->where('c.email = :email')
+        ->setParameter('email',$email)
+        ->getQuery()
+        ->getResult();
+    }
+    public function getLesCommande($id): array
+    {
+        return $this->createQueryBuilder('c')
+        ->where('c.id = :id')
+        ->setParameter('id',$id)
+        ->getQuery()
+        ->getResult();
+    }
+
 
     //    public function findOneBySomeField($value): ?Commande
     //    {
