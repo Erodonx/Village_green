@@ -45,7 +45,7 @@ class Commande
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $utilisateur = null;
+    private ?User $utilisateur = null;
 
     /**
      * @var Collection<int, Detail>
@@ -175,12 +175,12 @@ class Commande
         return $this;
     }
 
-    public function getUtilisateur(): ?user
+    public function getUtilisateur(): ?User
     {
         return $this->utilisateur;
     }
 
-    public function setUtilisateur(?user $utilisateur): static
+    public function setUtilisateur(?User $utilisateur): static
     {
         $this->utilisateur = $utilisateur;
 
