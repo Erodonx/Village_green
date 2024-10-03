@@ -34,8 +34,8 @@ class CommandeRepository extends ServiceEntityRepository
     public function findByUser2($value):array
     {
         return $this->createQueryBuilder('c')
-        ->andWhere('c.user = :val')
-        ->setParameter('val', $value)
+        ->andWhere('c.user = :vale')
+        ->setParameter('vale', $value)
         ->getQuery()
         ->getResult()
         ;
