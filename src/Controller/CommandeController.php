@@ -40,7 +40,7 @@ class CommandeController extends AbstractController
     {               
         $total = 0;
         $commande = new Commande();
-        $commande->setUtilisateur($this->getUser());
+        $commande->setUser($this->getUser());
         foreach($panier as $item => $quantite)
         {
             $detail = new Detail;

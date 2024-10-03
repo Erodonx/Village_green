@@ -285,7 +285,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->commandes->contains($commande)) {
             $this->commandes->add($commande);
-            $commande->setUtilisateur($this);
+            $commande->setUser($this);
         }
 
         return $this;
@@ -295,8 +295,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->commandes->removeElement($commande)) {
             // set the owning side to null (unless already changed)
-            if ($commande->getUtilisateur() === $this) {
-                $commande->setUtilisateur(null);
+            if ($commande->getUser() === $this) {
+                $commande->setUser(null);
             }
         }
 

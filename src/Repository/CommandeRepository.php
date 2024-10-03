@@ -31,15 +31,15 @@ class CommandeRepository extends ServiceEntityRepository
     //        ;
     //    }
     
-    /*public function findByUser($value):array
+    public function findByUser2($value):array
     {
         return $this->createQueryBuilder('c')
-        ->andWhere('c.UtilisateurId = :val')
+        ->andWhere('c.user = :val')
         ->setParameter('val', $value)
         ->getQuery()
         ->getResult()
         ;
-    }*/
+    }
 
 
     //    public function findOneBySomeField($value): ?Commande
