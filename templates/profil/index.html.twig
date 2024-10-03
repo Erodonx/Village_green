@@ -9,21 +9,57 @@
                     <thead>
                     <tr>
                         <th>Email</th>
-                        <th colspan="2">Rôles</th>
+                        <th>Rôles</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>{{ informations.email }}</td>
-{#                        Les rôles sont un tableau, il nous faire une boucle :#}
+            {#                        Les rôles sont un tableau, il nous faire une boucle :#}
                         {% for role in informations.roles %}
                           <td>{{ role }}</td>
                         {% endfor %}
+                        <td><a href="">Modifier vos coordonnées</a></td>
                     </tr>
                     </tbody>
                 </table>
-
+        {% for commande in commandes %}
+        
+        <div class="row">Commande du {{commande.dateCommande | date('d/m/y')}}#{{commande.id}}
+        <table class="table table-light table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Nom du produit</th>
+                    <th>Quantité commandée</th>
+                    <th>Prix total du produit</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+            {% for detail in commande.details %}
+                    <td>{{ detail.produit.nom }}</td>
+                    <td>{{ detail.quantiteCommandee }}</td>
+                    <td>{{ detail.Produit.prixHT * detail.quantiteCommandee}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                    <tr>
+                        <td colspan="2">Total (TVA 20%) </td>
+                        <td>{{ commande.montantCommandeTTC }} €</td>
+                    </tr>
+                     <tr>
+                        <td colspan="3">Facturé au {{commande.adresseFacturation}}, {{commande.villeFacturation}}</td>                  
+                    </tr>
+                    <tr>
+                        <td colspan="3">Livré au {{commande.adresseLivraison}}, {{commande.villeLivraison}}</td>                  
+                    </tr>
+            </tfoot>
+            </table>
+           
             </div>
-        </div>
+            {% endfor %}
+        
     </div>
 {% endblock %}

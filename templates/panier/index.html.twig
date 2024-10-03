@@ -38,14 +38,18 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3">Total</td>
-                        <td>{{ total }} €</td>
+                        <td colspan="3">Total HT</td>
+                        <td colspan="2">{{ total }} €</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Total TTC</td>
+                        <td>{{total * 1.20}} €</td>
                         <td>
                             <a href="{{ path('app_panier_vider')}}" class="btn btn-danger">Vider</a>
                         </td>
-                    </tr>
                 </tfoot>
             </table>
+         <a href="{{ path('home')}}" class="btn btn-success">Parcourir les produits</a> 
          <a href="{{ path('app_commande')}}" class="btn btn-primary">Valider la commande</a>
         </div>
     </section>

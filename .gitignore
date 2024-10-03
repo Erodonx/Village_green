@@ -22,3 +22,6 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+src/Security/HistoryVerifier.php
+src/Controller/HistoriqueController.php
+templates/historique/index.html.twig

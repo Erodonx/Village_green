@@ -52,7 +52,7 @@ class CommandeController extends AbstractController
             $em->persist($detail);
         }
         $commande->setMontantCommandeHT($total); 
-        $commande->setMontantCommandeTTC($total);
+        $commande->setMontantCommandeTTC($total*1.20);
         $commande->setAdresseFacturation($form->get('adresseFacturation')->getData());
         $commande->setVilleFacturation($form->get('villeFacturation')->getData());
         $commande->setAdresseLivraison($form->get('adresseLivraison')->getData());
@@ -67,7 +67,7 @@ class CommandeController extends AbstractController
 
         $session->remove('panier');
 
-        $this->addFlash('success' , 'Merci pour votre commande sur The District');
+        $this->addFlash('success' , 'Merci pour votre commande sur Village Green =)');
         return $this->redirectToRoute('home');
         
     }
