@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify; //transformer une chaîne de caractères en Slug.
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -17,12 +18,15 @@ class Produit
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['produit.index'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['produit.index'])]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['produit.index'])]
     private ?string $description = null;
 
     #[ORM\Column]
@@ -39,6 +43,7 @@ class Produit
     private ?int $stock = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[Groups(['produit.show'])]
     private ?SousRubrique $sousRubrique = null;
 
     /**
