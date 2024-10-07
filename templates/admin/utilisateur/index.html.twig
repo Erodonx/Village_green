@@ -1,0 +1,37 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title "Administration" %}
+
+
+{% block body %}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Email</th>
+        <th>Rôle</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for utilisateur in user %}
+    <tr>
+        <td>  
+                {{ utilisateur.email | default('') }}</a>
+        </td>
+        <td> {% for roles in utilisateur.roles %}
+            {{ roles }} || 
+            {% endfor %} 
+        </td>
+        <td>    
+                <div class="d-flex gap-1">
+                <a class="btn btn-primary btn-sm" href="{{ path('app_admin_utilisateur_edit', { id: utilisateur.id }) }}">Éditer les rôles</a>
+                <form action="{{ path('app_admin_utilisateur_delete' , {id: utilisateur.id}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-sm">Supprimer le compte utilisateur</button>
+                </form>          
+           </div>
+        </td>
+    {% endfor %}
+
+{% endblock %}

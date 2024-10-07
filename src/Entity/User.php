@@ -6,7 +6,6 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\Id;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -73,9 +72,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'User', orphanRemoval: true)]
     private Collection $commandes;
 
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'Employe')]
+    private ?self $employeCharge = null;
+
+    /**
+     * @var Collection<int, self>
+     */
+    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'employeCharge')]
+    private Collection $Employe;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $reduction = null;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->Employe = new ArrayCollection();
     }
 
      public function getId(): ?int
@@ -299,6 +311,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $commande->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmployeCharge(): ?self
+    {
+        return $this->employeCharge;
+    }
+
+    public function setEmployeCharge(?self $employeCharge): static
+    {
+        $this->employeCharge = $employeCharge;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getEmploye(): Collection
+    {
+        return $this->Employe;
+    }
+
+    public function addEmploye(self $employe): static
+    {
+        if (!$this->Employe->contains($employe)) {
+            $this->Employe->add($employe);
+            $employe->setEmployeCharge($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmploye(self $employe): static
+    {
+        if ($this->Employe->removeElement($employe)) {
+            // set the owning side to null (unless already changed)
+            if ($employe->getEmployeCharge() === $this) {
+                $employe->setEmployeCharge(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getReduction(): ?float
+    {
+        return $this->reduction;
+    }
+
+    public function setReduction(?float $reduction): static
+    {
+        $this->reduction = $reduction;
 
         return $this;
     }

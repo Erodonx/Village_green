@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commande;
 use App\Entity\Detail;
 use App\Entity\Produit;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -20,7 +21,7 @@ use Symfony\Component\Validator\Constraints\Date;
 class CommandeController extends AbstractController
 {
     #[Route('/commande', name: 'app_commande')]
-    public function index(Request $request, EntityManagerInterface $em, SessionInterface $session, ProduitRepository $prodRepo){
+    public function index(Request $request, EntityManagerInterface $em, SessionInterface $session, ProduitRepository $prodRepo/*,User $user*/){
 
         if ($this->getUser()==null)
         {
@@ -52,7 +53,14 @@ class CommandeController extends AbstractController
             $em->persist($detail);
         }
         $commande->setMontantCommandeHT($total); 
-        $commande->setMontantCommandeTTC($total*1.20);
+        
+        //if($user->getReduction()!=null)
+        //{
+        // $commande->setMontantCommandeHT(($total*1.20)*$user->getReduction());
+        //}else
+        //{
+         $commande->setMontantCommandeTTC($total*1.20);
+        //}
         $commande->setAdresseFacturation($form->get('adresseFacturation')->getData());
         $commande->setVilleFacturation($form->get('villeFacturation')->getData());
         $commande->setAdresseLivraison($form->get('adresseLivraison')->getData());
@@ -63,6 +71,7 @@ class CommandeController extends AbstractController
         $commande->setReduction('0');
         $commande->setEtatLivraison('Commande validée');
         $em->persist($commande);
+        //$user->setReduction(null);
         $em->flush();
 
         $session->remove('panier');
