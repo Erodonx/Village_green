@@ -18,6 +18,20 @@ class VillageFixt extends Fixture
         // $product = new Product();
         // $manager->persist($product);
         
+        $fournisseur1 = new Fournisseur();
+        $fournisseur1->setNom('GROBRIGAND');
+        $fournisseur1->setType('Constructeur');
+        $manager->persist($fournisseur1);
+
+        $fournisseur2 = new Fournisseur();
+        $fournisseur2->setNom('GPARESPECTELIMITATIONVITESSE')
+                     ->setType('Constructeur');
+        $manager->persist($fournisseur2);
+        
+        $fournisseur3 = new Fournisseur();
+        $fournisseur3->setNom('CULQUIGRATTE')
+                     ->setType('Constructeur');
+        $manager->persist($fournisseur3);
         $Rubrique1=new Rubrique();
         $Rubrique1->setNom('Instruments traditionnels')
                   ->setDescription('Pour les hipsters qui passent leur temps à dire : "C\'ETAIT MIEUX AVANT!"');
@@ -28,6 +42,7 @@ class VillageFixt extends Fixture
                       ->setDescription('Pour les personnes qui veulent se la péter en soirée avec leur guitare.')
                       ->setRubrique($Rubrique1);
         $manager->persist($sousRubrique1);
+
         $produit1 = new Produit();
         $produit1->setNom('Luth')
         ->setDescription('7 coeurs, des incrustations magnifiques, manche corps et tête en lacewood.
@@ -35,7 +50,8 @@ class VillageFixt extends Fixture
         ->setPrixHT(555.50)
         ->setImage('Luthrenaissance.png')
         ->setStock(0)
-        ->setSousRubrique($sousRubrique1);
+        ->setSousRubrique($sousRubrique1)
+        ->setFournisseur($fournisseur1);
         $manager->persist($produit1);
 
         $produit2 = new Produit();
@@ -44,7 +60,8 @@ class VillageFixt extends Fixture
                  ->setPrixHT('998.0')
                  ->setImage('Harpeceltique.png')
                  ->setStock(0)
-                 ->setSousRubrique($sousRubrique1);
+                 ->setSousRubrique($sousRubrique1)
+                 ->setFournisseur($fournisseur2);
         $manager->persist($produit2);
 
         $sousRubrique2 = new SousRubrique();
@@ -61,7 +78,8 @@ class VillageFixt extends Fixture
                  ->setPrixHT(1745.00)
                  ->setImage('Tambourthomann.png')
                  ->setStock(0)
-                 ->setSousRubrique($sousRubrique2);
+                 ->setSousRubrique($sousRubrique2)
+                 ->setFournisseur($fournisseur3);
         $manager->persist($produit3);
         
         $produit4 = new Produit();
@@ -73,7 +91,8 @@ class VillageFixt extends Fixture
                  ->setPrixHT(298.00)
                  ->setImage('Xylophonethomann.png')
                  ->setStock(0)
-                 ->setSousRubrique($sousRubrique2);
+                 ->setSousRubrique($sousRubrique2)
+                 ->setFournisseur($fournisseur3);
         $manager->persist($produit4);
         
         $Rubrique2 = new Rubrique();
@@ -93,7 +112,8 @@ class VillageFixt extends Fixture
                  ->setPrixHT(111.00)
                  ->setImage('Gongthomann.png')
                  ->setStock(0)
-                 ->setSousRubrique($sousRubrique3);
+                 ->setSousRubrique($sousRubrique3)
+                 ->setFournisseur($fournisseur3);
         $manager->persist($produit5);
 
         $produit6 = new Produit();
@@ -102,7 +122,8 @@ class VillageFixt extends Fixture
                  ->setPrixHT(289.00)
                  ->setImage('Cymbalepaiste.png')
                  ->setStock(0)
-                 ->setSousRubrique($sousRubrique3);
+                 ->setSousRubrique($sousRubrique3)
+                 ->setFournisseur($fournisseur3);
         $manager->persist($produit6);
 
         $sousRubrique4= new SousRubrique();
@@ -118,7 +139,8 @@ class VillageFixt extends Fixture
                  ->setPrixHT(444.00)
                  ->setImage('MilleniumMX420.png')
                  ->setStock(0)
-                 ->setSousRubrique($sousRubrique4);
+                 ->setSousRubrique($sousRubrique4)
+                 ->setFournisseur($fournisseur1);
         $manager->persist($produit7);
 
         $produit8 = new Produit();
@@ -128,26 +150,9 @@ class VillageFixt extends Fixture
                  ->setPrixHT(1498.00)
                  ->setImage('MilleniumMX420.png')
                  ->setStock(0)
-                 ->setSousRubrique($sousRubrique4);
+                 ->setSousRubrique($sousRubrique4)
+                 ->setFournisseur($fournisseur1);
         $manager->persist($produit8);
-
-
-                
-
-        $fournisseur1 = new Fournisseur();
-        $fournisseur1->setNom('GROBRIGAND');
-        $fournisseur1->setType('Constructeur');
-        $manager->persist($fournisseur1);
-
-        $fournisseur2 = new Fournisseur();
-        $fournisseur2->setNom('GPARESPECTELIMITATIONVITESSE')
-                     ->setType('Constructeur');
-        $manager->persist($fournisseur2);
-        
-        $fournisseur3 = new Fournisseur();
-        $fournisseur3->setNom('CULQUIGRATTE')
-                     ->setType('Constructeur');
-        $manager->persist($fournisseur3);
         
         
         $fournit1 = new Fournit();

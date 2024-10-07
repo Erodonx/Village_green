@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 use App\Entity\Fournit;
 use App\Form\FournitType;
+use App\Entity\Produit;
 use App\Repository\FournisseurRepository;
 use App\Repository\FournitRepository;
 use App\Repository\ProduitRepository;
@@ -26,13 +27,14 @@ class FournitController extends AbstractController
         ]);
     }
     #[Route('/create', name:'create')]
-    public function create(Request $request, EntityManagerInterface $em)
+    public function create(Request $request, EntityManagerInterface $em,ProduitRepository $produit)
     {
         $fournit = new Fournit();
         $form = $this->createForm(FournitType::class, $fournit);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            $fournit->setFournisseur($fournit->getProduit()->getFournisseur());
             $em->persist($fournit);
             $em->flush();
             $this->addFlash('success', 'L\'ajout de la commande dans la table a été effectué, n\'hésitez pas a utiliser éditer pour modifier l\'image.');

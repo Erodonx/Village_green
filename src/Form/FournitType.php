@@ -25,10 +25,10 @@ class FournitType extends AbstractType
                 'class' => Produit::class,
                 'choice_label' => 'nom',
             ])
-            ->add('fournisseur', EntityType::class, [
+            /*->add('fournisseur', EntityType::class, [
                 'class' => Fournisseur::class,
                 'choice_label' => 'nom',
-            ])
+            ])*/
         ->add('save',SubmitType::class, [
             'label' => 'Sauvegarder les changements' ])
     ;

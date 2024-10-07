@@ -62,6 +62,10 @@ class Produit
     #[ORM\OneToMany(targetEntity: Fournit::class, mappedBy: 'produit', cascade:['remove'])]
     private Collection $fournisseurs;
 
+    #[ORM\ManyToOne(inversedBy: 'product')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Fournisseur $Fournisseur = null;
+
     public function __construct()
     {
         $this->fournisseurs = new ArrayCollection();
@@ -201,5 +205,17 @@ class Produit
     public function getDetails(): Collection
     {
         return $this->details;
+    }
+
+    public function getFournisseur(): ?Fournisseur
+    {
+        return $this->Fournisseur;
+    }
+
+    public function setFournisseur(?Fournisseur $Fournisseur): static
+    {
+        $this->Fournisseur = $Fournisseur;
+
+        return $this;
     }
 }
