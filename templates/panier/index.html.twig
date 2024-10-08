@@ -17,7 +17,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> 
                         {% for element in data %}
                             <tr>
                                 <td>{{ element.produit.nom}}</td>
@@ -45,8 +45,18 @@
                         <td colspan="3">Total TTC</td>
                         <td>{{total * 1.20}} €</td>
                         <td>
+                            {% if reduction is not defined %}
                             <a href="{{ path('app_panier_vider')}}" class="btn btn-danger">Vider</a>
+                            {% endif %}
                         </td>
+                    </tr>
+                    {% if reduction is defined %}
+                    <tr>
+                    <td colspan="3">Total TTC avec reduction de {{ 100 - (reduction * 100) }} % </td>
+                    <td> {{total * 1.20 * reduction }} </td>
+                    <td>  <a href="{{ path('app_panier_vider')}}" class="btn btn-danger">Vider</a> </td>
+                    </tr>
+                    {% endif %}
                 </tfoot>
             </table>
          <a href="{{ path('home')}}" class="btn btn-success">Parcourir les produits</a> 

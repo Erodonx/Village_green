@@ -56,6 +56,9 @@ class Commande
     #[ORM\Column(length: 100)]
     private ?string $adresseLivraison = null;
 
+    #[ORM\Column(length: 5, nullable: true)]
+    private ?string $valeurReduction = null;
+
     public function __construct()
     {
         $this->details = new ArrayCollection();
@@ -225,6 +228,18 @@ class Commande
     public function setAdresseLivraison(string $adresseLivraison): static
     {
         $this->adresseLivraison = $adresseLivraison;
+
+        return $this;
+    }
+
+    public function getValeurReduction(): ?string
+    {
+        return $this->valeurReduction;
+    }
+
+    public function setValeurReduction(?string $valeurReduction): static
+    {
+        $this->valeurReduction = $valeurReduction;
 
         return $this;
     }

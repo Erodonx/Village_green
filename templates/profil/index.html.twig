@@ -26,6 +26,11 @@
                     </tr>
                     </tbody>
                 </table>
+            {% if informations.reduction is not null %}
+            <div class="row">
+            <p>Vous bénéficiez d'une réduction de {{100-(informations.reduction  * 100 )}} % sur votre prochaine commande. </p>
+            </div>
+            {% endif %}
         {% for commande in commandes %}
         
         <div class="row">Commande du {{commande.dateCommande | date('d/m/y')}}#{{commande.id}}
