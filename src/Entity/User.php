@@ -84,10 +84,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?float $reduction = null;
 
+    /**
+     * @var Collection<int, Requete>
+     */
+    #[ORM\OneToMany(targetEntity: Requete::class, mappedBy: 'client')]
+    private Collection $requetes;
+
+    /**
+     * @var Collection<int, Requete>
+     */
+    #[ORM\OneToMany(targetEntity: Requete::class, mappedBy: 'employeMess')]
+    private Collection $requetesEmploye;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
         $this->Employe = new ArrayCollection();
+        $this->requetes = new ArrayCollection();
+        $this->requetesEmploye = new ArrayCollection();
     }
 
      public function getId(): ?int
@@ -368,4 +382,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Requete>
+     */
+    public function getRequetes(): Collection
+    {
+        return $this->requetes;
+    }
+
+    public function addRequete(Requete $requete): static
+    {
+        if (!$this->requetes->contains($requete)) {
+            $this->requetes->add($requete);
+            $requete->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRequete(Requete $requete): static
+    {
+        if ($this->requetes->removeElement($requete)) {
+            // set the owning side to null (unless already changed)
+            if ($requete->getClient() === $this) {
+                $requete->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Requete>
+     */
+    public function getRequetesEmploye(): Collection
+    {
+        return $this->requetesEmploye;
+    }
+
+    public function addRequetesEmploye(Requete $requetesEmploye): static
+    {
+        if (!$this->requetesEmploye->contains($requetesEmploye)) {
+            $this->requetesEmploye->add($requetesEmploye);
+            $requetesEmploye->setRequetesEmploye($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRequetesEmploye(Requete $requetesEmploye): static
+    {
+        if ($this->requetesEmploye->removeElement($requetesEmploye)) {
+            // set the owning side to null (unless already changed)
+            if ($requetesEmploye->getRequetesEmploye() === $this) {
+                $requetesEmploye->setRequetesEmploye(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

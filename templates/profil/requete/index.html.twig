@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos demandes{% endblock %}
+
+{% block body %}
+<h1>Bonjour  cher {{type}} </h1>
+
+{% for requete in requetes %}
+<p>{{requete.getSujet}}</p>
+{% endfor %}
+<a class="btn btn-success btn-sm" href="/profil/requete/create"> Créer une requête </a>
+{% endblock %}

@@ -93,5 +93,9 @@
             {% endfor %}
             </div>
             {% endif %}
+            {# {{informations.employeCharge.email}} #}
+            {% if informations.employeCharge.email is defined %}
+            <a class="btn btn-success btn-sm" href="/profil/requete/">Soumettre une requête au commercial encadrant.</a>
+            {% endif %}
     </div>
 {% endblock %}
