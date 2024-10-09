@@ -2,14 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\ContenuRequete;
 use App\Entity\Requete;
+use App\Form\ContenuRequeteType;
 use App\Form\RequeteType;
+use App\Repository\ContenuRequeteRepository;
 use App\Repository\RequeteRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use PharIo\Manifest\Requirement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -22,12 +26,12 @@ class RequeteController extends AbstractController
         $this->userRepo = $userRepo;
     }   
     #[Route('/', name: 'index', requirements:['idC' => Requirement::DIGITS , 'idE' => Requirement::DIGITS])]
-    public function index(RequeteRepository $requete): Response
+    public function index(RequeteRepository $requete,ContenuRequeteRepository $contenuRequete): Response
     {
-        if ($this->getUser()->getUserIdentifier()==null)
+        if ($this->getUser()==null)
         {
          $this->addFlash('warning','Vous devez être authentifié pour accéder à cette page.');
-         $this->redirectToRoute('app_login');
+         return $this->redirectToRoute('app_login');
         }else
         {
         $info = $this->userRepo->findOneBy(["email" =>$this->getUser()->getUserIdentifier()]);
@@ -50,7 +54,7 @@ class RequeteController extends AbstractController
         $type = 'client';
         }else
         {
-        $requetes=$requete->findByEmploye($this->getUser());
+        $requetes=$requete->findByEmployeMess($this->getUser());
         $type = 'employe';
         }
         
@@ -60,9 +64,10 @@ class RequeteController extends AbstractController
             'type' => $type
         ]);
     }
+
     }
-    #[Route('/create', name: 'app_requete_create', requirements:['idC' => Requirement::DIGITS , 'idE' => Requirement::DIGITS])]
-    public function create(EntityManagerInterface $em, HttpFoundationRequest $request)
+    #[Route('/create', name: 'create', requirements:['idC' => Requirement::DIGITS , 'idE' => Requirement::DIGITS])]
+    public function create(EntityManagerInterface $em, Request $request)
     {
         $requete = new Requete();
         $form = $this->createForm(RequeteType::class, $requete);
@@ -82,4 +87,148 @@ class RequeteController extends AbstractController
             'form' => $form
         ]);
     }
+    #[Route('/{id}/create', name: 'create_message', requirements:['id' => Requirement::DIGITS])]
+    public function createmessage(EntityManagerInterface $em, Request $request,RequeteRepository $requetes, Requete $requete)
+    {
+        if ($this->getUser()==null)
+        {
+         $this->addFlash('warning','Vous devez être authentifié pour accéder à cette page.');
+         return $this->redirectToRoute('app_login');
+        }else
+        {
+        $info = $this->userRepo->findOneBy(["email" =>$this->getUser()->getUserIdentifier()]);
+        $Client=false;
+        $Employe=false;
+        foreach ($info->getRoles() as $roles)
+        {
+            if($roles=='ROLE_USER')
+            {
+                $Client=true;
+            }
+            if($roles=='ROLE_EMPLOYE')
+            {
+                $Employe=true;
+            }
+        }
+    if($Client==true&&$Employe==false)
+    {
+     $chaine=($_SERVER['PATH_INFO']);
+     $chaine=substr($chaine,16);
+     if ($chaine[1]!= Requirement::DIGITS)
+     {
+     $chaine=substr($chaine,0,1);
+     }else{
+        if ($chaine[2]!= Requirement::DIGITS){
+         $chaine=substr($chaine,0,2);
+        }else{
+            if ($chaine[2]!= Requirement::DIGITS){
+                $chaine=substr($chaine,0,3);
+            } 
+        }
+     }
+     $requete = $requetes->findById($chaine);
+     $cli=$requete[0]->getClient();
+     if($cli!=$this->getUser())
+     {
+        $this->addFlash('warning','Cette requête ne vous concerne pas');
+        return $this->redirectToRoute('app_profil_index');
+     }else
+     {
+     $messagerequete = new ContenuRequete();
+     $form = $this->createForm(ContenuRequeteType::class, $messagerequete);
+     $form->handleRequest($request);
+     if ($form->isSubmitted() && $form->isValid())
+     {
+         $messagerequete->setRequete($requete[0]);
+         $em->persist($messagerequete);
+         $em->flush();
+         $this->addFlash('success', 'Le contenu du premier message a été déposé.');
+         return $this->redirectToRoute('app_requete_index');
+     }
+     return $this->render('/profil/requete/create.html.twig', [
+         'messagerequete' => $messagerequete,
+         'form' => $form
+     ]);
+    }
+    }
+    else{
+        $chaine=($_SERVER['PATH_INFO']);
+        $chaine=substr($chaine,16);
+        if ($chaine[1]!= Requirement::DIGITS)
+        {
+        $chaine=substr($chaine,0,1);
+        }else{
+           if ($chaine[2]!= Requirement::DIGITS){
+            $chaine=substr($chaine,0,2);
+           }else{
+               if ($chaine[2]!= Requirement::DIGITS){
+                   $chaine=substr($chaine,0,3);
+               } 
+           }
+        }
+        $requete = $requetes->findById($chaine);
+        $emp=$requete[0]->getEmployeMess();
+        if($emp!=$this->getUser())
+        {
+           $this->addFlash('warning','Cette requête ne vous concerne pas');
+           return $this->redirectToRoute('app_profil_index');
+        }else
+        {
+        $messagerequete = new ContenuRequete();
+        $form = $this->createForm(ContenuRequeteType::class, $messagerequete);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $messagerequete->setRequete($requete[0]);
+            $em->persist($messagerequete);
+            $em->flush();
+            $this->addFlash('success', 'Le contenu du premier message a été déposé.');
+            return $this->redirectToRoute('app_requete_index');
+        }
+      }
+    }
+}
+    return $this->render('/profil/requete/create.html.twig', [
+    'messagerequete' => $messagerequete,
+    'form' => $form
+]);
+}
+#[Route('/{id}/show', name: 'show_message', requirements:['id' => Requirement::DIGITS])]
+ public function show(RequeteRepository $requetes)
+ {
+    if ($this->getUser()==null)
+    {
+     $this->addFlash('warning','Vous devez être authentifié pour accéder à cette page.');
+     return $this->redirectToRoute('app_login');
+    }else
+    {
+    $info = $this->userRepo->findOneBy(["email" =>$this->getUser()->getUserIdentifier()]);
+    $chaine=($_SERVER['PATH_INFO']);
+    $chaine=substr($chaine,16);
+    if ($chaine[1]!= Requirement::DIGITS)
+    {
+    $chaine=substr($chaine,0,1);
+    }else{
+       if ($chaine[2]!= Requirement::DIGITS){
+        $chaine=substr($chaine,0,2);
+       }else{
+           if ($chaine[2]!= Requirement::DIGITS){
+               $chaine=substr($chaine,0,3);
+           } 
+       }
+    }
+    $requete = $requetes->findById($chaine);
+    $cli=$requete[0]->getClient();
+    $emp=$requete[0]->getEmployeMess();
+    if(($this->getUser()!=$cli)&&($this->getUser()!=$emp))
+    {
+        $this->addFlash('warning','Cette requête ne vous concerne pas');
+        return $this->redirectToRoute('app_profil_index');   
+    }else{
+        return $this->render('/profil/requete/show.html.twig', [
+            'requete' => $requete[0],
+        ]);
+    }
+}
+}
 }

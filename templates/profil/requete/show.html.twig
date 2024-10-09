@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>{{ requete.sujet}}</h1>
+{% for contenu in requete.contenuRequetes %}
+<div class="row">
+<div class="card">{{contenu.message}}</div>
+</div>
+{% endfor %}
+{% endblock %}

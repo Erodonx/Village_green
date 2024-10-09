@@ -6,7 +6,36 @@
 <h1>Bonjour  cher {{type}} </h1>
 
 {% for requete in requetes %}
-<p>{{requete.Sujet}}</p>
+ <table class="table table-light table-hover">
+                    <thead>
+                    <tr>
+                        <th>Sujet de la requête</th>
+                        {% if type == "employe"%}
+                        <th>Client concerné</th>
+                        {% endif %}
+                        {% if type == "client" %}
+                        <th>Votre commercial</th>
+                        {% endif %}
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ requete.sujet }}</td>
+                        {% if type == "employe" %}
+                        <td> {{ requete.client.email}}</td>
+                        {% endif %}
+                        {% if type == "client" %}
+                        <td> {{requete.employeMess.email}}</td>
+                        {% endif %}
+                        <td><a class="btn btn-success btn-sm" href="{{ path('app_requete_create_message', { id: requete.id }) }}">Saisir un message</a>
+                            <a class="btn btn-success btn-sm" href="{{ path('app_requete_show_message', { id: requete.id }) }}">Consulter la requête</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 {% endfor %}
+{% if type == 'client' %}
 <a class="btn btn-success btn-sm" href="/profil/requete/create"> Créer une requête </a>
+{% endif %}
 {% endblock %}

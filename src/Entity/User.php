@@ -425,7 +425,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->requetesEmploye->contains($requetesEmploye)) {
             $this->requetesEmploye->add($requetesEmploye);
-            $requetesEmploye->setRequetesEmploye($this);
+            $requetesEmploye->setEmployeMess($this);
         }
 
         return $this;
@@ -435,8 +435,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->requetesEmploye->removeElement($requetesEmploye)) {
             // set the owning side to null (unless already changed)
-            if ($requetesEmploye->getRequetesEmploye() === $this) {
-                $requetesEmploye->setRequetesEmploye(null);
+            if ($requetesEmploye->getEmployeMess() === $this) {
+                $requetesEmploye->setEmployeMess(null);
             }
         }
 

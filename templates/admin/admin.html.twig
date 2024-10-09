@@ -49,8 +49,12 @@ h1, p {
         </li>
         <li class="nav-item me-auto">
         <a class="nav-link {{ app.current_route == 'app_admin_rubrique_index' ? 'active' : ''}}" href ="{{ path ('app_admin_rubrique_index')}}">Rubrique</a>
+        </li>
         <li class="nav-item me-auto">
         <a class="nav-link {{ app.current_route == 'app_admin_commande_fournisseur_index' ? 'active' : ''}}" href="{{ path ('app_admin_commande_fournisseur_index')}}">Commmandes Fournisseur</a>
+        </li>
+        <li class="nav-item me-auto">
+        <a class="nav-link {{ app.current_route == 'app_admin_utilisateur_index' ? 'active' : ''}}" href="{{ path ('app_admin_utilisateur_index')}}">Gestion utilisateur</a>
       </ul>
     </div>
   </div>
