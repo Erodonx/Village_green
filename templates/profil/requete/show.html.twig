@@ -1,9 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'baserequete.html.twig' %}
 {% block body %}
 <h1>{{ requete.sujet}}</h1>
 {% for contenu in requete.contenuRequetes %}
-<div class="row">
-<div class="card">{{contenu.message}}</div>
+{% if contenu.auteur.employeCharge is not null %}
+<div class="row card bg-primary my-2">
+{% else %}
+<div class="row card bg-danger my-2">
+{% endif %}
+<div class="card-head"><h5>{{contenu.auteur.email}}</h5></div>
+<div class="card-text">
+<div class="row">{{contenu.message}}</div>
+<div class="row"><div class="col-10"></div>{{contenu.dateMessage | date('d/m/y')}}</div>
+</div>
 </div>
 {% endfor %}
+
+<div class="row my-5">
+<div class="col-6 d-flex justify-content-center"><a class="btn btn-success btn-sm" href="{{ path('app_requete_create_message', {id : requete.id})}}">Écrire un nouveau message</a></div>
+<div class="col-6 d-flex justify-content-center"><a class="btn btn-primary btn-sm" href="{{ path('app_requete_index')}}">Retourner vers l'index des demandes</a></div>
 {% endblock %}

@@ -96,12 +96,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Requete::class, mappedBy: 'employeMess')]
     private Collection $requetesEmploye;
 
+    /**
+     * @var Collection<int, ContenuRequete>
+     */
+    #[ORM\OneToMany(targetEntity: ContenuRequete::class, mappedBy: 'Auteur')]
+    private Collection $contenuRequetes;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
         $this->Employe = new ArrayCollection();
         $this->requetes = new ArrayCollection();
         $this->requetesEmploye = new ArrayCollection();
+        $this->contenuRequetes = new ArrayCollection();
     }
 
      public function getId(): ?int
@@ -437,6 +444,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($requetesEmploye->getEmployeMess() === $this) {
                 $requetesEmploye->setEmployeMess(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ContenuRequete>
+     */
+    public function getContenuRequetes(): Collection
+    {
+        return $this->contenuRequetes;
+    }
+
+    public function addContenuRequete(ContenuRequete $contenuRequete): static
+    {
+        if (!$this->contenuRequetes->contains($contenuRequete)) {
+            $this->contenuRequetes->add($contenuRequete);
+            $contenuRequete->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContenuRequete(ContenuRequete $contenuRequete): static
+    {
+        if ($this->contenuRequetes->removeElement($contenuRequete)) {
+            // set the owning side to null (unless already changed)
+            if ($contenuRequete->getAuteur() === $this) {
+                $contenuRequete->setAuteur(null);
             }
         }
 

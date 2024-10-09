@@ -9,6 +9,7 @@ use App\Form\RequeteType;
 use App\Repository\ContenuRequeteRepository;
 use App\Repository\RequeteRepository;
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use PharIo\Manifest\Requirement;
@@ -50,6 +51,11 @@ class RequeteController extends AbstractController
         }
         if($Client==true&&$Employe==false)
         {
+        if($info->getEmployeCharge()==null)
+        {
+         $this->addFlash('warning','Vous ne pouvez pas faire de requête sans avoir un commercial qui vous encadre.');
+         return $this->redirectToRoute('app_profil_index');
+        }
         $requetes=$requete->findByClient2($info->getId());
         $type = 'client';
         }else
@@ -69,6 +75,18 @@ class RequeteController extends AbstractController
     #[Route('/create', name: 'create', requirements:['idC' => Requirement::DIGITS , 'idE' => Requirement::DIGITS])]
     public function create(EntityManagerInterface $em, Request $request)
     {
+        if ($this->getUser()==null)
+        {
+         $this->addFlash('warning','Vous devez être authentifié pour accéder à cette page.');
+         return $this->redirectToRoute('app_login');
+        }else
+        {
+        $info = $this->userRepo->findOneBy(["email" =>$this->getUser()->getUserIdentifier()]);
+        if($info->getEmployeCharge()==null)
+        {
+         $this->addFlash('warning','Vous ne pouvez pas faire de requête sans avoir un commercial qui vous encadre.');
+         return $this->redirectToRoute('app_profil_index');
+        }
         $requete = new Requete();
         $form = $this->createForm(RequeteType::class, $requete);
         $form->handleRequest($request);
@@ -87,6 +105,7 @@ class RequeteController extends AbstractController
             'form' => $form
         ]);
     }
+}
     #[Route('/{id}/create', name: 'create_message', requirements:['id' => Requirement::DIGITS])]
     public function createmessage(EntityManagerInterface $em, Request $request,RequeteRepository $requetes, Requete $requete)
     {
@@ -139,7 +158,10 @@ class RequeteController extends AbstractController
      $form->handleRequest($request);
      if ($form->isSubmitted() && $form->isValid())
      {
+         $date = new DateTime("now");
          $messagerequete->setRequete($requete[0]);
+         $messagerequete->setAuteur($this->getUser());
+         $messagerequete->setDateMessage($date);
          $em->persist($messagerequete);
          $em->flush();
          $this->addFlash('success', 'Le contenu du premier message a été déposé.');
@@ -179,7 +201,10 @@ class RequeteController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            $date = new DateTime("now");
             $messagerequete->setRequete($requete[0]);
+            $messagerequete->setAuteur($this->getUser());
+            $messagerequete->setDateMessage($date);
             $em->persist($messagerequete);
             $em->flush();
             $this->addFlash('success', 'Le contenu du premier message a été déposé.');

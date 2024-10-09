@@ -27,7 +27,8 @@ class UserType extends AbstractType
         ])
             ->add('employeCharge', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'id',
+                'label' => 'Commercial référent',
+                'choice_label' => 'email',
                 'required' => false
             ])
             ->add('save',SubmitType::class, [

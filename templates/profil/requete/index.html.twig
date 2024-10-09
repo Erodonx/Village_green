@@ -28,7 +28,7 @@
                         {% if type == "client" %}
                         <td> {{requete.employeMess.email}}</td>
                         {% endif %}
-                        <td><a class="btn btn-success btn-sm" href="{{ path('app_requete_create_message', { id: requete.id }) }}">Saisir un message</a>
+                        <td>
                             <a class="btn btn-success btn-sm" href="{{ path('app_requete_show_message', { id: requete.id }) }}">Consulter la requête</a>
                         </td>
                     </tr>

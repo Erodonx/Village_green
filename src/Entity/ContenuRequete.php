@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ContenuRequeteRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContenuRequeteRepository::class)]
@@ -19,6 +20,15 @@ class ContenuRequete
     #[ORM\ManyToOne(inversedBy: 'contenuRequetes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Requete $Requete = null;
+
+    #[ORM\ManyToOne(inversedBy: 'contenuRequetes')]
+    private ?User $Auteur = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateMessage = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $Time = null;
 
     public function getId(): ?int
     {
@@ -45,6 +55,30 @@ class ContenuRequete
     public function setRequete(?Requete $Requete): static
     {
         $this->Requete = $Requete;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?User
+    {
+        return $this->Auteur;
+    }
+
+    public function setAuteur(?User $Auteur): static
+    {
+        $this->Auteur = $Auteur;
+
+        return $this;
+    }
+
+    public function getDateMessage(): ?\DateTimeInterface
+    {
+        return $this->dateMessage;
+    }
+
+    public function setDateMessage(\DateTimeInterface $dateMessage): static
+    {
+        $this->dateMessage = $dateMessage;
 
         return $this;
     }
