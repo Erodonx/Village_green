@@ -133,18 +133,12 @@ class RequeteController extends AbstractController
     {
      $chaine=($_SERVER['PATH_INFO']);
      $chaine=substr($chaine,16);
-     if ($chaine[1]!= Requirement::DIGITS)
+     $n=1;
+     while($chaine[$n-1]==Requirement::DIGITS)
      {
-     $chaine=substr($chaine,0,1);
-     }else{
-        if ($chaine[2]!= Requirement::DIGITS){
-         $chaine=substr($chaine,0,2);
-        }else{
-            if ($chaine[2]!= Requirement::DIGITS){
-                $chaine=substr($chaine,0,3);
-            } 
-        }
+     $n=$n+1;
      }
+     $chaine=substr($chaine,0,$n);
      $requete = $requetes->findById($chaine);
      $cli=$requete[0]->getClient();
      if($cli!=$this->getUser())
@@ -176,18 +170,12 @@ class RequeteController extends AbstractController
     else{
         $chaine=($_SERVER['PATH_INFO']);
         $chaine=substr($chaine,16);
-        if ($chaine[1]!= Requirement::DIGITS)
+        $n=1;
+        while($chaine[$n-1]==Requirement::DIGITS)
         {
-        $chaine=substr($chaine,0,1);
-        }else{
-           if ($chaine[2]!= Requirement::DIGITS){
-            $chaine=substr($chaine,0,2);
-           }else{
-               if ($chaine[2]!= Requirement::DIGITS){
-                   $chaine=substr($chaine,0,3);
-               } 
-           }
+        $n=$n+1;
         }
+        $chaine=substr($chaine,0,$n);
         $requete = $requetes->findById($chaine);
         $emp=$requete[0]->getEmployeMess();
         if($emp!=$this->getUser())
@@ -228,20 +216,15 @@ class RequeteController extends AbstractController
     }else
     {
     $info = $this->userRepo->findOneBy(["email" =>$this->getUser()->getUserIdentifier()]);
-    $chaine=($_SERVER['PATH_INFO']);
-    $chaine=substr($chaine,16);
-    if ($chaine[1]!= Requirement::DIGITS)
+     $chaine=($_SERVER['PATH_INFO']);
+     $chaine=substr($chaine,16);
+     $n=0;
+     $pattern = "/[0-9]/";
+     while(preg_match($pattern,$chaine[$n])>0)
     {
-    $chaine=substr($chaine,0,1);
-    }else{
-       if ($chaine[2]!= Requirement::DIGITS){
-        $chaine=substr($chaine,0,2);
-       }else{
-           if ($chaine[2]!= Requirement::DIGITS){
-               $chaine=substr($chaine,0,3);
-           } 
-       }
-    }
+    $n=$n+1;
+    }   
+    $chaine=substr($chaine,0,$n);
     $requete = $requetes->findById($chaine);
     $cli=$requete[0]->getClient();
     $emp=$requete[0]->getEmployeMess();
