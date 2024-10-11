@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -43,19 +44,32 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe devrait comporter au minimum {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
             ])
-            ->add('numero_mobile')
+            ->add('numero_mobile', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez remplir ce champ',
+                    ]),
+                    new Length([
+                        'min' => 10,
+                        'minMessage' => 'Le numéro de téléphone doit se composer de {{ limit }} chiffres',
+                        'max' => 10,
+                        'maxMessage' => 'Le numéro de téléphone doit se composer de {{ limit }} chiffres',
+                        'exactMessage' => 'Le numéro de téléphone doit se composer de {{ limit }} chiffres',
+                    ])
+                ]
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'J\'accepte les conditions d\'utilisation',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions d\'utilisation',
                     ]),
                 ],
             ])

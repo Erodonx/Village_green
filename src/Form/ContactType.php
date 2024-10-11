@@ -17,15 +17,13 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-
 class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
-                'empty_data' => ''
-            ])
+                'empty_data' => '',])
             ->add('email', EmailType::class, [
                 'empty_data' => ''
             ])
