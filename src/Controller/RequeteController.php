@@ -95,7 +95,13 @@ class RequeteController extends AbstractController
             $info = $this->userRepo->findOneBy(["email" =>$this->getUser()->getUserIdentifier()]);
             $requete->setEmployeMess($info->getEmployeCharge());
             $requete->setClient($info);
+            $contenu = new ContenuRequete();
+            $contenu->setMessage($_REQUEST['requete']['message']);
+            $contenu->setAuteur($this->getUser());
+            $contenu->setDateMessage(new DateTime("now"));
+            $contenu->setRequete($requete);
             $em->persist($requete);
+            $em->persist($contenu);
             $em->flush();
             $this->addFlash('success', 'La création de la requête a été effectuée, veuillez maintenant en saisir le contenu.');
             return $this->redirectToRoute('app_requete_index');

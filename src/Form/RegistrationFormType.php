@@ -73,9 +73,24 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('code_postal')
-            ->add('ville')
-            ->add('adresse')
+            ->add('code_postal', TextType::class, [
+                'label' => 'Code postal',
+                'required' => false,
+                'constraints' => [
+                new Length([
+                    'min' => 5,
+                    'max' => 5,
+                    'exactMessage' => 'Le code postal doit se composer de {{ limit }} chiffres', ])
+                ],
+            ])
+            ->add('ville', TextType::class, [
+                'label' => 'Ville',
+                'required' => false,
+            ])
+            ->add('adresse', TextType::class, [
+                'label' => 'Adresse',
+                'required' => false,
+            ])
             ->add('pays', CountryType::class, [
                 'placeholder' => 'Veuillez selectionner un pays',
                 'required' => false
