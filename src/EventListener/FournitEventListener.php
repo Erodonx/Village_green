@@ -51,7 +51,7 @@ class FournitEventListener
                 $total[$detailscom->getProduit()->getId()]=0;
                }
 
-               $total[$detailscom->getProduit()->getId()]=$total[$detailscom->getProduit->getId()]-$detailscom->getQuantiteCommandee();
+               $total[$detailscom->getProduit()->getId()]=$total[$detailscom->getProduit()->getId()]-$detailscom->getQuantiteCommandee();
             }
 
             foreach ($tab as $livraison)

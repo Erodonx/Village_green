@@ -76,7 +76,7 @@ class CommandeController extends AbstractController
          {
             $commande->setMontantCommandeTTC($commande->getMontantCommandeTTC()*$info->getReduction());
             $commande->setReduction('1');
-            $commande->setValeurReduction($info->getRedction());
+            $commande->setValeurReduction($info->getReduction());
             $info->setReduction(null);
             $em->persist($info);
          }else
