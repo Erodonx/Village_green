@@ -51,8 +51,8 @@ ETA /!\
 To do next: 
 
 Créer d'autres fixtures produits, d'autres rubriques sous rubriques.
-
-
 faire la vue des produits par sous rubriques.
+-Ajouter la table bon de livraison, simuler le délai de livraison avec une fonction random.
 
-Avec le query builder finir de l'affichage de certaines demandes du projet fil rouge.
+
+Avec le query builder finir l'affichage de certaines demandes du projet fil rouge.
