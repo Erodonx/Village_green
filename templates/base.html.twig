@@ -99,8 +99,19 @@ h1, p {
     </div>
   </div>
 </nav>
-
-
+{% if app.current_route starts with 'home'%}
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="collapse navbar-collapse justify-content-center d-flex" id="navbarNav">   
+     <ul class="navbar-nav">
+    {% for rubrique in rubriques %}
+      <li class="nav-item">
+        <a class="nav-link" href="rubrique/{{rubrique.id}}">{{rubrique.nom}}</a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</nav>
+{% endif %}
 <body>
   <div class="container my-4"> 
         {% include '/partials/flash.html.twig' %}

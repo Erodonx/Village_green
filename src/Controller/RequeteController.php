@@ -72,7 +72,7 @@ class RequeteController extends AbstractController
     }
 
     }
-    #[Route('/create', name: 'create', requirements:['idC' => Requirement::DIGITS , 'idE' => Requirement::DIGITS])]
+    #[Route('/create', name: 'create')]
     public function create(EntityManagerInterface $em, Request $request)
     {
         if ($this->getUser()==null)
@@ -113,7 +113,7 @@ class RequeteController extends AbstractController
     }
 }
     #[Route('/{id}/create', name: 'create_message', requirements:['id' => Requirement::DIGITS])]
-    public function createmessage(EntityManagerInterface $em, Request $request,RequeteRepository $requetes, Requete $requete)
+    public function createmessage(EntityManagerInterface $em, Request $request,RequeteRepository $requetes, Requete $requete,$id)
     {
         if ($this->getUser()==null)
         {
@@ -137,16 +137,7 @@ class RequeteController extends AbstractController
         }
     if($Client==true&&$Employe==false)
     {
-     $chaine=($_SERVER['PATH_INFO']);
-     $chaine=substr($chaine,16);
-     $n=0;
-     $pattern = "/[0-9]/";
-     while(preg_match($pattern,$chaine[$n])>0)
-    {
-    $n=$n+1;
-    }   
-    $chaine=substr($chaine,0,$n);
-     $requete = $requetes->findById($chaine);
+     $requete = $requetes->findById($id);
      $cli=$requete[0]->getClient();
      if($cli!=$this->getUser())
      {
@@ -175,16 +166,7 @@ class RequeteController extends AbstractController
     }
     }
     else{
-        $chaine=($_SERVER['PATH_INFO']);
-        $chaine=substr($chaine,16);
-        $n=0;
-     $pattern = "/[0-9]/";
-     while(preg_match($pattern,$chaine[$n])>0)
-    {
-    $n=$n+1;
-    }   
-    $chaine=substr($chaine,0,$n);
-        $requete = $requetes->findById($chaine);
+        $requete = $requetes->findById($id);
         $emp=$requete[0]->getEmployeMess();
         if($emp!=$this->getUser())
         {
@@ -215,7 +197,7 @@ class RequeteController extends AbstractController
 ]);
 }
 #[Route('/{id}/show', name: 'show_message', requirements:['id' => Requirement::DIGITS])]
- public function show(RequeteRepository $requetes)
+ public function show(RequeteRepository $requetes,$id)
  {
     if ($this->getUser()==null)
     {
@@ -224,16 +206,7 @@ class RequeteController extends AbstractController
     }else
     {
     $info = $this->userRepo->findOneBy(["email" =>$this->getUser()->getUserIdentifier()]);
-     $chaine=($_SERVER['PATH_INFO']);
-     $chaine=substr($chaine,16);
-     $n=0;
-     $pattern = "/[0-9]/";
-     while(preg_match($pattern,$chaine[$n])>0)
-    {
-    $n=$n+1;
-    }   
-    $chaine=substr($chaine,0,$n);
-    $requete = $requetes->findById($chaine);
+    $requete = $requetes->findById($id);
     $cli=$requete[0]->getClient();
     $emp=$requete[0]->getEmployeMess();
     if(($this->getUser()!=$cli)&&($this->getUser()!=$emp))

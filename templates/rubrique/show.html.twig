@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% for sousrubrique in srubrique %}
+<div class="row">{{sousrubrique.nom}}</div>
+{% endfor %}
+{% endblock %}
