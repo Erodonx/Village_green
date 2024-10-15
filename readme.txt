@@ -10,12 +10,6 @@ composer require cocur/slugify
 composer require symfonycasts/verify-email-bundle
 
 
-php bin/console make:form
-
-->ProduitType
-
-->Produit (il faudra reproduire la commande quand on aura les vraies entitées...)
-
 
 mettre un theme sur les forms : 
 
@@ -55,3 +49,10 @@ ETA /!\
 15/10
 
 To do next: 
+
+Créer d'autres fixtures produits, d'autres rubriques sous rubriques.
+
+
+faire la vue des produits par sous rubriques.
+
+Avec le query builder finir de l'affichage de certaines demandes du projet fil rouge.
