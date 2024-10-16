@@ -15,7 +15,7 @@ class AccueilController extends AbstractController
     {
         $produits = $produitRepository->findAll();
         $rubriques = $rubriqueRepository->findAll();
-        $total = $produitRepository->countId();
+        $total = count($produits);
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
             'produits' => $produits,

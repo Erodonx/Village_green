@@ -4,9 +4,10 @@
 <div class="container">
     <h2>Nos produits</h2>
     <div class="row pt-3">
+    {% set n = 1 %}
     {% for produit in produits %}
-    {% if total.1 % 3 == 2 %}
-    {% if (total.1 - produit.id) == 1 or (total.1 - produit.id) == 0 %}
+    {% if total % 3 == 2 %}
+    {% if (total - n) == 1 or (total - n) == 0 %}
     <div class ="col-md-1"></div>
         <div class="col-md-5 card bg-white">
         <div class="card-body">
@@ -38,8 +39,8 @@
     </div>
     {% endif %}
     {% endif %}
-    {% if total.1 % 3 == 1 %}
-    {% if (total.1 - produit.id) == 0 %}
+    {% if total % 3 == 1 %}
+    {% if (total - n) == 0 %}
         <div class ="col-md-2"></div>
         <div class="col-md-9 card bg-white">
         <div class="card-body">
@@ -72,7 +73,7 @@
     </div>
     {% endif %}
     {% endif %}
-    {% if total.1 % 3 == 0 %}
+    {% if total % 3 == 0 %}
          <div class ="col-md-1"></div>
         <div class="col-md-3 card bg-white">
         <div class="card-body">
@@ -82,16 +83,17 @@
             <h5 class="card-title">
                 <a href="{{ path('app_produit_show', {id: produit.id, slug: produit.slug}) }}">{{produit.nom}}</a>
             </h5>
-        <p class="card-text text-dark">{{produit.description}}</p>
+        <p class="card-text tex t-dark">{{produit.description}}</p>
         <div class="text-primary" style="font-weight: bold; font-size: 2rem;">{{produit.formattedPrice}} € </div>
         </div>
     </div>
     </div>
     {% endif %}
-    {% if produit.id % 3 == 0 %}
+    {% if n % 3 == 0 %}
     </div>
     <div class="row pt-3 ">
     {% endif %}
+    {% set n = n + 1 %}
     {% endfor %}
     </div>
 {% endblock %}

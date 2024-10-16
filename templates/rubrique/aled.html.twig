@@ -1,23 +1,22 @@
-
-    {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block body %}
 <div class="container">
     <h2>Nos rubriques</h2>
     <div class="row pt-3">
-    {% set n = 1 %}
+{% set n = 1 %}
     {% for rubrique in rubriques %}
     {% if total % 3 == 2 %}
     {% if (total - n) == 1 or (total - n) == 0 %}
     <div class ="col-md-1"></div>
         <div class="col-md-5 card bg-white">
         <div class="card-body">
-        <div class="row"><img src="/images/produits/{{rubrique.image}}">
+        <div class="row"><img src="/images/produits/{{rubrique.sousRubrique[random((rubrique.sousRubrique|length)-1)].produit.image}}">
         </div>
         <div class="row">
             <h5 class="card-title">
                 <a href="{{ path('app_rubrique_show', {id: rubrique.id}) }}">{{rubrique.nom}}</a>
             </h5>
-             <p class="card-text text-dark">{{rubrique.description}}</p>
+        <p class="card-text text-dark">{{produit.description}}</p>
         </div>
     </div>
     </div>
@@ -25,13 +24,12 @@
         <div class ="col-md-1"></div>
         <div class="col-md-3 card bg-white">
         <div class="card-body">
-        <div class="row"><img src="/images/produits/">
+        <div class="row"><img src="/images/produits/{{rubrique.sousRubrique[random((rubrique.sousRubrique|length)-1)].produit.image}}">
         </div>
         <div class="row">
             <h5 class="card-title">
                 <a href="{{ path('app_rubrique_show', {id: rubrique.id}) }} }}">{{rubrique.nom}}</a>
             </h5>
-            <p class="card-text text-dark">{{rubrique.description}}</p>
         </div>
     </div>
     </div>
@@ -42,13 +40,12 @@
         <div class ="col-md-2"></div>
         <div class="col-md-9 card bg-white">
         <div class="card-body">
-        <div class="row"><img src="/images/produits/{{rubrique.image}}">
+        <div class="row"><img src="/images/produits/{{rubrique.sousRubrique[random((rubrique.sousRubrique|length)-1)].produit.image}}">
         </div>
         <div class="row">
             <h5 class="card-title">
                 <a href="{{ path('app_rubrique_show', {id: rubrique.id}) }}">{{rubrique.nom}}</a>
             </h5>
-            <p class="card-text text-dark">{{rubrique.description}}</p>
         </div>
     </div>
     </div>
@@ -57,13 +54,12 @@
         <div class ="col-md-1"></div>
         <div class="col-md-3 card bg-white">
         <div class="card-body">
-        <div class="row"><img src="/images/produits/{{rubrique.image}}">
+        <div class="row"><img src="/images/produits/{{rubrique.sousRubrique[random((rubrique.sousRubrique|length)-1)].produit.image}}">
         </div>
         <div class="row">
             <h5 class="card-title">
                 <a href="{{ path('app_rubrique_show', {id: rubrique.id}) }} }}">{{rubrique.nom}}</a>
             </h5>
-            <p class="card-text text-dark">{{rubrique.description}}</p>
         </div>
     </div>
     </div>
@@ -73,13 +69,12 @@
          <div class ="col-md-1"></div>
         <div class="col-md-3 card bg-white">
         <div class="card-body">
-        <div class="row"><img src="/images/produits/{{rubrique.image}}">
+        <div class="row"><img src="/images/produits/{{rubrique.sousRubrique[random((rubrique.sousRubrique|length)-1)].produit.image}}">
         </div>
         <div class="row">
             <h5 class="card-title">
                 <a href="{{ path('app_rubrique_show', {id: rubrique.id}) }}">{{rubrique.nom}}</a>
             </h5>
-            <p class="card-text text-dark">{{rubrique.description}}</p>
         </div>
     </div>
     </div>
@@ -93,5 +88,3 @@
     </div>
 {% endblock %}
 {% block javascripts %}{% endblock %}
-
-    

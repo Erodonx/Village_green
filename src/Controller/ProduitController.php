@@ -17,7 +17,7 @@ class ProduitController extends AbstractController
     public function index(ProduitRepository $produitRepository, FournitRepository $fournis): Response
     {
         $produits = $produitRepository->findAll();
-        $total = $produitRepository->countId();
+        $total = count($produits);
         return $this->render('produit/index.html.twig', [
             'controller_name' => 'ProduitController',
             'produits' => $produits,

@@ -34,7 +34,8 @@ class VillageFixt extends Fixture
         $manager->persist($fournisseur3);
         $Rubrique1=new Rubrique();
         $Rubrique1->setNom('Instruments traditionnels')
-                  ->setDescription('Pour les hipsters qui passent leur temps à dire : "C\'ETAIT MIEUX AVANT!"');
+                  ->setDescription('Pour les hipsters qui passent leur temps à dire : "C\'ETAIT MIEUX AVANT!"')
+                  ->setImage('Luthrenaissance.png');
         $manager->persist($Rubrique1);
 
         $sousRubrique1 = new SousRubrique();
@@ -97,7 +98,8 @@ class VillageFixt extends Fixture
         
         $Rubrique2 = new Rubrique();
         $Rubrique2->setNom('Batteries & Percussions')
-                  ->setDescription('POUR CEUX QUI VEULENT CASSER LA BARAQUE');
+                  ->setDescription('POUR CEUX QUI VEULENT CASSER LA BARAQUE')
+                  ->setImage('MilleniumMX420.png');
         $manager->persist($Rubrique2);
 
         $sousRubrique3 = new SousRubrique();
