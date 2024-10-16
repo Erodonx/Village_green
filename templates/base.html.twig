@@ -96,7 +96,7 @@ h1, p {
     </div>
   </div>
 </nav>
-{% if app.current_route starts with 'home'%}
+{% if app.current_route starts with 'home' or app.current_route starts with 'app_produit' or app.current_route starts with 'app_rubrique_index' %}
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
   <div class="collapse navbar-collapse justify-content-center d-flex" id="navbarNav">   
      <ul class="navbar-nav">

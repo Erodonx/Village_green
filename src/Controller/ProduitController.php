@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Produit;
 use App\Repository\ProduitRepository;
 use App\Repository\FournitRepository;
+use App\Repository\RubriqueRepository;
+use App\Repository\SousRubriqueRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,14 +16,17 @@ use Symfony\Component\Routing\Attribute\Route;
 class ProduitController extends AbstractController
 {
     #[Route('/produit', name: 'app_produit')]
-    public function index(ProduitRepository $produitRepository, FournitRepository $fournis): Response
+    public function index(ProduitRepository $produitRepository,RubriqueRepository $rubriqueRepository): Response
     {
         $produits = $produitRepository->findAll();
         $total = count($produits);
+        $rubriques = $rubriqueRepository->findAll();
+
         return $this->render('produit/index.html.twig', [
             'controller_name' => 'ProduitController',
             'produits' => $produits,
             'total' => $total,
+            'rubriques' => $rubriques
 
         ]);
     }
