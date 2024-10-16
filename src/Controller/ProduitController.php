@@ -31,7 +31,7 @@ class ProduitController extends AbstractController
         ]);
     }
     #[Route('/produit/{slug}-{id}', name: 'app_produit_show', requirements: ['slug' => '[a-z0-9\-]*'])]
-    public function show(Produit $produit, string $slug)
+    public function show(Produit $produit, string $slug,RubriqueRepository $rubriqueRepository)
     {
      //$produit = $this->produitRepository->find($id);
      if ($produit->getSlug() !== $slug)
@@ -41,8 +41,10 @@ class ProduitController extends AbstractController
             'slug' => $produit->getSlug()
         ], 301);
      }
+     $rubriques = $rubriqueRepository->findAll();
      return $this->render('produit/show.html.twig' , [
         'produit' => $produit,
+        'rubriques' => $rubriques,
         'current_menu' => 'properties'
      ]);
     }

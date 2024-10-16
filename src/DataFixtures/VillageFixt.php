@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Commande;
+use App\Entity\Detail;
 use App\Entity\Fournisseur;
 use App\Entity\Fournit;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -9,10 +11,18 @@ use Doctrine\Persistence\ObjectManager;
 use App\Entity\Produit;
 use App\Entity\Rubrique;
 use App\Entity\SousRubrique;
+use App\Entity\User;
 use DateTime;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class VillageFixt extends Fixture
 {
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
     public function load(ObjectManager $manager): void
     {
         // $product = new Product();
@@ -222,6 +232,124 @@ class VillageFixt extends Fixture
         $fournit9->setProduit($produit8);
         $fournit9->setFournisseur($fournisseur1);
         $manager->persist($fournit9);
+
+        $user = new User();
+        $user->setEmail('admin@afpa.fr');
+
+        $password = $this->hasher->hashPassword($user, 'admin');
+        $user->setPassword($password);
+        $user->setNom('admin');
+        $user->setPrenom('admin');
+        $user->setNumeroMobile('0660066006');
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setCoefficient('1');
+        $manager->persist($user);
+
+        $user1 = new User();
+        $user1->setEmail('brigand@afpa.fr');
+
+        $password = $this->hasher->hashPassword($user, 'brigand');
+        $user1->setPassword($password);
+        $user1->setNom('brig');
+        $user1->setPrenom('and');
+        $user1->setRoles(['ROLE_EMPLOYE']);
+        $user1->setNumeroMobile('0660066006');
+        $user1->setCoefficient('1');
+        $manager->persist($user1);
+        $manager->flush();
+
+        $user2 = new User();
+        $user2->setEmail('robert@afpa.fr');
+
+        $password = $this->hasher->hashPassword($user, 'robert');
+        $user2->setPassword($password);
+        $user2->setNom('Duplan');
+        $user2->setPrenom('Robert');
+        $user2->setNumeroMobile('0660066006');
+        $user2->setCoefficient('1');
+        $user2->setEmployeCharge($user1);
+        $manager->persist($user2);
+        $manager->flush();
+
+        $user3 = new User();
+        $user3->setEmail('Stanislas@afpa.fr');
+
+        $password = $this->hasher->hashPassword($user, 'stanislas');
+        $user3->setPassword($password);
+        $user3->setNom('Charkov');
+        $user3->setPrenom('Stanislas');
+        $user3->setNumeroMobile('0660066006');
+        $user3->setCoefficient('1');
+        $user3->setEmployeCharge($user1);
+        $manager->persist($user3);
+        $manager->flush();
+
+        $commande = new Commande();
+        $commande->setUser($user3);
+        $detail = new Detail();
+        $produit = $produit1;
+        $detail->setProduit($produit);
+        $detail->setQuantiteCommandee(4);
+        $commande->addDetail($detail);
+        $total=$produit->getPrixHT()*4;
+        $manager->persist($detail);
+        $commande->setMontantCommandeHT($total);
+        $commande->setMontantCommandeTTC($total*1.20);
+        $commande->setAdresseFacturation('12 rue du Général de Gaulle');
+        $commande->setVilleFacturation('Amiens');
+        $commande->setAdresseLivraison('12 rue du Général de Gaulle');
+        $commande->setVilleLivraison('Amiens');
+        $commande->setReduction('0');
+        $commande->setMoyenDePaiement('VISA');
+        $commande->setDateCommande(new DateTime("now"));
+        
+        $commande->setEtatLivraison('Commande validée');
+        $manager->persist($commande);
+
+        $commande1 = new Commande();
+        $commande1->setUser($user3);
+        $detail1 = new Detail();
+        $produit = $produit4;
+        $detail1->setProduit($produit);
+        $detail1->setQuantiteCommandee(8);
+        $commande1->addDetail($detail1);
+        $total=$produit->getPrixHT()*8;
+        $manager->persist($detail1);
+        $commande1->setMontantCommandeHT($total);
+        $commande1->setMontantCommandeTTC($total*1.20);
+        $commande1->setAdresseFacturation('12 rue du Général de Gaulle');
+        $commande1->setVilleFacturation('Paris');
+        $commande1->setAdresseLivraison('12 rue du Général de Gaulle');
+        $commande1->setVilleLivraison('Paris');
+        $commande1->setReduction('0');
+        $commande1->setMoyenDePaiement('VISA');
+        $commande1->setDateCommande(new DateTime("now"));
+        
+        $commande1->setEtatLivraison('Commande validée');
+        $manager->persist($commande1);
+
+        $commande2 = new Commande();
+        $commande2->setUser($user3);
+        $detail2 = new Detail();
+        $produit = $produit7;
+        $detail2->setProduit($produit);
+        $detail2->setQuantiteCommandee(7);
+        $commande2->addDetail($detail2);
+        $total=$produit->getPrixHT()*7;
+        $manager->persist($detail2);
+        $commande2->setMontantCommandeHT($total);
+        $commande2->setMontantCommandeTTC($total*1.20);
+        $commande2->setAdresseFacturation('12 rue du Général de Gaulle');
+        $commande2->setVilleFacturation('Paris');
+        $commande2->setAdresseLivraison('12 rue du Général de Gaulle');
+        $commande2->setVilleLivraison('Paris');
+        $commande2->setReduction('0');
+        $commande2->setMoyenDePaiement('VISA');
+        $commande2->setDateCommande(new DateTime("now"));
+        
+        $commande2->setEtatLivraison('Commande validée');
+        $manager->persist($commande2);
+
 
         $manager-> flush();
 

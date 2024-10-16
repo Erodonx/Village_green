@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Detail;
+use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -30,6 +31,17 @@ class DetailRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
+        public function topVentes()
+        {
+            return $this->createQueryBuilder('c')
+            ->select('SUM(c.quantiteCommandee)')
+            ->groupBy('c.Produit')
+            ->orderBy('SUM(c.quantiteCommandee)')
+            ->getQuery()
+            ->getResult()
+            ;
+
+        }
 
     //    public function findOneBySomeField($value): ?Detail
     //    {
