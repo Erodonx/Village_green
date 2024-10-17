@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ModifyUserType;
 use App\Form\ReductionType;
 use App\Repository\CommandeRepository;
 use App\Repository\UserRepository;
@@ -14,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -66,5 +68,27 @@ class ProfilController extends AbstractController
          'user' => $user,
          'form' => $form
      ]);
+    }
+    #[Route('/modify/{id}', name:'modify', requirements:['id' => Requirement::DIGITS])]
+    public function modify(User $user, EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $userPasswordHasher)
+    {
+        $form = $this->createForm(ModifyUserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            $em->flush();
+            $this->addFlash('succees', 'Vos coordonnées ont bien été modifiées');
+            return $this->redirectToRoute('app_profil_index');
+        }
+        return $this->render('/profil/modify.html.twig', [
+            'user' => $user,
+            'form' => $form
+        ]);
     }
 }

@@ -207,6 +207,10 @@ class RequeteController extends AbstractController
     {
     $info = $this->userRepo->findOneBy(["email" =>$this->getUser()->getUserIdentifier()]);
     $requete = $requetes->findById($id);
+    if(!isset($requete[0]))
+    {
+     return $this->redirectToRoute('app_profil_index');
+    }
     $cli=$requete[0]->getClient();
     $emp=$requete[0]->getEmployeMess();
     if(($this->getUser()!=$cli)&&($this->getUser()!=$emp))
