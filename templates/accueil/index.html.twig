@@ -96,8 +96,50 @@
     {% set n = n + 1 %}
     {% endfor %}
     </div>
-    <h2>Nos produits en vedettes</h2>
+    <h2 class='pt-3'>Nos produits en vedettes</h2>
     <div class="row pt-3">
+            <div class ="col-md-1"></div>
+        <div class="col-md-3 card bg-white">
+        <div class="card-body">
+        <div class="row"><img src="/images/produits/{{top1[0].image}}">
+        </div>
+        <div class="row">
+            <h5 class="card-title">
+                <a href="{{ path('app_produit_show', {id: top1[0].id, slug: top1[0].slug}) }}">{{top1[0].nom}}</a>
+            </h5>
+        <p class="card-text text-dark">{{top1[0].description}}</p>
+        <div class="text-primary" style="font-weight: bold; font-size: 2rem;">{{top1[0].formattedPrice}} € </div>
+        </div>
+    </div>
+    </div> 
+    <div class ="col-md-1"></div>
+        <div class="col-md-3 card bg-white">
+        <div class="card-body">
+        <div class="row"><img src="/images/produits/{{top2[0].image}}">
+        </div>
+        <div class="row">
+            <h5 class="card-title">
+                <a href="{{ path('app_produit_show', {id: top2[0].id, slug: top2[0].slug}) }}">{{top2[0].nom}}</a>
+            </h5>
+        <p class="card-text text-dark">{{top2[0].description}}</p>
+        <div class="text-primary" style="font-weight: bold; font-size: 2rem;">{{top2[0].formattedPrice}} € </div>
+        </div>
+    </div>
+    </div>
+        <div class ="col-md-1"></div>
+        <div class="col-md-3 card bg-white">
+        <div class="card-body">
+        <div class="row"><img src="/images/produits/{{top3[0].image}}">
+        </div>
+        <div class="row">
+            <h5 class="card-title">
+                <a href="{{ path('app_produit_show', {id: top3[0].id, slug: top3[0].slug}) }}">{{top3[0].nom}}</a>
+            </h5>
+        <p class="card-text text-dark">{{top3[0].description}}</p>
+        <div class="text-primary" style="font-weight: bold; font-size: 2rem;">{{top3[0].formattedPrice}} € </div>
+        </div>
+    </div>
+    </div>
     </div>
 {% endblock %}
         {% block javascripts %}{% endblock %}
