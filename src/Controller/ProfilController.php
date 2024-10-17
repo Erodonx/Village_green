@@ -72,6 +72,11 @@ class ProfilController extends AbstractController
     #[Route('/modify/{id}', name:'modify', requirements:['id' => Requirement::DIGITS])]
     public function modify(User $user, EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $userPasswordHasher)
     {
+        if($this->getUser()!=$user)
+        {
+         $this->addFlash('danger','TU N\'AS PAS LE DROIT DE FAIRE CA.');
+         return $this->redirectToRoute('app_profil_index');
+        }
         $form = $this->createForm(ModifyUserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
