@@ -160,7 +160,7 @@ class VillageFixt extends Fixture
                  ->setDescription('Fûts F.A.S.T. 100% érable
                  (Personnellement je préfère les fûts 100% bière...)')
                  ->setPrixHT(1498.00)
-                 ->setImage('MilleniumMX420.png')
+                 ->setImage('Satincharcoal.png')
                  ->setStock(0)
                  ->setSousRubrique($sousRubrique4)
                  ->setFournisseur($fournisseur1);

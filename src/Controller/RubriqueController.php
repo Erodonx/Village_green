@@ -38,7 +38,6 @@ class RubriqueController extends AbstractController
         $i = $i+1;
      }*/
     $total = count($rubriques);
-     
         return $this->render('rubrique/index.html.twig', [
             'controller_name' => 'rubriqueController',
             'rubriques' => $rubriques,
@@ -53,6 +52,10 @@ class RubriqueController extends AbstractController
         $srubriques=$srubriqueRepository->findBy([
             "rubrique" => $id
         ]);
+        if(!isset($srubriques[0]))
+        {
+         return $this->redirectToRoute('app_rubrique_index');   
+        }
         $total = 0;
         foreach ($srubriques as $sousrubrique)
         {
@@ -65,5 +68,4 @@ class RubriqueController extends AbstractController
         'total' => $total
     ]);
     }
-
-}
+    }
