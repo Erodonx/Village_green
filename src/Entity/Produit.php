@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 #[Vich\Uploadable]
-class Produit
+class Produit 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -50,8 +50,10 @@ class Produit
     /**
      * @var Collection<int, Details>
      */
-    #[ORM\OneToMany(mappedBy:'produit', targetEntity:Detail::class)]
+    #[ORM\OneToMany(mappedBy:'Produit', targetEntity:Detail::class)]
     private Collection $details;
+
+    
     public function __construct1()
     {
         $this->details = new ArrayCollection();

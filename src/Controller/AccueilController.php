@@ -18,17 +18,19 @@ class AccueilController extends AbstractController
         $rubriques = $rubriqueRepository->findAll();
         $total = count($produits);
         $details = $detailRepository->topVentes();
-        $top1=$produitRepository->findById($details[0][1]);
+       // dd($details);
+       /* $top1=$produitRepository->findById($details[0][1]);
         $top2=$produitRepository->findById($details[1][1]);
-        $top3=$produitRepository->findById($details[2][1]);
+        $top3=$produitRepository->findById($details[2][1]);*/
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
             'produits' => $produits,
             'total' => $total,
             'rubriques' => $rubriques,
-            'top1' => $top1,
+            'topprod' => $details
+         /*   'top1' => $top1,
             'top2' => $top2,
-            'top3' => $top3
+            'top3' => $top3*/
         ]);
     }
 }

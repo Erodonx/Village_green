@@ -34,11 +34,13 @@ class DetailRepository extends ServiceEntityRepository
         public function topVentes()
         {
             return $this->createQueryBuilder('c')
-            ->select('distinct(c.Produit)','SUM(c.quantiteCommandee)')
+            ->select('c','SUM(c.quantiteCommandee)')
             ->orderBy('SUM(c.quantiteCommandee)','DESC')
             ->groupBy('c.Produit')
             ->getQuery()
-            ->getResult(3)
+            ->setMaxResults(3)
+
+            ->getResult()
             ;
 
         }

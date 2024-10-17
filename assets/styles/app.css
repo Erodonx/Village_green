@@ -6,7 +6,7 @@ body {
    }
 .card:hover{
    
-    background-color: lightpink !important;
+    background-color: lightsteelblue !important;
     -ms-transform: scale(1.05);
     -webkit-transform: scale(1.05);
     transform:scale(1.05);

@@ -22,7 +22,7 @@ class Requete
     #[ORM\JoinColumn(nullable: false)]
     private ?User $client = null;
 
-    #[ORM\ManyToOne(inversedBy: 'requetes')]
+    #[ORM\ManyToOne(inversedBy: 'requetesEmploye')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $employeMess = null;
     /**
