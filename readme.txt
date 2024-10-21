@@ -46,13 +46,13 @@ https://www.thomann.de/fr/thomann_celtic_harp_ashwood_36_str.htm harpe
 
 ETA /!\
 
-15/10
+21/10
 
 To do next: 
 
 Créer d'autres fixtures produits, d'autres rubriques sous rubriques.
-faire la vue des produits par sous rubriques.
--Ajouter la table bon de livraison, simuler le délai de livraison avec une fonction random.
+donefaire la vue des produits par sous rubriques.
+done-Ajouter la table bon de livraison, simuler le délai de livraison avec une fonction random.
 
 
 Avec le query builder finir l'affichage de certaines demandes du projet fil rouge.
