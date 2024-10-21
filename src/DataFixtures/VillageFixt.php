@@ -4,8 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Commande;
 use App\Entity\Detail;
+use App\Entity\DetailLivraison;
 use App\Entity\Fournisseur;
 use App\Entity\Fournit;
+use App\Entity\Livraison;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Produit;
@@ -284,15 +286,27 @@ class VillageFixt extends Fixture
         $manager->persist($user3);
         $manager->flush();
 
+        $dateLiv= new DateTime("now");
+        $dateLiv->modify("+3 days");
+        
         $commande = new Commande();
+        $livraison = new Livraison();
         $commande->setUser($user3);
         $detail = new Detail();
+        $detailLiv = new DetailLivraison();
         $produit = $produit1;
         $detail->setProduit($produit);
+        $detailLiv->setProduit($produit);
         $detail->setQuantiteCommandee(4);
+        $detailLiv->setQuantite(4);
+        $detailLiv->setDateLivraison($dateLiv);
         $commande->addDetail($detail);
+        $livraison->addDetailLivraison($detailLiv);
+        $detailLiv->setLivraison($livraison);
+        $livraison->setNom("Relais colis");
         $total=$produit->getPrixHT()*4;
         $manager->persist($detail);
+        $manager->persist($detailLiv);
         $commande->setMontantCommandeHT($total);
         $commande->setMontantCommandeTTC($total*1.20);
         $commande->setAdresseFacturation('12 rue du Général de Gaulle');
@@ -303,52 +317,76 @@ class VillageFixt extends Fixture
         $commande->setMoyenDePaiement('VISA');
         $commande->setDateCommande(new DateTime("now"));
         
-        $commande->setEtatLivraison('Commande validée');
+        $commande->setEtatLivraison('Commande en cours de livraison');
+        $livraison->setCommande($commande);
         $manager->persist($commande);
+        $manager->persist($livraison);
 
         $commande1 = new Commande();
+        $livraison1 = new Livraison();
         $commande1->setUser($user3);
         $detail1 = new Detail();
-        $produit = $produit4;
+        $detailLiv1 = new DetailLivraison();
+        $produit = $produit5;
         $detail1->setProduit($produit);
-        $detail1->setQuantiteCommandee(8);
+        $detailLiv1->setProduit($produit);
+        $detail1->setQuantiteCommandee(4);
+        $detailLiv1->setQuantite(4);
+        $detailLiv1->setDateLivraison($dateLiv);
+        $detailLiv1->setLivraison($livraison1);
         $commande1->addDetail($detail1);
-        $total=$produit->getPrixHT()*8;
+        $livraison1->addDetailLivraison($detailLiv1);
+        $livraison1->setNom("Relais colis");
+        $total=$produit->getPrixHT()*4;
         $manager->persist($detail1);
+        $manager->persist($detailLiv1);
         $commande1->setMontantCommandeHT($total);
         $commande1->setMontantCommandeTTC($total*1.20);
         $commande1->setAdresseFacturation('12 rue du Général de Gaulle');
-        $commande1->setVilleFacturation('Paris');
+        $commande1->setVilleFacturation('Amiens');
         $commande1->setAdresseLivraison('12 rue du Général de Gaulle');
-        $commande1->setVilleLivraison('Paris');
+        $commande1->setVilleLivraison('Amiens');
         $commande1->setReduction('0');
         $commande1->setMoyenDePaiement('VISA');
         $commande1->setDateCommande(new DateTime("now"));
         
-        $commande1->setEtatLivraison('Commande validée');
+        $commande1->setEtatLivraison('Commande en cours de livraison');
+        $livraison1->setCommande($commande1);
         $manager->persist($commande1);
+        $manager->persist($livraison1);
 
         $commande2 = new Commande();
+        $livraison2 = new Livraison();
         $commande2->setUser($user3);
         $detail2 = new Detail();
-        $produit = $produit7;
+        $detailLiv2 = new DetailLivraison();
+        $produit = $produit3;
         $detail2->setProduit($produit);
-        $detail2->setQuantiteCommandee(7);
+        $detailLiv2->setProduit($produit);
+        $detail2->setQuantiteCommandee(4);
+        $detailLiv2->setQuantite(4);
+        $detailLiv2->setDateLivraison($dateLiv);
         $commande2->addDetail($detail2);
-        $total=$produit->getPrixHT()*7;
+        $detailLiv2->setLivraison($livraison2);
+        $livraison2->addDetailLivraison($detailLiv2);
+        $livraison2->setNom("Relais colis");
+        $total=$produit->getPrixHT()*4;
         $manager->persist($detail2);
+        $manager->persist($detailLiv2);
         $commande2->setMontantCommandeHT($total);
         $commande2->setMontantCommandeTTC($total*1.20);
         $commande2->setAdresseFacturation('12 rue du Général de Gaulle');
-        $commande2->setVilleFacturation('Paris');
+        $commande2->setVilleFacturation('Amiens');
         $commande2->setAdresseLivraison('12 rue du Général de Gaulle');
-        $commande2->setVilleLivraison('Paris');
+        $commande2->setVilleLivraison('Amiens');
         $commande2->setReduction('0');
         $commande2->setMoyenDePaiement('VISA');
         $commande2->setDateCommande(new DateTime("now"));
         
-        $commande2->setEtatLivraison('Commande validée');
+        $commande2->setEtatLivraison('Commande en cours de livraison');
+        $livraison2->setCommande($commande2);
         $manager->persist($commande2);
+        $manager->persist($livraison2);
 
 
         $manager-> flush();
