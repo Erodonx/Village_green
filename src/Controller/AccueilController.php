@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\ProduitRepository;
 use App\Repository\RubriqueRepository;
+use DateTime;
 
 class AccueilController extends AbstractController
 {
@@ -18,6 +19,9 @@ class AccueilController extends AbstractController
         $rubriques = $rubriqueRepository->findAll();
         $total = count($produits);
         $details = $detailRepository->topVentes();
+        $date = new DateTime("now");
+        $date->modify('-3 days');
+        //dd($date);
        // dd($details);
        /* $top1=$produitRepository->findById($details[0][1]);
         $top2=$produitRepository->findById($details[1][1]);

@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CommandeType extends AbstractType
 {
@@ -27,11 +28,20 @@ class CommandeType extends AbstractType
             ->add('adresseLivraison',TextType::class ,['label' => 'Adresse de livraison'])
             ->add('villeLivraison',TextType::class ,['label' => 'Ville de livraison'])
             ->add('moyenDePaiement',ChoiceType::class ,['label' => 'Méthode de paiement', 'choices' => [
-                'Veuillez selectionnez le mode de paiement ci-dessous :' =>null,
+                'Veuillez selectionner le mode de paiement ci-dessous :' =>null,
                 'VISA' => 'VISA',
                 'PAYPAL' => 'PAYPAL',
                 'LA CARTE DE MAMAN' => 'LA CARTE DE MAMAN'
             ]])
+            ->add('typeLivraison',ChoiceType::class,['label' => 'Type de livraison', 'mapped' => false, 'constraints' => [new NotBlank([
+                'message' => 'Veuillez choisir un mode de livraison',
+            ])], 'choices' => [
+
+                'Veuillez selectionner le type de livraison :' => null,
+                'Relais colis' => 'Relais colis',
+                'A domicile' => 'A domicile'
+                ]
+            ])
             ->add('CGU_validation',  CheckboxType::class,['label' => 'J\'accepte les conditions générales d\'utilisation' , 'mapped' => false] )
             //->add('etatLivraison')
             //->add('reduction')

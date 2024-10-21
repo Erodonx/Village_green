@@ -14,7 +14,7 @@ class ReductionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('reduction')
+        ->add('reduction')
         ->add('save',SubmitType::class, [
             'label' => 'Sauvegarder les changements' ])
     ;

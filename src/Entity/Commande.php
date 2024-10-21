@@ -59,9 +59,16 @@ class Commande
     #[ORM\Column(length: 5, nullable: true)]
     private ?string $valeurReduction = null;
 
+    /**
+     * @var Collection<int, Livraison>
+     */
+    #[ORM\OneToMany(targetEntity: Livraison::class, mappedBy: 'Commande', orphanRemoval: true)]
+    private Collection $livraisons;
+
     public function __construct()
     {
         $this->details = new ArrayCollection();
+        $this->livraisons = new ArrayCollection();
     }
 
 
@@ -240,6 +247,36 @@ class Commande
     public function setValeurReduction(?string $valeurReduction): static
     {
         $this->valeurReduction = $valeurReduction;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Livraison>
+     */
+    public function getLivraisons(): Collection
+    {
+        return $this->livraisons;
+    }
+
+    public function addLivraison(Livraison $livraison): static
+    {
+        if (!$this->livraisons->contains($livraison)) {
+            $this->livraisons->add($livraison);
+            $livraison->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLivraison(Livraison $livraison): static
+    {
+        if ($this->livraisons->removeElement($livraison)) {
+            // set the owning side to null (unless already changed)
+            if ($livraison->getCommande() === $this) {
+                $livraison->setCommande(null);
+            }
+        }
 
         return $this;
     }

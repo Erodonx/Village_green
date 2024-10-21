@@ -69,9 +69,17 @@ class Produit
     #[ORM\JoinColumn(nullable: false)]
     private ?Fournisseur $Fournisseur = null;
 
+    /**
+     * @var Collection<int, DetailLivraison>
+     */
+    #[ORM\OneToMany(targetEntity: DetailLivraison::class, mappedBy: 'Produit', orphanRemoval: true)]
+    private Collection $detailLivraisons;
+
+
     public function __construct()
     {
         $this->fournisseurs = new ArrayCollection();
+        $this->detailLivraisons = new ArrayCollection();
         
     }
     
@@ -218,6 +226,36 @@ class Produit
     public function setFournisseur(?Fournisseur $Fournisseur): static
     {
         $this->Fournisseur = $Fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetailLivraison>
+     */
+    public function getDetailLivraisons(): Collection
+    {
+        return $this->detailLivraisons;
+    }
+
+    public function addDetailLivraison(DetailLivraison $detailLivraison): static
+    {
+        if (!$this->detailLivraisons->contains($detailLivraison)) {
+            $this->detailLivraisons->add($detailLivraison);
+            $detailLivraison->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailLivraison(DetailLivraison $detailLivraison): static
+    {
+        if ($this->detailLivraisons->removeElement($detailLivraison)) {
+            // set the owning side to null (unless already changed)
+            if ($detailLivraison->getProduit() === $this) {
+                $detailLivraison->setProduit(null);
+            }
+        }
 
         return $this;
     }

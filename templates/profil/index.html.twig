@@ -40,6 +40,7 @@
                     <th>Nom du produit</th>
                     <th>Quantité commandée</th>
                     <th>Prix total du produit</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -60,7 +61,8 @@
                         <td colspan="3">Facturé au {{commande.adresseFacturation}}, {{commande.villeFacturation}}</td>                  
                     </tr>
                     <tr>
-                        <td colspan="3">Livré au {{commande.adresseLivraison}}, {{commande.villeLivraison}}</td>                  
+                        <td colspan="2">Livré au {{commande.adresseLivraison}}, {{commande.villeLivraison}}</td>
+                        <td>Livré le {{commande.getLivraisons[0].getDetailLivraisons[0].getDateLivraison| date('d/m/y')}}</td>                  
                     </tr>
             </tfoot>
             </table>
