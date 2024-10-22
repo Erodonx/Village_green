@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+
+
+    <div id="root_app1"></div>
+    {{ encore_entry_script_tags('app1') }}
+
+    <div id="root_app2"></div>
+    {{ encore_entry_script_tags('app2') }}
+
+    <div id="root_app3"></div>
+    {{ encore_entry_script_tags('app3') }}
+    
+    <div id="root_app4"></div>
+    {{ encore_entry_script_tags('app4') }}
+{% endblock %}

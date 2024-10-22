@@ -22,6 +22,9 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('app1', './react/app1/index.js')
+    .addEntry('app2', './react/app2/index.js')
+    .addEntry('app3', './react/app3/index.js')
+    .addEntry('app4', './react/app4/index.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

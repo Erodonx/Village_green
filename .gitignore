@@ -25,3 +25,10 @@
 src/Security/HistoryVerifier.php
 src/Controller/HistoriqueController.php
 templates/historique/index.html.twig
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
