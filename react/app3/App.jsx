@@ -49,40 +49,7 @@ const App = () => {
 }
 export default App; */
 /*
-import {React, useState} from 'react';
-
-const App = (props) => {
-
-  const [numbers, setNumbers] = useState([]);
-  const [value, setValue] = useState("");
-
-  const handleChangeValue = (evt) => {
-    setValue(evt.target.value);
-  }  
-
-  var listItems;
-
-  const handleClick1 = () => {
-
-    let tmp = [...numbers, value];
-    console.log(tmp);
-    setNumbers(tmp);
-  }
-
-  return (
-  <>
-  <ul>
-      {
-        numbers.map((l, i) => (
-          <li key={i}>{l}</li>
-        ))
-      }
-  </ul>
-  <input type="text" placeholder="Element à ajouter" onChange={handleChangeValue} value={value}/>
-  <button onClick={handleClick1}>Ajouter</button>
-  </>
-) 
-}*/
+*/
   /*
   var tableau = Array();
   let n=0;
