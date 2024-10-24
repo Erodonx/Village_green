@@ -27,7 +27,9 @@ class CommandeType extends AbstractType
             ->add('villeFacturation',TextType::class ,['label' => 'Ville de facturation'])
             ->add('adresseLivraison',TextType::class ,['label' => 'Adresse de livraison'])
             ->add('villeLivraison',TextType::class ,['label' => 'Ville de livraison'])
-            ->add('moyenDePaiement',ChoiceType::class ,['label' => 'Méthode de paiement', 'choices' => [
+            ->add('moyenDePaiement',ChoiceType::class ,['label' => 'Méthode de paiement','constraints'=>[new NotBlank([
+                'message' => 'Veuillez sélectionner la méthode de paiement'
+            ])], 'choices' => [
                 'Veuillez selectionner le mode de paiement ci-dessous :' =>null,
                 'VISA' => 'VISA',
                 'PAYPAL' => 'PAYPAL',

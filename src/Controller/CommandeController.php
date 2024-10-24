@@ -53,11 +53,12 @@ class CommandeController extends AbstractController
     
     if ($form->isSubmitted() && $form->isValid())
     {
+        $data = $_REQUEST['commande'];
         $total = 0;
         $commande = new Commande();
         $livraison = new Livraison();
         $dateLiv = new DateTime("now");
-        if ($_REQUEST['commande']['typeLivraison']==1)
+        if ($data['typeLivraison']==1)
         {
         $dateLiv->modify('+3 days');
         $livraison->setNom('Relais colis');
