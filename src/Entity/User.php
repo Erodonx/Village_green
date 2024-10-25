@@ -10,61 +10,111 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
+     operations: [
+
+     new Get(),  
+     new Put(),
+     new Patch(),
+     new Delete(),
+     new GetCollection(),
+     new Post(), ]
+)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
     /*faire attention ici on a set l'id sur autre chose, mauvais délire.*/
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['user.index'])]
+    // #[Groups(['read'],['write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Groups(['user.index'])]
+    // #[Groups(['read'],['write'])]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
+    //  #[Groups(['read'],['write'])]
+    #[Groups(['user.index'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    // #[Groups(['read'],['write'])]
+    #[Groups(['user.index'])]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    //  #[Groups(['read'],['write'])]
+    #[Groups(['user.index'])]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    //  #[Groups(['read'],['write'])]
+    #[Groups(['user.index'])]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255, nullable:true)]
+    //  #[Groups(['read'],['write'])]
+    #[Groups(['user.index'])]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255, nullable:true)]
+    //  #[Groups(['read'],['write'])]
+    #[Groups(['user.index'])]
     private ?string $code_postal = null;
 
     #[ORM\Column(length: 255, nullable:true)]
+    //  #[Groups(['read'],['write'])]
+    #[Groups(['user.index'])]
     private ?string $pays = null;
 
     #[ORM\Column(length: 255, nullable:true)]
+    //  #[Groups(['read'],['write'])]
+    #[Groups(['user.index'])]
     private ?string $ville = null;
 
     #[ORM\Column(length: 10)]
+    //  #[Groups(['read'],['write'])]
+    #[Groups(['user.index'])]
     private ?string $numero_mobile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['user.index'])]
+    //  #[Groups(['read'],['write'])]
     private ?string $num_siret = null;
 
     #[ORM\Column]
+    #[Groups(['user.index'])]
+    //  #[Groups(['read'],['write'])]
     private ?float $coefficient = null;
 
     #[ORM\Column]
+    #[Groups(['user.index'])]
+    //  #[Groups(['read'],['write'])]
     private bool $isVerified = false;
 
     /**

@@ -92,11 +92,12 @@ class RequeteController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            $data = $_REQUEST['requete'];
             $info = $this->userRepo->findOneBy(["email" =>$this->getUser()->getUserIdentifier()]);
             $requete->setEmployeMess($info->getEmployeCharge());
             $requete->setClient($info);
             $contenu = new ContenuRequete();
-            $contenu->setMessage($_REQUEST['requete']['message']);
+            $contenu->setMessage($data['message']);
             $contenu->setAuteur($this->getUser());
             $contenu->setDateMessage(new DateTime("now"));
             $contenu->setRequete($requete);

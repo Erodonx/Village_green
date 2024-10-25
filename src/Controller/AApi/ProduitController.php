@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Api;
+namespace App\Controller\AApi;
 
 use App\Entity\Produit;
 use App\Repository\ProduitRepository;
@@ -15,7 +15,7 @@ class ProduitController extends AbstractController
 {
 
 
-    #[Route("/api/produits")]
+    #[Route("/aapi/produits")]
     public function index (ProduitRepository $repository)
     {
         $produit = $repository->findAll();
@@ -24,7 +24,7 @@ class ProduitController extends AbstractController
         ]);
          
     }
-    #[Route("/api/produits/{id}", requirements:['id' => Requirement::DIGITS])]
+    #[Route("/aapi/produits/{id}", requirements:['id' => Requirement::DIGITS])]
     public function show(Produit $produit)
     {
         return $this->json($produit, 200,[],[
