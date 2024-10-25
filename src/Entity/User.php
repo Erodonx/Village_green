@@ -42,79 +42,79 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user.index'])]
-    // #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
+    #[Groups(['read'],['write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Groups(['user.index'])]
-    // #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
+    #[Groups(['read'],['write'])]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    //  #[Groups(['read'],['write'])]
-    #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    // #[Groups(['read'],['write'])]
-    #[Groups(['user.index'])]
+    #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    //  #[Groups(['read'],['write'])]
-    #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    //  #[Groups(['read'],['write'])]
-    #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255, nullable:true)]
-    //  #[Groups(['read'],['write'])]
-    #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255, nullable:true)]
-    //  #[Groups(['read'],['write'])]
-    #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
     private ?string $code_postal = null;
 
     #[ORM\Column(length: 255, nullable:true)]
-    //  #[Groups(['read'],['write'])]
-    #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
     private ?string $pays = null;
 
     #[ORM\Column(length: 255, nullable:true)]
-    //  #[Groups(['read'],['write'])]
-    #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
     private ?string $ville = null;
 
     #[ORM\Column(length: 10)]
-    //  #[Groups(['read'],['write'])]
-    #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
     private ?string $numero_mobile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['user.index'])]
-    //  #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
     private ?string $num_siret = null;
 
     #[ORM\Column]
-    #[Groups(['user.index'])]
-    //  #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
     private ?float $coefficient = null;
 
     #[ORM\Column]
-    #[Groups(['user.index'])]
-    //  #[Groups(['read'],['write'])]
+    // #[Groups(['user.index'])]
+     #[Groups(['read'],['write'])]
     private bool $isVerified = false;
 
     /**
