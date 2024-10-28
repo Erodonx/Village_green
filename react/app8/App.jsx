@@ -2,17 +2,16 @@ import {React, useState} from 'react';
 import axios from "axios";
 
 const App = (props) => {
-  const [test, setTest] = useState([]);
-  axios.get('/api/users?_id=2' //, { params: {
+   axios.get('https://api.themoviedb.org/3/search/movie?api_key=f33cd318f5135dba306176c13104506a&query=avenger' //, { params: {
   //   id: 'api/users/2'
   // } 
   //}
   )
-
   .then(function (response) {
     // handle success
     console.log(response);
-    setTest(response.data.member[0].email);
+    console.log(response.data.results[1].title);
+
   })
   .catch(function (error) {
     // handle error
@@ -22,7 +21,7 @@ const App = (props) => {
 
   return (
   <>
-  <p> COUCOU {test} </p>
+  
   </>
 ) 
 }
