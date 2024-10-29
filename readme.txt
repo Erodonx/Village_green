@@ -44,7 +44,7 @@ Fixtures produit :
 https://www.thomann.de/fr/thomann_renaissance_lute_deluxe_7c.htm luth
 https://www.thomann.de/fr/thomann_celtic_harp_ashwood_36_str.htm harpe
 
-ETA /!\
+ETAT /!\
 
 29/10
 
