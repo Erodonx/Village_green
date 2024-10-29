@@ -104,7 +104,7 @@ class RequeteController extends AbstractController
             $em->persist($requete);
             $em->persist($contenu);
             $em->flush();
-            $this->addFlash('success', 'La création de la requête a été effectuée, veuillez maintenant en saisir le contenu.');
+            $this->addFlash('success', 'La création de la requête a été effectuée');
             return $this->redirectToRoute('app_requete_index');
         }
         return $this->render('/profil/requete/create.html.twig', [
@@ -157,7 +157,7 @@ class RequeteController extends AbstractController
          $messagerequete->setDateMessage($date);
          $em->persist($messagerequete);
          $em->flush();
-         $this->addFlash('success', 'Le contenu du premier message a été déposé.');
+         $this->addFlash('success', 'Ajout du message à la requête effectué.');
          return $this->redirectToRoute('app_requete_index');
      }
      return $this->render('/profil/requete/create.html.twig', [
