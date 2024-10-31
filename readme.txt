@@ -46,11 +46,12 @@ https://www.thomann.de/fr/thomann_celtic_harp_ashwood_36_str.htm harpe
 
 ETAT /!\
 
-29/10
-
+31/10
 To do next: 
 
 Créer d'autres fixtures produits, d'autres rubriques sous rubriques.
 
 Avec le query builder finir l'affichage de certaines demandes du projet fil rouge.
 -> Prérequis avancer sur le react!!!!!
+
+TABLEAU TRIABLE DUNE ENTITE REUSSIUJHGREJKH GSHD LETS GO!!!:
