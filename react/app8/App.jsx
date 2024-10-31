@@ -10,7 +10,6 @@ const App = (props) => {
   .then(function (response) {
     // handle success
     console.log(response);
-    console.log(response.data.results[1].title);
 
   })
   .catch(function (error) {

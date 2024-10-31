@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column]
     // #[Groups(['user.index'])]
-    #[Groups(['read'],['write'])]
+     #[Groups(['read'],['write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
@@ -103,18 +103,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $numero_mobile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    // #[Groups(['user.index'])]
-     #[Groups(['read'],['write'])]
+    //#[Groups(['user.index'])]
+    #[Groups(['read'],['write'])]
     private ?string $num_siret = null;
 
     #[ORM\Column]
     // #[Groups(['user.index'])]
-     #[Groups(['read'],['write'])]
+    #[Groups(['read'],['write'])]
     private ?float $coefficient = null;
 
     #[ORM\Column]
     // #[Groups(['user.index'])]
-     #[Groups(['read'],['write'])]
+    #[Groups(['read'],['write'])]
     private bool $isVerified = false;
 
     /**

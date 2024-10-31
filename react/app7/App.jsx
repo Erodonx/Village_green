@@ -1,29 +1,95 @@
-import {React, useState} from 'react';
-import axios from "axios";
-
-const App = (props) => {
-  const [test, setTest] = useState([]);
-  axios.get('/api/users?_id=2' //, { params: {
+import {React, useState,useEffect} from 'react';
+import DataTable from 'react-data-table-component';
+const App3 = () => {
+const [user, setUser] = useState([]);
+const columns = [
+  {
+    name : <b>id</b>,
+    selector : (row) => row.id,
+    sortable : true,
+  },
+  { 
+    name : <b>Adresse mail</b>,
+    selector: (row) => row.email,
+    sortable : true,
+  },
+  {
+    name : <b>rôles</b>,
+    selector : (row) => row.roles,
+    sortable : true,
+  },
+  {
+    name : <b>Mot de passe</b>,
+    selector : (row) => row.password,
+    sortable : true,
+  },
+  {
+    name : <b>Nom</b>,
+    selector : (row) => row.nom,
+    sortable : true,
+  },
+  {
+    name : <b>Prenom</b>,
+    selector : (row) => row.prenom,
+    sortable : true,
+  },
+  {
+    name : <b>Adresse</b>,
+    selector : (row) => row.adresse,
+    sortable : true,
+  },
+  {
+    name : <b>Code postal</b>,
+    selector : (row) => row.code_postal,
+    sortable : true,
+  },
+  {
+    name : <b>Pays</b>,
+    selector : (row) => row.pays,
+    sortable : true,
+  },
+  {
+    name : <b>Ville</b>,
+    selector : (row) => row.ville,
+    sortable : true,
+  },
+  {
+    name : <b>Numéro de téléphone</b>,
+    selector : (row) => row.numero_mobile,
+    sortable : true,
+  }
+]
+useEffect(() => {
+  fetch('/api/users') //, { params: {
   //   id: 'api/users/2'
   // } 
   //}
-  )
 
-  .then(function (response) {
-    // handle success
-    console.log(response);
-    setTest(response.data.member[0].email);
+  .then(response  => response.json())
+  .then (data => {  
+    console.log(data);
+    setUser(Array.isArray(data.member) ? data.member : []);
+   
   })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
+  .catch((error) => console.error("Erreur de récupération des données :", error ));
+}, []);
   
-
+  console.log(user);
   return (
   <>
-  <p> COUCOU {test} </p>
+  <p><ul>{
+    user.map((user) => (
+    <li key={user.id}>{user.email}||</li>
+  ))
+  
+  }
+  </ul></p>
+  <DataTable
+    columns={columns}
+    data={user}
+    defaultSortFieldId={1}
+/>
   </>
 ) 
 }
-export default App ;
+export default App3 ;
