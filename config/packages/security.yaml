@@ -14,25 +14,24 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         login:
-            pattern: ^/api/login$
+            pattern: ^/api/login
             stateless: true
             json_login:
-                check_path: /api/login
+                check_path: /api/login_check
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
         api:
             pattern:   ^/api
             stateless: true
             jwt: ~
+            
         main:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\AppAuthenticator
             logout:
                 path: app_logout
-            json_login:
-                check_path: api_login
-                success_handler: 
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -55,6 +54,8 @@ security:
     access_control:
           - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+          - { path: ^/api/login, roles: PUBLIC_ACCESS }
+          - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:

@@ -116,7 +116,7 @@ class SecurityController extends AbstractController
 $this->addFlash('danger', 'Le token est invalide ou a expiré');
 return $this->redirectToRoute('app_login');
 }
-    #[Route(path:'/api/login',name:'api_login', methods:'POST')]
+    #[Route(path:'/api/login_check',name:'api_login_check', methods:'POST')]
     public function apiLogin()
     {
         $user = $this->getUser();

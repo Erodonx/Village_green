@@ -2,6 +2,9 @@ import {React, useState,useEffect} from 'react';
 import DataTable from 'react-data-table-component';
 const App3 = () => {
 const [user, setUser] = useState([]);
+const [username, setUsername]= useState();
+const [token, setToken] = useState();
+const [password, setPassword] = useState();
 const columns = [
   {
     name : <b>id</b>,
@@ -59,8 +62,39 @@ const columns = [
     sortable : true,
   }
 ]
-useEffect(() => {
-  fetch('/api/users') //, { params: {
+const handleChangeUsername = (evt) => {
+  setUsername(evt.target.value);
+}
+const handleChangeToken = (evt) => {
+  setToken(evt.target.value);
+}
+const handleChangePassword = (evt) =>{
+  setPassword(evt.target.value);
+ 
+}
+const HandleRequest = () => {
+var chaine = new Object();
+chaine.username = username;
+chaine.password = password;
+console.log(chaine);
+fetch('https://localhost:8000/api/login_check', {
+  method:'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(chaine)
+  })
+.then((response) => {response.json()})
+.then((data) => {
+  console.log(data);
+  })
+}
+const HandleConnexion = () => {
+
+  fetch('/api/users',
+  { headers: { 
+  Authorization: `Bearer ${token}`
+}}) //, { params: {
   //   id: 'api/users/2'
   // } 
   //}
@@ -72,23 +106,22 @@ useEffect(() => {
    
   })
   .catch((error) => console.error("Erreur de récupération des données :", error ));
-}, []);
-  
+}   
   console.log(user);
   return (
   <>
-  <p><ul>{
-    user.map((user) => (
-    <li key={user.id}>{user.email}||</li>
-  ))
-  
-  }
-  </ul></p>
-  <DataTable
+  <hr/>
+    <DataTable
     columns={columns}
     data={user}
     defaultSortFieldId={1}
 />
+  <input type="text" placeholder="login" value={username} onChange={handleChangeUsername}></input>
+  <input type="password" placeholder='mot de passe' value={password} onChange={handleChangePassword}/>
+  <input type="text" placeholder='entrer le token' value={token} onChange={handleChangeToken}/>
+  <button onClick={HandleRequest}>Verifier l'authentification</button>
+  <br/>
+  <button onClick={HandleConnexion}>Demander l'accès aux données utilisateur</button>
   </>
 ) 
 }

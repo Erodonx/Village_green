@@ -27,7 +27,11 @@ exemple :
 flex methods : 
 
 framework.yaml 28:23 symfony 7 formulaires video yt
+
+Vendors:
 Rajouter public const DIGITS = '[0-9]+'; dans interface de phar io dans le Requirement.php
+
+
 
 /!\ GESTION DES COMMIT /!\ : 
 
@@ -46,12 +50,13 @@ https://www.thomann.de/fr/thomann_celtic_harp_ashwood_36_str.htm harpe
 
 ETAT /!\
 
-31/10
+08/11/12
 To do next: 
 
 Créer d'autres fixtures produits, d'autres rubriques sous rubriques.
-
 Avec le query builder finir l'affichage de certaines demandes du projet fil rouge.
 -> Prérequis avancer sur le react!!!!!
+TABLEAU TRIABLE DUNE ENTITE REUSSIUJHGREJKH GSHD LETS GO!!!
 
-TABLEAU TRIABLE DUNE ENTITE REUSSIUJHGREJKH GSHD LETS GO!!!:
+Ponçage de la partie API, Cf au dessus pour voir ce qu'il faut rajouter.
+Finir l'authentification JWT.

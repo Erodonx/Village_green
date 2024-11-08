@@ -1,0 +1,17 @@
+POST  https://localhost:8000/api/login_check
+Content-Type: application/json
+
+{
+"username": "admin@afpa.fr",
+"password": "afpa1234"
+}
+
+###
+
+GET https://localhost:8000/api/users/1
+Accept: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MzEwNTc5MTgsImV4cCI6MTczMTA2MTUxOCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluQGFmcGEuZnIifQ.iYD1qSx0wYeiMmBvPlmnuXPzWw5tob4tLtoYDxnxKuze-Hp1XW2gWRzznaiTvclpi1DYnecsAtWMKAcv0nL4kKJA4gsbpEDhjju6vIqx8ZRt3a7Hnt8GafwEQRqj_sDz4BDPL3_-Xp1vIU0l3Al3iumAe1GL8FWRX1wDmXOHCPS077eRPK5jtuxLJ16WJhtsTvNNU_rDvDN3M4gbrtX-e1mR4GYwE9Ktlh4thXYbYuvnaxSULuPn6qNlpVTXmuJaL4NQNhmPN-NjMZhQZlI0RBCHKZ0_pxRBSRyTJIjJ0vdXjRlY9LGL7qNSt9wv9LbM56xTnv-eOSI479JP1iFVQg
+
+{
+
+}
