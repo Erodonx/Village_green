@@ -50,13 +50,18 @@ https://www.thomann.de/fr/thomann_celtic_harp_ashwood_36_str.htm harpe
 
 ETAT /!\
 
-08/11/12
+13/11/12
 To do next: 
 
 Créer d'autres fixtures produits, d'autres rubriques sous rubriques.
-Avec le query builder finir l'affichage de certaines demandes du projet fil rouge.
+**Avec le query builder finir l'affichage de certaines demandes du projet fil rouge.
+**Mise en page de la partie Administration
+**UML
 -> Prérequis avancer sur le react!!!!!
 TABLEAU TRIABLE DUNE ENTITE REUSSIUJHGREJKH GSHD LETS GO!!!
 
 Ponçage de la partie API, Cf au dessus pour voir ce qu'il faut rajouter.
-Finir l'authentification JWT.
+Finir l'authentification JWT -> Questions a poser vis-à-vis de l'implémentation de la sécurité, actuellement bloquée à tout les utilisateurs n'ayant pas le role admin.
+Commencer un projet avec Angular et symfony.
+
+** important

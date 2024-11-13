@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
             $mail->send(
                 'mailer@your-domain.com',
                 $user->getEmail(),
-                'Récupération de mot de passe sur le site OpenBlog',
+                'Récupération de mot de passe sur le site Village green',
                 'password_reset',
                 compact('user', 'url') // ['user' => $user, 'url'=>$url]
             );

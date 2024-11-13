@@ -34,7 +34,7 @@ class AccueilController extends AbstractController
             'topprod' => $details
          /*   'top1' => $top1,
             'top2' => $top2,
-            'top3' => $top3*/
+            'top3' => $top3 */
         ]);
     }
 }

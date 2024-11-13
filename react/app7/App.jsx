@@ -84,18 +84,50 @@ fetch('https://localhost:8000/api/login_check', {
   },
   body: JSON.stringify(chaine)
   })
-.then((response) => {response.json()})
-.then((data) => {
-  console.log(data);
-  })
-}
-const HandleConnexion = () => {
-
+.then(response => (response.json())
+.then(json =>{
+  console.log(json);
+  setToken(json.token);
   fetch('/api/users',
+    { headers: { 
+    Authorization: `Bearer ${json.token}`
+  }}) //, { params: {
+    //   id: 'api/users/2'
+    // } 
+    //}
+  
+    .then(response  => response.json())
+    .then (data => {  
+      console.log(data);
+      setUser(Array.isArray(data.member) ? data.member : []);
+     
+    })
+    .catch((error) => console.error("Erreur de récupération des données :", error ));
+}))
+.catch((error) => console.error("Erreur de saisie, ou de récupération des données :", error))
+/*fetch('/api/users',
+    { headers: { 
+    Authorization: `Bearer ${token}`
+  }}) //, { params: {
+    //   id: 'api/users/2'
+    // } 
+    //}
+  
+    .then(response  => response.json())
+    .then (data => {  
+      console.log(data);
+      setUser(Array.isArray(data.member) ? data.member : []);
+     
+    })
+    .catch((error) => console.error("Erreur de récupération des données :", error ));*/
+}
+/*const HandleConnexion = () => {
+
+fetch('/api/users',
   { headers: { 
   Authorization: `Bearer ${token}`
 }}) //, { params: {
-  //   id: 'api/users/2'
+  //   id: 'api/users/2' a 
   // } 
   //}
 
@@ -106,7 +138,7 @@ const HandleConnexion = () => {
    
   })
   .catch((error) => console.error("Erreur de récupération des données :", error ));
-}   
+}*/
   console.log(user);
   return (
   <>
@@ -118,10 +150,10 @@ const HandleConnexion = () => {
 />
   <input type="text" placeholder="login" value={username} onChange={handleChangeUsername}></input>
   <input type="password" placeholder='mot de passe' value={password} onChange={handleChangePassword}/>
-  <input type="text" placeholder='entrer le token' value={token} onChange={handleChangeToken}/>
+  <input type="text" placeholder='Le token JWT' value={token}/>
   <button onClick={HandleRequest}>Verifier l'authentification</button>
   <br/>
-  <button onClick={HandleConnexion}>Demander l'accès aux données utilisateur</button>
+  {/* <button onClick={HandleConnexion}>Demander l'accès aux données utilisateur</button> */}
   </>
 ) 
 }
