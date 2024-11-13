@@ -37,9 +37,9 @@ Rajouter public const DIGITS = '[0-9]+'; dans interface de phar io dans le Requi
 
 - COMMIT LES FICHIERS PAR THEMES AVEC DES MESSAGES DE COMMIT COHÉRENTS ET LISIBLES EX : (Service de mail, ajouter les fichiers concernés et faire un message de commit cohérent)
 
-
-
-
+aaaaa
+test
+rfjiioguhjer
 
 
 
