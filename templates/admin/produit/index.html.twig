@@ -3,7 +3,9 @@
 {% block title "Administration" %}
 
 {% block body %}
-<table class="table">
+<div class="text">Administration des produits</div>
+<div class="row">
+<table class="table table-dark rounded-pill">
     <thead>
     <tr>
         <th>Nom du produit</th>
@@ -40,4 +42,5 @@
 <p>
     <a class="btn btn-primary btn-sm" href="{{ path('app_admin_produit_create') }}">Créer un nouveau produit</a>
 </p>
+</div>
 {% endblock %}

@@ -10,13 +10,13 @@
 //import './theme.scss'
 
 //import './styles/app.css';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 import './script.js';
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 import './styles/admin.css';
-
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
 
 
 
