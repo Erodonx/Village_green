@@ -4,10 +4,6 @@
 
 
 {% block body %}
-
-<p>
-    <a class="btn btn-primary btn-sm" href="{{ path('app_admin_sousRubrique_create') }}">Créer une nouvelle sous-rubrique</a>
-</p>
 <table class="table">
     <thead>
     <tr>
@@ -33,5 +29,7 @@
            </div>
         </td>
     {% endfor %}
-
+<p>
+    <a class="btn btn-primary btn-sm" href="{{ path('app_admin_sousRubrique_create') }}">Créer une nouvelle sous-rubrique</a>
+</p>
 {% endblock %}

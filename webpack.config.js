@@ -21,6 +21,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('appAdmin','./assets/appAdmin.js')
     .addEntry('app1', './react/app1/index.js')
     .addEntry('app2', './react/app2/index.js')
     .addEntry('app3', './react/app3/index.js')

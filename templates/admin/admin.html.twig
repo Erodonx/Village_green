@@ -3,40 +3,106 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Administration{% endblock %}</title>
-       
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-            
-            {#<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/vapor/_variables.scss">#}
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        {#<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/vapor/bootstrap.min.css">
-        {#<link rel="stylesheet" href="assets/styles/bootstrap.css">
-        <link rel="stylesheet" href="assets/styles/style.css"> #}
-        {# <style> body {
-    background-color: #222222;
-}
-h1, p {
-    color: #C9C9C9;
-}
-.card{
-    transition: transform .5s;   
-   }
-.card:hover{
-   
-    background-color: lightpink !important;
-    -ms-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform:scale(1.1);
-   }
-.commands{
-    bottom:0; right:0;
-} 
- </style>      #}  
-{% endblock %}
+        {{ encore_entry_link_tags('appAdmin') }}
+        {% block stylesheets %}               
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        {% endblock %}
+
+        {{ encore_entry_script_tags('appAdmin')}} 
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('appAdmin') }}{% endblock %}
+        {% endblock %}
     </head>
 <body>
+<nav class="sidebar close col">
+    <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="/images/Logo.png" alt="logo">
+          </span>
+        
+        <div class="text header-text">
+          <span class="name">Village Green</span>
+          <span class="admin">Administration</span>
+        </div>
+      </div>
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+    
+    <div class="menu-bar">
+        <div class="menu">
+          <li class="search-box">
+                  <i class='bx bx-search icon'></i>
+                  <input type="text" placeholder="Recherche...">
+          </li>
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="{{path('app_admin_index')}}">
+                  <i class='bx bx-home-alt icon'></i>
+                  <span class="text nav-text">Accueil</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{{path('app_admin_produit_index')}}">
+                  <i class='bx bx-music icon'></i>
+                  <span class="text nav-text">Produits</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{{path('app_admin_sousRubrique_index')}}">
+                  <i class='bx bx-folder-plus icon'></i>
+                  <span class="text nav-text">Sous-rubriques</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{{path('app_admin_rubrique_index')}}">
+                  <i class='bx bx-folder icon'></i>
+                  <span class="text nav-text">Rubriques</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{{path('app_admin_commande_fournisseur_index')}}">
+                  <i class='bx bxs-package icon' ></i>
+                  <span class="text nav-text">Commandes</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="{{path('app_admin_utilisateur_index')}}">
+                  <i class='bx bxs-key icon' ></i>
+                  <span class="text nav-text">Gestion utilisateur</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bottom-content">
+            <li class="">
+              <a href="{{path('app_logout')}}">
+                  <i class='bx bx-log-out icon' ></i>
+                  <span class="text nav-text">Se déconnecter</span>
+              </a>
+            </li>
+            
+            <li class="mode">
+                <div class="moon-sun">
+                  <i class='bx bx-moon icon moon'></i>
+                  <i class='bx bx-sun icon sun'> </i>
+                </div>
+                <span class="mode-text text">Mode nuit</span>
+                
+                <div class="toggle-switch">
+                      <span class="switch"></span>
+                </div>
+            </li>
+        </div>
+    </div>
+</nav>
+<section class="home">
+{% block body %}
 
-<nav class="navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
+{% endblock %}
+</section>
+{# <nav class="navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{path ('app_admin_produit_index') }}">Administration</a>
     <div class="collapse navbar-collapse">
@@ -58,14 +124,10 @@ h1, p {
       </ul>
     </div>
   </div>
-</nav>
-  <div class="container my-4"> 
+</nav> #}
+  {# <div class="container my-4"> 
         {% include '/partials/flash.html.twig' %}
         {% block body %}{% endblock %}
-  </div>
-         {% block javascripts %}
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-         {% endblock %}
-    {% block importmap %}{{ importmap('app') }}{% endblock %}
+  </div> #}
 </body>
 </html>

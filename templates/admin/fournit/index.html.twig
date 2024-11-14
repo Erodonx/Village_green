@@ -3,9 +3,6 @@
 {% block title "Administration" %}
 
 {% block body %}
-<p>
-    <a class="btn btn-primary btn-sm" href="{{ path('app_admin_commande_fournisseur_create') }}">Passer une nouvelle commande fournisseur</a>
-</p>
 <table class="table">
     <thead>
     <tr>
@@ -34,5 +31,8 @@
     {% endfor %}
     </tbody>
     </table>
+<p>
+    <a class="btn btn-primary btn-sm" href="{{ path('app_admin_commande_fournisseur_create') }}">Passer une nouvelle commande fournisseur</a>
+</p>
 {% endblock %}
 

@@ -3,9 +3,6 @@
 {% block title "Administration" %}
 
 {% block body %}
-<p>
-    <a class="btn btn-primary btn-sm" href="{{ path('app_admin_produit_create') }}">Créer un nouveau produit</a>
-</p>
 <table class="table">
     <thead>
     <tr>
@@ -40,4 +37,7 @@
     {% endfor %}
     </tbody>
     </table>
+<p>
+    <a class="btn btn-primary btn-sm" href="{{ path('app_admin_produit_create') }}">Créer un nouveau produit</a>
+</p>
 {% endblock %}
