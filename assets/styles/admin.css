@@ -309,9 +309,13 @@ body.dark .switch::before{
     margin:0;
     font-size: 15px;
 }
-.row a{
+ a.libelle{
     text-decoration: none;
     color:var(--text-color);
+}
+.bdr {
+    border-radius: 10px;
+    overflow : hidden;
 }
 /*table{
     border-radius:6px;
