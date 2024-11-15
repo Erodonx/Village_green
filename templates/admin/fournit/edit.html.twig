@@ -1,10 +1,11 @@
 {% extends 'admin/admin.html.twig' %}
 {% block title 'Numéro de commande :' ~ fournit.id %}
 {% block body %}
-    <h1> {{ 'Nom du produit :' ~ fournit.Produit.nom ~ '\n Nom du fournisseur : ' ~ fournit.Fournisseur.nom |nl2br }} </h1>
+    <div class="row text">
+    <h1> {{ 'Nom du produit : ' ~ fournit.Produit.nom ~ '\n Nom du fournisseur : ' ~ fournit.Fournisseur.nom |nl2br }} </h1>
     
     {{form_start(form)}}
     
     {{form_end(form)}}
-
+    </div>
  {% endblock %}

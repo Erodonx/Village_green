@@ -1,10 +1,11 @@
 {% extends 'admin/admin.html.twig' %}
  {% block title "Rubrique : " ~ rubrique.Nom %}
 {% block body %}
+<div class="row text">
     <h1> {{ rubrique.Nom }} </h1>
     
     {{form_start(form)}}
     
     {{form_end(form)}}
-
+</div>
  {% endblock %}

@@ -350,6 +350,19 @@ a.id{
     text-decoration:none;
     color:#fff; 
 }
+.command{
+    width:24px;
+    height:24px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+.row .text{
+    margin:0;
+    padding: 8px 40px;
+    font-size: 15px;
+    color: var(--text-color);
+}
 /*table{
     border-radius:6px;
     padding: 5px;

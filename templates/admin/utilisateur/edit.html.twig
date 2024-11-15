@@ -1,10 +1,11 @@
 {% extends 'admin/admin.html.twig' %}
  {% block title "Sous-rubrique : " ~ utilisateur.email %}
 {% block body %}
+<div class="row text">
     <h1> {{ utilisateur.email }} </h1>
     
     {{form_start(form)}}
     
     {{form_end(form)}}
-
+</div>
  {% endblock %}
