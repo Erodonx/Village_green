@@ -58,7 +58,7 @@ body.dark{
     width:88px;
 
 }
-.sidebar.close .text-nav text{
+/*.sidebar.close .text-nav text{
     display:none;
 }
 /* ==== Resuable CSS ==== */
@@ -73,7 +73,7 @@ body.dark{
 }
 .sidebar.close .text{
     opacity:0;
-    display:none;
+    transform: translateX(50%);
     transition: var(--tran-02);
 }
 .sidebar ul{
@@ -189,6 +189,16 @@ body.dark .sidebar header .toggle{
     text-decoration:none;
     border-radius: 6px;
     background:var(--primary-color-light);
+}
+.table li a{
+    height:100%;
+    width: 100%;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    text-decoration:none;
+    border-radius: 6px;
+    background:lightgreen;
 }
 
 .sidebar li a:hover{
@@ -307,15 +317,38 @@ body.dark .switch::before{
 }
 .row{
     margin:0;
+    padding: 8px 40px;
     font-size: 15px;
 }
  a.libelle{
     text-decoration: none;
-    color:var(--text-color);
+    color:#fff;
 }
 .bdr {
     border-radius: 10px;
     overflow : hidden;
+    --bs-table-bg:var(--primary-color);
+}
+li.action1{
+    list-style: none;
+    width:50%;
+}
+li.action2{
+    list-style: none;
+    width:100%;
+}
+form.action{
+    width:50%;
+}
+button.action{
+    border-radius:6px;
+    background-color: red;
+    width: 100%;
+}
+a.id{
+    text-align: center;
+    text-decoration:none;
+    color:#fff; 
 }
 /*table{
     border-radius:6px;
