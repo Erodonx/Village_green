@@ -20,7 +20,9 @@ class ProduitType extends AbstractType
             ->add('nom')
             ->add('description')
             ->add('prix_HT')
-            ->add('imageFile', FileType::class)
+            ->add('imageFile', FileType::class, [
+                'required' => false
+            ])
             ->add('stock')
             ->add('sousRubrique', EntityType::class, [
                 'class' => SousRubrique::class,

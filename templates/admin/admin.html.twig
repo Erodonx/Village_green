@@ -33,7 +33,7 @@
         <div class="menu">
           <li class="search-box">
                   <i class='bx bx-search icon'></i>
-                  <input type="text" placeholder="Recherche...">
+                  <input type="text" class="text nav-text" placeholder="Recherche...">
           </li>
           <ul class="menu-links">
             <li class="nav-link">
@@ -76,13 +76,12 @@
         </div>
         
         <div class="bottom-content">
-            <li class="">
+            <li>
               <a href="{{path('app_logout')}}">
                   <i class='bx bx-log-out icon' ></i>
                   <span class="text nav-text">Se déconnecter</span>
               </a>
             </li>
-            
             <li class="mode">
                 <div class="moon-sun">
                   <i class='bx bx-moon icon moon'></i>
@@ -97,6 +96,9 @@
         </div>
     </div>
 </nav>
+ <div class="container my-4"> 
+        {% include '/partials/flash.html.twig' %}
+  </div> 
 <section class="home">
 {% block body %}
 
@@ -125,9 +127,5 @@
     </div>
   </div>
 </nav> #}
-  {# <div class="container my-4"> 
-        {% include '/partials/flash.html.twig' %}
-        {% block body %}{% endblock %}
-  </div> #}
 </body>
 </html>

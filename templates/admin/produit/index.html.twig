@@ -28,10 +28,20 @@
         <td>{{ produit.sousRubrique.nom | default('') }}</td>
         <td> 
             <div class="d-flex gap-1">
-                <a class="btn btn-primary btn-sm" href="{{ path('app_admin_produit_edit', { id: produit.id }) }}">Éditer</a>
-                <form action="{{ path('app_admin_produit_delete' , {id: produit.id}) }}" method="post">
+                {#<a class="btn btn-primary btn-sm" href="{{ path('app_admin_produit_edit', { id: produit.id }) }}">Éditer</a> #}
+            <li class="action1">
+              <a class="edit" href="{{ path('app_admin_produit_edit', { id: produit.id }) }}">
+                  <i class='bx bxs-wrench' style="align-self:center"></i>
+              </a>
+            </li>
+                <form class="action" action="{{ path('app_admin_produit_delete' , {id: produit.id}) }}" method="post">
                     <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+            <li class="action2">
+              <button class="action" type="submit">
+                  <i class='bx bxs-trash'></i>
+              </button>
+              </a>
+            </li>
                 </form>          
            </div>
         </td>
