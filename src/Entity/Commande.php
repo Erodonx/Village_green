@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
+#[ApiResource(normalizationContext: ['groups' => ['commande:lecture']])]
 class Commande
 {
     #[ORM\Id]
@@ -17,30 +20,39 @@ class Commande
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['commande:lecture'])]
     private ?\DateTimeInterface $dateCommande = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[Groups(['commande:lecture'])]
     private ?string $montantCommandeHT = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[Groups(['commande:lecture'])]
     private ?string $montantCommandeTTC = null;
 
     #[ORM\Column(length: 55)]
+    #[Groups(['commande:lecture'])]
     private ?string $moyenDePaiement = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['commande:lecture'])]
     private ?string $adresseFacturation = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['commande:lecture'])]
     private ?string $villeFacturation = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['commande:lecture'])]
     private ?string $villeLivraison = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['commande:lecture'])]
     private ?string $etatLivraison = null;
 
     #[ORM\Column]
+    #[Groups(['commande:lecture'])]
     private ?bool $reduction = null;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
@@ -51,12 +63,15 @@ class Commande
      * @var Collection<int, Detail>
      */
     #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'Commande', orphanRemoval: true)]
+    #[Groups(['commande:lecture'])]
     private Collection $details;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['commande:lecture'])]
     private ?string $adresseLivraison = null;
 
     #[ORM\Column(length: 5, nullable: true)]
+    #[Groups(['commande:lecture'])]
     private ?string $valeurReduction = null;
 
     /**

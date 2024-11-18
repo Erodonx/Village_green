@@ -48,7 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180)]
     // #[Groups(['user.index'])]
-    #[Groups(['read'],['write'])]
+    #[Groups(['read'],['write'],['commande:lecture'])]
     private ?string $email = null;
 
     /**

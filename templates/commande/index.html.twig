@@ -17,9 +17,10 @@
         {{ form_row(commande.adresseFacturation)}}
         {{ form_row(commande.villeFacturation)}}
         {{ form_row(commande.moyenDePaiement)}}
+        {{ form_row(commande.typeLivraison)}}
         {{ form_row(commande.CGU_validation)}}
-
-        <button type="submit" class="btn">Commander</button>
+        {{ form_row(commande.save)}}
+        
     {{ form_end(commande) }}
 
 </div>

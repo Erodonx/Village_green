@@ -10,18 +10,20 @@ use App\Repository\SousRubriqueRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class ProduitController extends AbstractController
 {
     #[Route('/produit', name: 'app_produit')]
-    public function index(ProduitRepository $produitRepository,RubriqueRepository $rubriqueRepository): Response
+    public function index(ProduitRepository $produitRepository,RubriqueRepository $rubriqueRepository, Request $request ): Response
     {
-        $produits = $produitRepository->findAll();
-        $total = count($produits);
-        $rubriques = $rubriqueRepository->findAll();
-
+        $sort = $request->query->get('sort', 'popularity'); 
+        $produits = $produitRepository->findByFilters($sort);
+        $produits2= $produitRepository->findAll();
+        $total = count($produits2);
+        $rubriques = $rubriqueRepository->findAll();   
         return $this->render('produit/index.html.twig', [
             'controller_name' => 'ProduitController',
             'produits' => $produits,

@@ -167,63 +167,149 @@ class VillageFixt extends Fixture
                  ->setSousRubrique($sousRubrique4)
                  ->setFournisseur($fournisseur1);
         $manager->persist($produit8);
+
+        $rubrique3 = new Rubrique();
+        $rubrique3->setNom('Pianos et clavier')
+                  ->setDescription('Pour séduire la demoiselle avec un valse en si bémol')
+                  ->setImage('YamahaGB.png');
         
+        $manager->persist($rubrique3);
+
+        $sousRubrique5 = new SousRubrique();
+        $sousRubrique5->setNom('Pianos à Queue')
+                      ->setDescription('Vous placez trop de confiance chez nos livreurs.')
+                      ->setRubrique($rubrique3);
+        $manager->persist($sousRubrique5);
+
+        $produit9 = new Produit();
+        $produit9 ->setNom('Yamaha GB1 K SC3 PE Grand Piano')
+                  ->setDescription('Piano à queue silencieux, équipé du système silencieux SC3. 3 pédales (pédale centrale pour maintien de la tonalité). Dimensions : Longueur: 151 cm, Largeur: 146 cm, Hauteur: 99 cm, Poids : 265 kg')
+                 ->setPrixHT(16690)
+                 ->setImage('YamahaGB.png')
+                 ->setStock(0)
+                 ->setSousRubrique($sousRubrique5)
+                 ->setFournisseur($fournisseur3);
+        $manager-> persist($produit9);
+
+        $produit10 = new Produit();
+        $produit10->setNom('Kawai GL 10 E/P Grand Piano ')
+                  ->setDescription('Piano à queue, mécanique Millennium III avec pièces en ABS Styran. Pédale sostenuto , têtes des marteaux avec feutre. Couvre clavier à fermeture lente ')
+                  ->setPrixHT(16690)
+                  ->setImage('KawaiGL.png')
+                  ->setStock(0)
+                  ->setSousRubrique($sousRubrique5)
+                  ->setFournisseur($fournisseur2);
+        $manager->persist($produit10);
+
+        $sousRubrique6 = new SousRubrique();
+        $sousRubrique6->setNom('Synthétiseurs, Workstations et Samplers')
+                      ->setDescription('A cheval entre tradition et modernité.')
+                      ->setRubrique($rubrique3);
+        $manager->persist($sousRubrique6);
+
+        $produit11 = new Produit();
+        $produit11->setNom('Roland GAIA 2')
+                  ->setDescription('Clavier 37 touches. Filtre multimode (passe-bas, passe-bande, passe-haut) avec résonance, contrôle Filter-Drive et pente sélectionnable (-12 dB, -18 dB, -24 dB)')
+                  ->setPrixHT(736)
+                  ->setImage('RolandG.png')
+                  ->setStock(0)
+                  ->setSousRubrique($sousRubrique6)
+                  ->setFournisseur($fournisseur1);
+        $manager->persist($produit11);
+
+        $produit12 = new Produit();
+        $produit12->setNom('AKAI Professional Force')
+                  ->setDescription('Séquenceur à pas, fonction Clip-Launch, échantillonneur et moteur de synthétiseur dans un seul appareil')
+                  ->setPrixHT(1059)
+                  ->setImage('AkaiPF.png')
+                  ->setStock(0)
+                  ->setSousRubrique($sousRubrique6)
+                  ->setFournisseur($fournisseur2);
+        $manager->persist($produit12);
         
         $fournit1 = new Fournit();
         $fournit1->setQuantiteLivree(300);
         $fournit1->setDateLivraison(new DateTime("now"));
         $fournit1->setProduit($produit1);
-        $fournit1->setFournisseur($fournisseur1);
+        $fournit1->setFournisseur($produit1->getFournisseur());
         $manager->persist($fournit1);
 
         $fournit2 = new Fournit();
         $fournit2->setQuantiteLivree(250);
         $fournit2->setDateLivraison(new DateTime("now"));
         $fournit2->setProduit($produit2);
-        $fournit2->setFournisseur($fournisseur2);
+        $fournit2->setFournisseur($produit2->getFournisseur());
         $manager->persist($fournit2);
 
         $fournit3 = new Fournit();
         $fournit3->setQuantiteLivree(275);
         $fournit3->setDateLivraison(new DateTime("now"));
         $fournit3->setProduit($produit3);
-        $fournit3->setFournisseur($fournisseur3);
+        $fournit3->setFournisseur($produit3->getFournisseur());
         $manager->persist($fournit3);
 
         $fournit4 = new Fournit();
         $fournit4->setQuantiteLivree(225);
         $fournit4->setDateLivraison(new DateTime("now"));
         $fournit4->setProduit($produit4);
-        $fournit4->setFournisseur($fournisseur3);
+        $fournit4->setFournisseur($produit4->getFournisseur());
         $manager->persist($fournit4);
 
         $fournit5 = new Fournit();
         $fournit5->setQuantiteLivree(325);
         $fournit5->setDateLivraison(new DateTime("now"));
         $fournit5->setProduit($produit5);
-        $fournit5->setFournisseur($fournisseur3);
+        $fournit5->setFournisseur($produit5->getFournisseur());
         $manager->persist($fournit5);
         
         $fournit6 = new Fournit();
         $fournit6->setQuantiteLivree(350);
         $fournit6->setDateLivraison(new DateTime("now"));
         $fournit6->setProduit($produit6);
-        $fournit6->setFournisseur($fournisseur3);
+        $fournit6->setFournisseur($produit6->getFournisseur());
         $manager->persist($fournit6);
 
         $fournit7 = new Fournit();
         $fournit7->setQuantiteLivree(375);
         $fournit7->setDateLivraison(new DateTime("now"));
         $fournit7->setProduit($produit7);
-        $fournit7->setFournisseur($fournisseur1);
+        $fournit7->setFournisseur($produit7->getFournisseur());
         $manager->persist($fournit7);
 
         $fournit8 = new Fournit();
         $fournit8->setQuantiteLivree(400);
         $fournit8->setDateLivraison(new DateTime("now"));
         $fournit8->setProduit($produit8);
-        $fournit8->setFournisseur($fournisseur1);
+        $fournit8->setFournisseur($produit8->getFournisseur());
         $manager->persist($fournit8);
+
+        $fournit9 = new Fournit();
+        $fournit9->setQuantiteLivree(225);
+        $fournit9->setDateLivraison(new DateTime("now"));
+        $fournit9->setProduit($produit9);
+        $fournit9->setFournisseur($produit9->getFournisseur());
+        $manager->persist($fournit9);
+
+        $fournit10 = new Fournit();
+        $fournit10->setQuantiteLivree(550);
+        $fournit10->setDateLivraison(new DateTime("now"));
+        $fournit10->setProduit($produit10);
+        $fournit10->setFournisseur($produit10->getFournisseur());
+        $manager->persist($fournit10);
+
+        $fournit11 = new Fournit();
+        $fournit11->setQuantiteLivree(750);
+        $fournit11->setDateLivraison(new DateTime("now"));
+        $fournit11->setProduit($produit11);
+        $fournit11->setFournisseur($produit11->getFournisseur());
+        $manager->persist($fournit11);
+
+        $fournit12 = new Fournit();
+        $fournit12->setQuantiteLivree(375);
+        $fournit12->setDateLivraison(new DateTime("now"));
+        $fournit12->setProduit($produit12);
+        $fournit12->setFournisseur($produit12->getFournisseur());
+        $manager->persist($fournit12);
 
 
         $date = new DateTime("now");

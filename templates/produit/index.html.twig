@@ -2,6 +2,18 @@
         {% block body %}
          
 <div class="container">
+<div class="btn-group col-auto">
+                <button class="btn btn-sm dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filtre
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                    <li><a class="dropdown-item" href="{{ path('app_produit', { 'sort': 'price_asc' }) }}">Prix (asc)</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_produit', { 'sort': 'price_desc' }) }}">Prix (desc)</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_produit', { 'sort': 'alphabetical_asc' }) }}">Alphabétique (A-Z)</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_produit', { 'sort': 'alphabetical_desc' }) }}">Alphabétique (Z-A)</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_produit', { 'sort': 'popularity' }) }}">Les plus populaires</a></li>
+                </ul>
+            </div>
     <h2>Nos produits</h2>
     <div class="row pt-3">
     {% set n = 1 %}

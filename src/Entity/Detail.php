@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Entity;
-
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\DetailRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+
 
 #[ORM\Entity(repositoryClass: DetailRepository::class)]
+#[ApiResource()]
 class Detail
 {
     // #[ORM\Id]
@@ -17,15 +20,18 @@ class Detail
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['commande:lecture'])]
     private ?int $id=null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]
     private ?Commande $Commande = null;
 
     #[ORM\ManyToOne(inversedBy:'details')]
+    #[Groups(['commande:lecture'])]
     private ?Produit $Produit = null;
 
     #[ORM\Column]
+    #[Groups(['commande:lecture'])]
     private ?int $quantiteCommandee = null;
 
     public function getId(): ?int

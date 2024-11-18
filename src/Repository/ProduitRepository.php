@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Produit;
+use App\Repository\DetailRepository as RepositoryDetailRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -12,9 +13,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProduitRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $details;
+    public function __construct(ManagerRegistry $registry, RepositoryDetailRepository $details)
     {
         parent::__construct($registry, Produit::class);
+        $this->details = $details;
     }
 
 
@@ -28,6 +31,19 @@ class ProduitRepository extends ServiceEntityRepository
         ->getResult();
 
     }
+    public function Popularity()
+    {
+        return $this->createQueryBuilder('p')
+        ->select('p')
+        ->leftJoin('App\Entity\Detail', 'd ',\Doctrine\ORM\Query\Expr\Join::WITH, 'p = d.Produit')
+        ->orderBy('SUM(d.quantiteCommandee)','DESC')
+        ->groupBy('p.id')
+        ->where('p IS NOT NULL')
+        ->getQuery()
+        ->getResult()
+        ;
+
+    }
     public function countId()
     {
         $qb = $this->createQueryBuilder('t')
@@ -35,6 +51,36 @@ class ProduitRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleResult();
         return $qb;
+    }
+    public function findByFilters(string $sort): array
+    {
+        $qb = $this->createQueryBuilder('p');
+        // Appliquer les critères de tri
+        switch ($sort) {
+            case 'popularity':
+            $qb  ->select('p')
+                ->leftJoin('App\Entity\Detail', 'd ',\Doctrine\ORM\Query\Expr\Join::WITH, 'p = d.Produit')
+                ->orderBy('SUM(d.quantiteCommandee)','DESC')
+                ->groupBy('p.id')
+                ->where('p IS NOT NULL');
+                break;
+            case 'price_asc':
+                $qb->orderBy('p.prix_HT', 'ASC');
+                break;
+            case 'price_desc':
+                $qb->orderBy('p.prix_HT', 'DESC');
+                break;
+            case 'alphabetical_asc':
+                $qb->orderBy('p.nom', 'ASC');
+                break;
+            case 'alphabetical_desc':
+                $qb->orderBy('p.nom', 'DESC');
+                break;
+            default:
+                $qb->orderBy('p.sousRubrique', 'ASC');
+                
+        }
+        return $qb->getQuery()->getResult();;
     }
 //    /**
 //     * @return Produit[] Returns an array of Produit objects

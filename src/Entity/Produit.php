@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProduitRepository;
 use ArrayAccess;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,16 +15,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 #[Vich\Uploadable]
+#[ApiResource()]
 class Produit 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['produit.index'])]
+    #[Groups(/*['produit.index'],*/['commande:lecture'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['produit.index'])]
+    #[Groups(/*['produit.index'],*/['commande:lecture'])]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -44,7 +46,7 @@ class Produit
     private ?int $stock = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
-    #[Groups(['produit.show'])]
+    //#[Groups(['produit.show'])]
     private ?SousRubrique $sousRubrique = null;
 
     /**
