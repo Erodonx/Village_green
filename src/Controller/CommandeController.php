@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Form\CommandeType;
 use App\Repository\ProduitRepository;
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -103,7 +104,7 @@ class CommandeController extends AbstractController
         $commande->setAdresseLivraison($form->get('adresseLivraison')->getData());
         $commande->setVilleLivraison($form->get('villeLivraison')->getData());
         $commande->setMoyenDePaiement($form->get('moyenDePaiement')->getData());
-        $date = new DateTime("now");
+        $date = new DateTimeImmutable();
         $commande->setDateCommande($date);
         
         $commande->setEtatLivraison('Commande en cours de livraison');
