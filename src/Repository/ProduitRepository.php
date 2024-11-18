@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Produit;
-use App\Repository\DetailRepository as RepositoryDetailRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -13,11 +12,9 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProduitRepository extends ServiceEntityRepository
 {
-    private $details;
-    public function __construct(ManagerRegistry $registry, RepositoryDetailRepository $details)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Produit::class);
-        $this->details = $details;
     }
 
 
