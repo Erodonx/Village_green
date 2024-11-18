@@ -24,11 +24,8 @@ class ContenuRequete
     #[ORM\ManyToOne(inversedBy: 'contenuRequetes')]
     private ?User $Auteur = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateMessage = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $Time = null;
+    #[ORM\Column]
+    private ?\DateTime $dateMessage = null;
 
     public function getId(): ?int
     {

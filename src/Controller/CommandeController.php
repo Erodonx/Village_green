@@ -16,7 +16,6 @@ use App\Form\CommandeType;
 use App\Repository\ProduitRepository;
 use App\Repository\UserRepository;
 use DateTime;
-use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -58,7 +57,7 @@ class CommandeController extends AbstractController
         $total = 0;
         $commande = new Commande();
         $livraison = new Livraison();
-        $dateLiv = new DateTimeImmutable("now");
+        $dateLiv = new DateTime("now");
         if ($data['typeLivraison']==1)
         {
         $dateLiv->modify('+3 days');
@@ -104,7 +103,7 @@ class CommandeController extends AbstractController
         $commande->setAdresseLivraison($form->get('adresseLivraison')->getData());
         $commande->setVilleLivraison($form->get('villeLivraison')->getData());
         $commande->setMoyenDePaiement($form->get('moyenDePaiement')->getData());
-        $date = new DateTimeImmutable("now");
+        $date = new DateTime("now");
         $commande->setDateCommande($date);
         
         $commande->setEtatLivraison('Commande en cours de livraison');

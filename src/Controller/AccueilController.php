@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\ProduitRepository;
 use App\Repository\RubriqueRepository;
-use DateTimeImmutable;
+use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 
 class AccueilController extends AbstractController
@@ -20,8 +20,6 @@ class AccueilController extends AbstractController
         $rubriques = $rubriqueRepository->findAll();
         $total = count($produits);
         $details = $detailRepository->topVentes();
-        $date = new DateTimeImmutable("now");
-        $date->modify('-3 days');
                 // Récupérer le critère de tri depuis l'URL (paramètre 'sort')
        $sort = $request->query->get('sort', 'newest'); ; // Valeur par défaut : 'newest'
         return $this->render('accueil/index.html.twig', [

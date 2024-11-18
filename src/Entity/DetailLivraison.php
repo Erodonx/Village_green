@@ -14,8 +14,8 @@ class DetailLivraison
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateLivraison = null;
+    #[ORM\Column]
+    private ?\DateTime $dateLivraison = null;
 
     #[ORM\ManyToOne(inversedBy: 'detailLivraisons')]
     #[ORM\JoinColumn(nullable: false)]

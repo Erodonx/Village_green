@@ -14,6 +14,7 @@ use App\Entity\Produit;
 use App\Entity\Rubrique;
 use App\Entity\SousRubrique;
 use App\Entity\User;
+use DateTimeImmutable;
 use DateTime;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -27,8 +28,10 @@ class VillageFixt extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $format = 'Y-m-d H:i:s';
+        $date2nd = date("Y-m-d H:i:s");
+        $date = DateTimeImmutable::createFromFormat($format,$date2nd);
+
         
         $fournisseur1 = new Fournisseur();
         $fournisseur1->setNom('GROBRIGAND');
@@ -312,11 +315,11 @@ class VillageFixt extends Fixture
         $manager->persist($fournit12);
 
 
-        $date = new DateTime("now");
-        $date->modify('+1 month');
+        $date1 = new DateTime("now");
+        $date1->modify('+1 month');
         $fournit9 = new Fournit();
         $fournit9->setQuantiteLivree(25);
-        $fournit9->setDateLivraison($date);
+        $fournit9->setDateLivraison($date1);
         $fournit9->setProduit($produit8);
         $fournit9->setFournisseur($fournisseur1);
         $manager->persist($fournit9);
@@ -401,7 +404,7 @@ class VillageFixt extends Fixture
         $commande->setVilleLivraison('Amiens');
         $commande->setReduction('0');
         $commande->setMoyenDePaiement('VISA');
-        $commande->setDateCommande(new DateTime("now"));
+        $commande->setDateCommande($date);
         
         $commande->setEtatLivraison('Commande en cours de livraison');
         $livraison->setCommande($commande);
@@ -434,7 +437,7 @@ class VillageFixt extends Fixture
         $commande1->setVilleLivraison('Amiens');
         $commande1->setReduction('0');
         $commande1->setMoyenDePaiement('VISA');
-        $commande1->setDateCommande(new DateTime("now"));
+        $commande1->setDateCommande($date);
         
         $commande1->setEtatLivraison('Commande en cours de livraison');
         $livraison1->setCommande($commande1);
@@ -467,7 +470,7 @@ class VillageFixt extends Fixture
         $commande2->setVilleLivraison('Amiens');
         $commande2->setReduction('0');
         $commande2->setMoyenDePaiement('VISA');
-        $commande2->setDateCommande(new DateTime("now"));
+        $commande2->setDateCommande($date);
         
         $commande2->setEtatLivraison('Commande en cours de livraison');
         $livraison2->setCommande($commande2);

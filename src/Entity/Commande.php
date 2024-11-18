@@ -19,9 +19,9 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column]
     #[Groups(['commande:lecture'])]
-    private ?\DateTimeInterface $dateCommande = null;
+    private ?\DateTimeImmutable $dateCommande = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     #[Groups(['commande:lecture'])]

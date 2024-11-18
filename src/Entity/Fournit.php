@@ -18,8 +18,8 @@ class Fournit
     #[ORM\Column]
     private ?int $quantiteLivree = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateLivraison = null;
+    #[ORM\Column]
+    private ?\DateTime $dateLivraison = null;
 
     //#[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'fournisseurs')]
