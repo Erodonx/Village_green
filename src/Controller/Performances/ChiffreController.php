@@ -18,7 +18,6 @@ class ChiffreController extends AbstractController
         foreach ($calc as $ligne) {
             $result[] =  [$ligne["nom"], floatval($ligne[1])];
         }
-        //dd($result);
         return $this->json($result);
     }
     
