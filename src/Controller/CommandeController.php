@@ -74,6 +74,13 @@ class CommandeController extends AbstractController
             $detail = new Detail;
             $produit = $prodRepo->find($item);
             $detail->setProduit($produit);
+            if ($info->getReduction()!=null)
+            {
+            $detail->setPrixTotalTTC(($produit->getPrixHT()*1.20)*$info->getReduction()*$quantite);
+            $detail->setReduction($info->getReduction());
+            }else{
+            $detail->setPrixTotalTTC(($produit->getPrixHT()*1.20)*$quantite);
+            }
             $detailLivraison->setProduit($produit);
             $detail->setQuantiteCommandee($quantite);
             $detailLivraison->setQuantite($quantite);

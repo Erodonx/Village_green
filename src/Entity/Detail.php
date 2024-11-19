@@ -3,6 +3,7 @@
 namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\DetailRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
@@ -33,6 +34,12 @@ class Detail
     #[ORM\Column]
     #[Groups(['commande:lecture'])]
     private ?int $quantiteCommandee = null;
+
+    #[ORM\Column(length: 5, nullable: true)]
+    private ?string $reduction = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?string $PrixTotalTTC = null;
 
     public function getId(): ?int
     {
@@ -71,6 +78,30 @@ class Detail
     public function setQuantiteCommandee(int $quantiteCommandee): static
     {
         $this->quantiteCommandee = $quantiteCommandee;
+
+        return $this;
+    }
+
+    public function getReduction(): ?string
+    {
+        return $this->reduction;
+    }
+
+    public function setReduction(?string $reduction): static
+    {
+        $this->reduction = $reduction;
+
+        return $this;
+    }
+
+    public function getPrixTotalTTC(): ?string
+    {
+        return $this->PrixTotalTTC;
+    }
+
+    public function setPrixTotalTTC(string $PrixTotalTTC): static
+    {
+        $this->PrixTotalTTC = $PrixTotalTTC;
 
         return $this;
     }

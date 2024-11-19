@@ -1,0 +1,45 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<div class="text">Performances du site :<hr>
+<p>Vous trouverez sur cette page, des indicateurs de performances de l'entreprise.</p>
+</div>
+<div class="row">
+<table class="table table-dark bdr">
+    <thead>
+    <tr>
+        <th>Nom du produit</th>
+        <th>Fournisseur du produit</th>
+        <th>Nombre de fois acheté</th>
+        <th>Revenus du produit</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for produit in listeProduitVendu %}
+    <tr>
+        <td>  
+            {{produit.nom}}
+        </td>
+        <td>{{produit.nomFournisseur}}
+        <td>{{produit.1}}
+        </td>
+        <td>{{produit.2}} €
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Total des revenus</td>
+            <td colspan="2">{{ total[0][1] }} €</td>
+        </tr>
+
+    
+    </table>
+<p>
+    <div id="root_app9"></div>
+    {{ encore_entry_script_tags('app9')}}
+</div>
+{% endblock %}

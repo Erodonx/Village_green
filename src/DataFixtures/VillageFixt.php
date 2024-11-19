@@ -387,6 +387,7 @@ class VillageFixt extends Fixture
         $detail->setProduit($produit);
         $detailLiv->setProduit($produit);
         $detail->setQuantiteCommandee(4);
+        $detail->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
         $detailLiv->setQuantite(4);
         $detailLiv->setDateLivraison($dateLiv);
         $commande->addDetail($detail);
@@ -420,6 +421,7 @@ class VillageFixt extends Fixture
         $detail1->setProduit($produit);
         $detailLiv1->setProduit($produit);
         $detail1->setQuantiteCommandee(4);
+        $detail1->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
         $detailLiv1->setQuantite(4);
         $detailLiv1->setDateLivraison($dateLiv);
         $detailLiv1->setLivraison($livraison1);
@@ -451,6 +453,7 @@ class VillageFixt extends Fixture
         $detailLiv2 = new DetailLivraison();
         $produit = $produit3;
         $detail2->setProduit($produit);
+        $detail2->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
         $detailLiv2->setProduit($produit);
         $detail2->setQuantiteCommandee(4);
         $detailLiv2->setQuantite(4);

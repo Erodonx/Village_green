@@ -44,6 +44,35 @@ class DetailRepository extends ServiceEntityRepository
             ;
 
         }
+        public function CAfournisseur()
+        {
+        return $this->createQueryBuilder('d')
+        ->select('f.nom','SUM(d.PrixTotalTTC)')
+        ->leftJoin('App\Entity\Produit','p',\Doctrine\ORM\Query\Expr\Join::WITH , 'p = d.Produit')
+        ->leftJoin('App\Entity\Fournisseur','f',\Doctrine\ORM\Query\Expr\Join::WITH, 'f = p.Fournisseur')
+        ->groupBy('f.nom')
+        ->getQuery()
+        ->getResult();
+        }
+
+        public function ProduitLesPlusVendu()
+        {
+         return $this->createQueryBuilder('d')
+                ->select('p.nom','f.nom as nomFournisseur','SUM(d.quantiteCommandee)','SUM(d.PrixTotalTTC)')
+                ->leftJoin('App\Entity\Produit','p',\Doctrine\ORM\Query\Expr\Join::WITH , 'p = d.Produit')
+                ->leftJoin('App\Entity\Fournisseur','f',\Doctrine\ORM\Query\Expr\Join::WITH, 'f = p.Fournisseur')
+                ->orderBy('SUM(d.quantiteCommandee)','DESC')
+                ->groupBy('d.Produit')
+                ->getQuery()
+                ->getResult();
+        }
+        public function TotalVentes()
+        {
+            return $this->createQueryBuilder('d')
+                        ->select('SUM(d.PrixTotalTTC)')
+                        ->getQuery()
+                        ->getResult();
+        }
 
     //    public function findOneBySomeField($value): ?Detail
     //    {

@@ -57,6 +57,8 @@ security:
     access_control:
           - { path: ^/admin, roles: ROLE_ADMIN }
           - { path: ^/profil, roles: ROLE_USER }
+          - { path: ^/react, roles: ROLE_ADMIN }
+          - { path: ^/performance, roles: ROLE_ADMIN }
           - { path: ^/api/login_check, roles: PUBLIC_ACCESS }
           - { path: ^/api,       roles: ROLE_ADMIN}
           
