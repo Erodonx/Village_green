@@ -40,6 +40,34 @@ class CommandeRepository extends ServiceEntityRepository
         ->getResult()
         ;
     }
+    /*public function findByFilters(string $sort): array
+    {
+        $qb = $this->createQueryBuilder('c');
+        // Appliquer les critères de tri
+        switch ($sort) {
+            case 'par_client':
+            $qb ->select('c')
+                ->leftJoin('App\Entity\User', 'u',\Doctrine\ORM\Query\Expr\Join::WITH, 'u = c.User')
+                ->orderBy('u.email','DESC');
+                break;
+           /* case 'price_asc':
+                $qb->orderBy('p.prix_HT', 'ASC');
+                break;
+            case 'price_desc':
+                $qb->orderBy('p.prix_HT', 'DESC');
+                break;
+            case 'alphabetical_asc':
+                $qb->orderBy('p.nom', 'ASC');
+                break;
+            case 'alphabetical_desc':
+                $qb->orderBy('p.nom', 'DESC');
+                break;
+            default:
+                $qb->orderBy('c.User', 'ASC');
+                
+        }
+        return $qb->getQuery()->getResult();;
+    }*/
 
 
     //    public function findOneBySomeField($value): ?Commande

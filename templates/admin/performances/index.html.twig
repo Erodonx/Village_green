@@ -3,6 +3,7 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
+{{ encore_entry_script_tags('app9')}}
 <div class="text">Performances du site :<hr>
 <p>Vous trouverez sur cette page, des indicateurs de performances de l'entreprise.</p>
 </div>
@@ -25,7 +26,7 @@
         <td>{{produit.nomFournisseur}}
         <td>{{produit.1}}
         </td>
-        <td>{{produit.2}} €
+        <td>{{produit.2|number_format(2,'.',' ')}} €
         </td>
     </tr>
     {% endfor %}
@@ -33,13 +34,12 @@
     <tfoot>
         <tr>
             <td colspan="3">Total des revenus</td>
-            <td colspan="2">{{ total[0][1] }} €</td>
+            <td colspan="2">{{ total[0][1]|number_format(2,'.',' ') }} €</td>
         </tr>
 
     
     </table>
-<p>
-    <div id="root_app9"></div>
-    {{ encore_entry_script_tags('app9')}}
+    <div class="row" id="root_app9"></div>
+    
 </div>
 {% endblock %}
