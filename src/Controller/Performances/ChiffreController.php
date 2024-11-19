@@ -15,6 +15,7 @@ class ChiffreController extends AbstractController
         $result = [];
         $result[] =  ["Fournisseur", "Chiffre d'affaire"];
         $calc = $detail->CAfournisseur();
+        //dd($calc);
         foreach ($calc as $ligne) {
             $result[] =  [$ligne["nom"], floatval($ligne[1])];
         }

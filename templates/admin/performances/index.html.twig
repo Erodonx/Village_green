@@ -4,7 +4,7 @@
 
 {% block body %}
 {{ encore_entry_script_tags('app9')}}
-<div class="text">Performances du site :<hr>
+<div class="text">Performances de Village Green<hr>
 <p>Vous trouverez sur cette page, des indicateurs de performances de l'entreprise.</p>
 </div>
 <div class="row">
@@ -14,7 +14,7 @@
         <th>Nom du produit</th>
         <th>Fournisseur du produit</th>
         <th>Nombre de fois acheté</th>
-        <th>Revenus du produit</th>
+        <th>Revenu du produit</th>
     </tr>
     </thead>
     <tbody>
@@ -33,7 +33,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3">Total des revenus</td>
+            <td colspan="3">Total</td>
             <td colspan="2">{{ total[0][1]|number_format(2,'.',' ') }} €</td>
         </tr>
 
