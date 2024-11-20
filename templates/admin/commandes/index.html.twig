@@ -1,0 +1,71 @@
+{% extends 'admin/admin.html.twig' %}
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+<div class="text">Liste des commandes effectuées sur le site<hr>
+<p>Vous trouverez sur cette page l'ensemble des commandes effectués par les clients de Village_Green.</p>
+</div>
+<div class="btn-group col-auto d-flex align-center">
+                <button class="btn btn-sm dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <p class="text2"> Filtre </p>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                    <li><a class="dropdown-item" href="{{ path('app_admin_commandes_index', { 'sort': 'date_de_commande_asc' }) }}">Trier par date de commande croissante</a></li>
+                             <li><a class="dropdown-item" href="{{ path('app_admin_commandes_index', { 'sort': 'date_de_commande_desc' }) }}">Trier par date de commande décroissante</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_admin_commandes_index', { 'sort': 'client_asc' }) }}">Trier par client par ordre alphabétique croissant</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_admin_commandes_index', { 'sort': 'client_desc' }) }}">Trier par client par ordre alphabétique décroissant</a></li>
+                    <li><a class="dropdown-item" href="{{ path('app_admin_commandes_index', { 'sort': 'référence' }) }}">Trier par référence</a></li>
+                </ul>
+</div>
+<div class="row">
+        {% for commande in commandes %}
+        
+        <div class="row">
+        <div class="text">Commande du {{commande.dateCommande | date('d/m/y')}}#{{commande.id}}</div>
+        <table class="table table-dark bdr">
+            <thead>
+                <tr>
+                    <th>Nom du Client</th>
+                    <th>Prénom du Client</th>
+                    <th>Adresse mail du Client</th>
+                </tr>
+                <tr>
+                    <td>{{commande.getUser.getNom}}</td>
+                    <td>{{commande.getUser.getPrenom}}</td>
+                    <td>{{commande.getUser.getEmail}}</td>
+                </tr>
+                <tr>
+                    <th>Nom du produit</th>
+                    <th>Quantité commandée</th>
+                    <th>Prix total du produit</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+            {% for detail in commande.details %}
+                    <td>{{ detail.produit.nom }}</td>
+                    <td>{{ detail.quantiteCommandee }}</td>
+                    <td>{{ detail.Produit.prixHT * detail.quantiteCommandee}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                    <tr>
+                        <td colspan="2">Total (TVA 20%) </td>
+                        <td>{{ commande.montantCommandeTTC }} €</td>
+                    </tr>
+                     <tr>
+                        <td colspan="3">Facturé au {{commande.adresseFacturation}}, {{commande.villeFacturation}}</td>                  
+                    </tr>
+                    <tr>
+                        <td colspan="2">Livré au {{commande.adresseLivraison}}, {{commande.villeLivraison}}</td>
+                        <td>Livré le {{commande.getLivraisons[0].getDetailLivraisons[0].getDateLivraison| date('d/m/y')}}</td>                  
+                    </tr>
+            </tfoot>
+            </table>
+            </div>
+            {% endfor %}
+        <div class="row"></div>
+</div>
+{% endblock %}

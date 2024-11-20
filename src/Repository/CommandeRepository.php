@@ -40,34 +40,45 @@ class CommandeRepository extends ServiceEntityRepository
         ->getResult()
         ;
     }
-    /*public function findByFilters(string $sort): array
+    public function findByFilters(string $sort): array
     {
         $qb = $this->createQueryBuilder('c');
         // Appliquer les critères de tri
         switch ($sort) {
-            case 'par_client':
+            case 'date_de_commande_asc':
             $qb ->select('c')
-                ->leftJoin('App\Entity\User', 'u',\Doctrine\ORM\Query\Expr\Join::WITH, 'u = c.User')
-                ->orderBy('u.email','DESC');
+                ->orderBy('c.dateCommande','ASC');
                 break;
-           /* case 'price_asc':
-                $qb->orderBy('p.prix_HT', 'ASC');
+            case 'date_de_commande_desc':
+                $qb->orderBy('c.dateCommande', 'DESC');
                 break;
-            case 'price_desc':
-                $qb->orderBy('p.prix_HT', 'DESC');
+            case 'client_asc':
+                $qb->select('c')
+                   ->leftJoin('App\Entity\User', 'u',\Doctrine\ORM\Query\Expr\Join::WITH, 'c.user = u')
+                   ->orderBy('u.prenom', 'ASC');
                 break;
-            case 'alphabetical_asc':
-                $qb->orderBy('p.nom', 'ASC');
+            case 'client_desc':
+                $qb->select('c') 
+                   ->leftJoin('App\Entity\User', 'u',\Doctrine\ORM\Query\Expr\Join::WITH, 'c.user = u')
+                   ->orderBy('u.prenom', 'DESC');
                 break;
-            case 'alphabetical_desc':
-                $qb->orderBy('p.nom', 'DESC');
+            case 'référence':
+                $qb->orderBy('c.id', 'ASC');
                 break;
             default:
-                $qb->orderBy('c.User', 'ASC');
+                $qb->orderBy('c.id', 'ASC');
                 
         }
         return $qb->getQuery()->getResult();;
-    }*/
+    }
+    public function JsonDataCom()
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->select('u.email','u.prenom','u.nom','c.id','c.dateCommande','c.montantCommandeTTC')
+           ->leftJoin('App\Entity\User', 'u',\Doctrine\ORM\Query\Expr\Join::WITH, 'c.user = u');
+           
+        return $qb->getQuery()->getResult();
+    }
 
 
     //    public function findOneBySomeField($value): ?Commande

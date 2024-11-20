@@ -4,10 +4,12 @@
 
 {% block body %}
 {{ encore_entry_script_tags('app9')}}
+{{ encore_entry_script_tags('app10')}}
 <div class="text">Performances de Village Green<hr>
 <p>Vous trouverez sur cette page, des indicateurs de performances de l'entreprise.</p>
 </div>
 <div class="row">
+<p class="text">listes des produits vendus par fournisseur :</p>
 <table class="table table-dark bdr">
     <thead>
     <tr>
@@ -39,7 +41,9 @@
 
     
     </table>
+    <p class="text">Part des revenus par fournisseur :</p>
     <div class="row" id="root_app9"></div>
-    
+    <p class="text">Tableau listant l'ensemble des commandes : </p>
+    <div class="row" id="root_app10"></div>
 </div>
 {% endblock %}

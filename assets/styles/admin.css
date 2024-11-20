@@ -360,6 +360,13 @@ a.id{
     font-size: 15px;
     color: var(--text-color);
 }
+
+.text2{
+    margin:0;
+    padding: 8px 40px;
+    font-size: 20px;
+    color: var(--text-color);
+}
 /*table{
     border-radius:6px;
     padding: 5px;
