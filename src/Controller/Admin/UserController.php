@@ -37,7 +37,11 @@ class UserController extends AbstractController{
             foreach($roles as $role)
             {
             if($role=="ROLE_EMPLOYE"||$role=="ROLE_ADMIN")
-            $verif=1;
+            $roleEmployeCharge=$form->getData()->getEmployeCharge();
+            if(isset($roleEmployeCharge))          
+            {
+             $verif=1;   
+            }
             }
             if($verif==0)
             {
