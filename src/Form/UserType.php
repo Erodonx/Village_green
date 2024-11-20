@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -27,6 +29,12 @@ class UserType extends AbstractType
         ])
             ->add('employeCharge', EntityType::class, [
                 'class' => User::class,
+                'query_builder' => function (EntityRepository $er): QueryBuilder {
+                    $role =  'ROLE_EMPLOYE';
+        return $er->createQueryBuilder('u')
+            ->where('u.roles LIKE :roles')
+            ->setParameter('roles', '%"'.$role.'"%');
+    },
                 'label' => 'Commercial référent',
                 'choice_label' => 'email',
                 'required' => false

@@ -32,9 +32,23 @@ class UserController extends AbstractController{
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())   
         {
-            $em->flush();
-            $this->addFlash('success', 'La modification de l\'utilisateur concerné a été enregistrée.');
-            return $this->redirectToRoute('app_admin_utilisateur_index');
+            $roles= $form->getData()->getEmployeCharge()->getRoles();
+            $verif=0;
+            foreach($roles as $role)
+            {
+            if($role=="ROLE_EMPLOYE")
+            $verif=1;
+            }
+            if($verif==1)
+            {
+                $em->flush();
+                $this->addFlash('success', 'La modification de l\'utilisateur concerné a été enregistrée.');
+                return $this->redirectToRoute('app_admin_utilisateur_index');
+            }
+            else{
+                $this->addFlash('warning','Vous ne pouvez pas définir un employé à la charge du client qui n\'est pas un employé');
+                return $this->redirectToRoute('app_admin_utilisateur_index');
+            }
         }
         return $this->render('admin/utilisateur/edit.html.twig', [
             'utilisateur' => $user,
