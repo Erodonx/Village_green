@@ -55,12 +55,12 @@ class CommandeRepository extends ServiceEntityRepository
             case 'client_asc':
                 $qb->select('c')
                    ->leftJoin('App\Entity\User', 'u',\Doctrine\ORM\Query\Expr\Join::WITH, 'c.user = u')
-                   ->orderBy('u.prenom', 'ASC');
+                   ->orderBy('u.nom', 'ASC');
                 break;
             case 'client_desc':
                 $qb->select('c') 
                    ->leftJoin('App\Entity\User', 'u',\Doctrine\ORM\Query\Expr\Join::WITH, 'c.user = u')
-                   ->orderBy('u.prenom', 'DESC');
+                   ->orderBy('u.    nom', 'DESC');
                 break;
             case 'référence':
                 $qb->orderBy('c.id', 'ASC');

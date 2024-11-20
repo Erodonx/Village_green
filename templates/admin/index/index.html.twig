@@ -4,6 +4,31 @@
 
 {% block body %}
 <div class="text">Bienvenue sur l'administration de Village Green<hr>
-<p>Vous trouverez sur cette page une documentation des actions possibles, WORK IN PROGRESS...</p>
+<p>Vous trouverez sur cette page une documentation des actions possibles</p>
+<p class="text2">Les premiers boutons visibles sur la gauche sont des liens vers des formulaires d'édition des différents champs présent dans la base de données.</p>
+<p class="text2">L'outil vert permet de modifier un attribut déjà présent, la poubelle permet de supprimer un attribut.</p>
+<ul>
+    <li>Produits :
+    <p class="text2"> Pour éditer ou créer un produit, il faut renseigner tout les champs demandés dans la page d'édition, l'image file ouvre un explorateur ou il suffit de renseigner le fichier de l'image, l'ajout se fait automatiquement dans le dossier source du serveur. Le prix h t est le prix du produit il faut donc renseigner un nombre sans mettre de symboles de monnaie. L'attribut sous-rubriques est un attribut qui relie le produit a une sous-rubrique, les choix sont donc des sous-rubriques prédéfinies dans l'onglet sous-rubriques. Si vous disposez du stock exact renseignez le, sinon mettez le a 0. Une commande fournisseur du produit change la valeur, et une commande d'un utilisateur change également la valeur du champ stock.Par le biais de triggers, définis dans les EventListener, Il convient donc de renseigner une commande fournisseur pour le stock, les commandes fournisseurs qui ne sont pas encore à la date du jour ne changent pas le stock du produit en question, par contre les commandes utilisateurs décrémentent le stock une fois la commande effectué, qu'elle soit livrée ou non.</p>
+    </li>
+    <li>Sous-rubriques :
+    <p class="text2">Pour éditer ou créer une sous-rubrique, il faut renseigner tout les champs demandés dans la page d'édition, pour l'image, idéalement défile champ produit permet de selectionner plusieurs produit qui appartiennent à cette sous-rubrique, notez qu'un produit ne peut appartenir qu'à une seule sous-rubrique, pour selectionner plusieurs produit dans le champ il faut faire CTRL+CLICK. Inclure un produit dans une sous-rubrique alors qu'il appartient déjà à une autre sous-rubrique le retirera de la sous-rubrique à laquelle il appartenait. Enfin il convient de renseigner la rubrique à laquelle appartient la sous-rubrique, cela permet d'organiser les produits sur les différentes pages du site, ce champ peut rester vide car la rubrique n'est peut-être pas encore définie. Il convient tout de même de revenir éditer ce champ une fois la rubrique crée.</p>
+    </li>
+    <li>Rubriques : 
+    <p class="text2">Pour éditer ou créer une rubrique, il faut renseigner tout les champs demandés dans la page d'édition, pour l'image, idéalement définissez le chemin d'une image de la table produit correspondant à la rubrique à laquelle il appartient. Les images des différents produit sont stockés dans public/images/produits/ , le champ sous-rubrique permet de selectionner plusieurs sous-rubrique qui appartiennent a la rubrique pour selectionner plusieurs sous-rubriques dans le champ il faut faire CTRL+CLICK. Inclure une sous-rubrique dans une rubrique alors qu'il appartient déjà à une autre rubrique le retirera de la rubrique à laquelle il appartenait.</p>
+    </li>
+    <li>Commandes fournisseur : 
+    <p class="text2">Pour éditer ou créer une commande fournisseur, il faut renseigner tout les champs demandés dans la page d'édition, il convient de choisir parmis les fournisseurs proposés dans la liste, ou d'aller en définir d'autres, le produit permet de choisir un produit déjà existant, il faut définir la date de livraison de la commande fournisseur, ainsi lorsqu'elle arrive le stock est mis-à-jour.</p>
+    </li>
+    <li>Gestion Utilisateur :
+    <p class="text2">Cette page, comme son nom l'indique permet d'éditer certains attributs des différents comptes utilisateurs du site, il permet aini de gratifier des comptes de certains roles, pour les employés il convient d'attribuer en plus du rôle utilisateur le rôle employé, pour la partie administration le rôle administrateur, attention à qui le donner, car il donne accès aux données sensibles du site. Le commercial référent est a renseigner pour un client professionnel, lui attribuer le compte d'un employé.</p>
+    </li>
+    <li>Commandes :
+    <p class="text2">Cette page liste l'ensemble des commandes client effectuées sur le site, et permet de les trier de la façon indiquée par les différents critères de tris.</p>
+    </li>
+    <li>Performances :
+    <p class="text2">Cette page permet d'avoir un aperçu des revenus du site,on peut y trouver un tableau qui liste les produits vendus, ordonné du plus vendu au moins vendu, qui liste également les bénéfices des différents produits vendus, des revenus par fournisseur et liste également l'ensemble des commandes.</p>
+    </li>    
+</ul>
 </div>
 {% endblock %}
