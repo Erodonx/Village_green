@@ -22,7 +22,12 @@
                         {{ role }} 
                         {% endfor %}
                         </td>
-                        <td><a href="{{path('app_profil_modify',{id:informations.id})}}">Modifier vos coordonnées</a></td>
+                        <td>{% if is_granted('ROLE_CLIENT_PROFESSIONNEL') %}
+                        <a href="{{path('app_profil_modifypro',{id:informations.id})}}">Modifier vos coordonnées</a>
+                            {% else %}
+                        <a href="{{path('app_profil_modify',{id:informations.id})}}">Modifier vos coordonnées</a>
+                        {% endif %}
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -87,7 +92,12 @@
                 <tr>
                     <td>{{ client.nom}} {{ client.prenom }}</td>
                     <td>{{ client.email }}</td>
-                    <td><a class="btn btn-success btn-sm" href="{{ path('app_profil_edit', { id: client.id }) }}">Modifier le coefficient</a></td>
+                    <td>{% if client.reduction is null %}
+                        <a class="btn btn-success btn-sm" href="{{ path('app_profil_edit', { id: client.id }) }}">Modifier le coefficient</a>
+                        {% else %}
+                         <a class="btn btn-success btn-sm disabled" href="{{ path('app_profil_edit', { id: client.id }) }}">Réduction appliquée</a>
+                        {% endif %}
+                    </td>
                 </tr>
             </tbody>
             </table>

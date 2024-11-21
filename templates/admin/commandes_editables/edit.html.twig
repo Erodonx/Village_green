@@ -1,0 +1,11 @@
+{% extends 'admin/admin.html.twig' %}
+{% block title 'Numéro de commande :' ~ commande.id %}
+{% block body %}
+    <div class="row text">
+    <h1> {{ 'Commande : ' ~ commande.id }} </h1>
+    
+    {{form_start(form)}}
+    
+    {{form_end(form)}}
+    </div>
+ {% endblock %}

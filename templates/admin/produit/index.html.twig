@@ -34,7 +34,7 @@
                   <i class='bx bxs-wrench' style="align-self:center"></i>
               </a>
             </li>
-                <form class="action" action="{{ path('app_admin_produit_delete' , {id: produit.id}) }}" method="post">
+            <form class="action" action="{{ path('app_admin_produit_delete' , {id: produit.id}) }}" method="post">
                     <input type="hidden" name="_method" value="DELETE">
             <li class="action2">
               <button class="action" type="submit">

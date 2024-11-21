@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ModifyUserProType;
 use App\Form\ModifyUserType;
 use App\Form\ReductionType;
 use App\Repository\CommandeRepository;
@@ -85,6 +86,34 @@ class ProfilController extends AbstractController
          return $this->redirectToRoute('app_profil_index');
         }
         $form = $this->createForm(ModifyUserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
+            $em->flush();
+            $this->addFlash('succees', 'Vos coordonnées ont bien été modifiées');
+            return $this->redirectToRoute('app_profil_index');
+        }
+        return $this->render('/profil/modify.html.twig', [
+            'user' => $user,
+            'form' => $form
+        ]);
+    }
+    #[Route('/modifypro/{id}', name:'modifypro', requirements:['id' => Requirement::DIGITS])]
+    public function modifyPro(User $user, EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $userPasswordHasher)
+    {
+        $this->denyAccessUnlessGranted('ROLE_CLIENT_PROFESSIONNEL');
+        if($this->getUser()!=$user)
+        {
+         $this->addFlash('danger','TU N\'AS PAS LE DROIT DE FAIRE CA.');
+         return $this->redirectToRoute('app_profil_index');
+        }
+        $form = $this->createForm(ModifyUserProType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {

@@ -56,6 +56,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
           - { path: ^/admin, roles: ROLE_ADMIN }
+          - { path: ^/profil/modifypro/^, roles: ROLE_CLIENT_PROFESSIONNEL}
           - { path: ^/profil, roles: ROLE_USER }
           - { path: ^/react, roles: ROLE_ADMIN }
           - { path: ^/performance, roles: ROLE_ADMIN }

@@ -358,6 +358,7 @@ class VillageFixt extends Fixture
         $user2->setPrenom('Robert');
         $user2->setNumeroMobile('0660066006');
         $user2->setCoefficient('1');
+        $user2->setRoles(['ROLE_CLIENT_PROFESSIONNEL']);
         $user2->setEmployeCharge($user1);
         $manager->persist($user2);
         $manager->flush();
@@ -371,6 +372,7 @@ class VillageFixt extends Fixture
         $user3->setPrenom('Stanislas');
         $user3->setNumeroMobile('0660066006');
         $user3->setCoefficient('1');
+        $user3->setRoles(['ROLE_CLIENT_PROFESSIONNEL']);
         $user3->setEmployeCharge($user1);
         $manager->persist($user3);
         $manager->flush();

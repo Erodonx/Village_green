@@ -1,0 +1,65 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title "Administration" %}
+
+{% block body %}
+<div class="text">Administration des commandes</div>
+{% for commande in commandes %}
+<div class="row">
+<div class="text">Commande du {{commande.dateCommande | date('d/m/y')}}#{{commande.id}}</div>
+<table class="table table-dark bdr">
+            <thead>
+                <tr>
+                    <th>Nom du Client</th>
+                    <th>Prénom du Client</th>
+                    <th>Adresse mail du Client</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>{{commande.getUser.getNom}}</td>
+                    <td>{{commande.getUser.getPrenom}}</td>
+                    <td colspan="2">{{commande.getUser.getEmail}}</td>
+                </tr>
+                <tr>
+                    <th>Nom du produit</th>
+                    <th>Quantité commandée</th>
+                    <th colspan="2">Prix total du produit</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+            {% for detail in commande.details %}
+                    <td>{{ detail.produit.nom }}</td>
+                    <td>{{ detail.quantiteCommandee }}</td>
+                    <td colspan="2">{{ detail.Produit.prixHT * detail.quantiteCommandee}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                    <tr>
+                        <td colspan="2">Total (TVA 20%) </td>
+                        <td colspan="2">{{ commande.montantCommandeTTC }} €</td>
+                    </tr>
+                     <tr>
+                        <td colspan="4">Facturé au {{commande.adresseFacturation}}, {{commande.villeFacturation}}</td>                  
+                    </tr>
+                    <tr>
+                        <td colspan="2">Livré au {{commande.adresseLivraison}}, {{commande.villeLivraison}}</td>
+                        <td>Livré le {{commande.getLivraisons[0].getDetailLivraisons[0].getDateLivraison| date('d/m/y')}}</td>
+                        <td> <form class="action" action="{{ path('app_admin_commandes_editables_delete' , {id: commande.id}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+            <li class="action2">
+              <button class="action" type="submit">
+                  <i class='bx bxs-trash'></i>
+              </button>
+              </a>
+            </li>
+                </form>       
+                    </tr>
+            </tfoot>
+            </table>
+            </div>
+    {% endfor %}
+</div>
+{% endblock %}

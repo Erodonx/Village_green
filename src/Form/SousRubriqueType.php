@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\SousRubrique;
 use App\Entity\Produit;
+use App\Entity\Rubrique;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -23,6 +24,12 @@ class SousRubriqueType extends AbstractType
                 'choice_label' => 'nom',
                 'multiple' => true,
                 'by_reference' => false,
+                'required' => false
+            ])
+            ->add('rubrique', EntityType::class, [
+                'class' => Rubrique::class,
+                'choice_label' => 'nom',
+                'by_reference' => true,
                 'required' => false
             ])
             ->add('save',SubmitType::class, [

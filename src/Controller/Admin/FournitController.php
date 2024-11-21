@@ -37,7 +37,7 @@ class FournitController extends AbstractController
             $fournit->setFournisseur($fournit->getProduit()->getFournisseur());
             $em->persist($fournit);
             $em->flush();
-            $this->addFlash('success', 'L\'ajout de la commande dans la table a été effectué, n\'hésitez pas a utiliser éditer pour modifier l\'image.');
+            $this->addFlash('success', 'L\'ajout de la commande dans la table a été effectué.');
             return $this->redirectToRoute('app_admin_commande_fournisseur_index');
         }
         return $this->render('admin/fournit/create.html.twig' , [

@@ -21,49 +21,10 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route("/admin/produit", name: 'app_admin_produit_')]
 class ProduitController extends AbstractController
 {
-   /* private $produitRepository;
-    public function __construct(ProduitRepository $produitRepository, /*ManagerRegistry $manager*///)
-   /* {
-        /*$this->produitRepository = $produitRepository;
-        //$this->manager = $manager;
-    }*/
     #[Route('/', name: 'index')]
     public function index(ProduitRepository $produitRepository, SousRubriqueRepository $sousRubriqueRepository, /*EntityManagerInterface $em*/): Response
     {
-        //$this->denyAccessUnlessGranted('ROLE_USER');
-        /*$cordes = $categorieRepository->findOneBy(['nom' => 'Instruments à cordes']);*/
         $produits = $produitRepository->findAll();
-        /*foreach ($produits as $produit)
-        {
-        $produit->setCategorie($cordes);
-        $em->persist($produit);
-        $em->flush();
-        }*/
-  /*    $produit= new Produit();
-        $produit->setNom('Violon')
-                ->setDescription('Un super violon avec les cordes bien bien tendues')
-                ->setPrixHT(10.50)
-                ->setImage('Violon.jpg')
-                ->setStock(65);
-        $em = $doctrine->getManager();
-        $em->persist($produit);
-        $em->flush();*/
-        /*dump($produits);
-        foreach ($produits as $produit)
-        {
-            if($produit->getNom()=='Violon')
-            {
-             $produit->setNom('Violoncelle');
-             $produit->setPrixHT(150000);
-            }
-            else
-            {
-             $produit->setNom('Violon');
-             $produit->setPrixHT(11);
-            }
-            /*$this->*//*$manager->getManager()->persist($produit);
-            /*$this->*//*$manager->getManager()->flush();/*
-        }*/
         return $this->render('admin/produit/index.html.twig', [
             'produits' => $produits
         ]);
@@ -76,6 +37,7 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            $form->getData()->setImage('');
             $em->flush();
             $this->addFlash('success', 'La modification du produit concerné a été enregistrée.');
             return $this->redirectToRoute('app_admin_produit_index');
