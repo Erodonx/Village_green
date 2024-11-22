@@ -28,6 +28,18 @@ class ProduitRepository extends ServiceEntityRepository
         ->getResult();
 
     }
+
+    public function findImagesByIdSR($id)
+    {
+        return $this->createQueryBuilder('p')
+                    ->select('p.image')
+                    ->leftJoin('App\Entity\SousRubrique', 'sr',\Doctrine\ORM\Query\Expr\Join::WITH, 'sr = p.sousRubrique')
+                    ->where('sr.id = :id')
+                    ->setParameter('id', $id)
+                    ->getQuery()
+                    ->getResult()
+                    ;
+    }
     public function Popularity()
     {
         return $this->createQueryBuilder('p')
