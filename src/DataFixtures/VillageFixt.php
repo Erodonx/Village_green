@@ -379,6 +379,179 @@ class VillageFixt extends Fixture
 
         $dateLiv= new DateTime("now");
         $dateLiv->modify("+3 days");
+
+        //JUILLET
+        $dateLiv4= new DateTime("now");
+        $dateLiv4->modify("+3 days");
+        $dateLiv4->modify("-4 month");
+
+        $datebis4 = new DateTimeImmutable("now -4 months");
+        $datebis4->modify("-4 months");
+
+        $commande6 = new Commande();
+        $livraison6 = new Livraison();
+        $commande6->setUser($user3);
+        $detail6 = new Detail();
+        $detailLiv6 = new DetailLivraison();
+        $produit = $produit6;
+        $detail6->setProduit($produit);
+        $detail6->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detailLiv6->setProduit($produit);
+        $detail6->setQuantiteCommandee(4);
+        $detailLiv6->setQuantite(4);
+        $detailLiv6->setDateLivraison($dateLiv4);
+        $commande6->addDetail($detail6);
+        $detailLiv6->setLivraison($livraison6);
+        $livraison6->addDetailLivraison($detailLiv6);
+        $livraison6->setNom("Relais colis");
+        $total=$produit->getPrixHT()*4;
+        $manager->persist($detail6);
+        $manager->persist($detailLiv6);
+        $commande6->setMontantCommandeHT($total);
+        $commande6->setMontantCommandeTTC($total*1.20);
+        $commande6->setAdresseFacturation('12 rue du Général de Gaulle');
+        $commande6->setVilleFacturation('Amiens');
+        $commande6->setAdresseLivraison('12 rue du Général de Gaulle');
+        $commande6->setVilleLivraison('Amiens');
+        $commande6->setReduction('0');
+        $commande6->setMoyenDePaiement('VISA');
+        $commande6->setDateCommande($datebis4);
+        
+        $commande6->setEtatLivraison('Commande livrée');
+        $livraison6->setCommande($commande6);
+        $manager->persist($commande6);
+        $manager->persist($livraison6);
+
+        //AOUT
+
+        $dateLiv3= new DateTime("now");
+        $dateLiv3->modify("+3 days");
+        $dateLiv3->modify("-3 month");
+
+        $datebis3 = new DateTimeImmutable("now -3 months");
+        $datebis3->modify("-3 months");
+
+        $commande5 = new Commande();
+        $livraison5 = new Livraison();
+        $commande5->setUser($user3);
+        $detail5 = new Detail();
+        $detailLiv5 = new DetailLivraison();
+        $produit = $produit5;
+        $detail5->setProduit($produit);
+        $detail5->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detailLiv5->setProduit($produit);
+        $detail5->setQuantiteCommandee(4);
+        $detailLiv5->setQuantite(4);
+        $detailLiv5->setDateLivraison($dateLiv3);
+        $commande5->addDetail($detail5);
+        $detailLiv5->setLivraison($livraison5);
+        $livraison5->addDetailLivraison($detailLiv5);
+        $livraison5->setNom("Relais colis");
+        $total=$produit->getPrixHT()*4;
+        $manager->persist($detail5);
+        $manager->persist($detailLiv5);
+        $commande5->setMontantCommandeHT($total);
+        $commande5->setMontantCommandeTTC($total*1.20);
+        $commande5->setAdresseFacturation('12 rue du Général de Gaulle');
+        $commande5->setVilleFacturation('Amiens');
+        $commande5->setAdresseLivraison('12 rue du Général de Gaulle');
+        $commande5->setVilleLivraison('Amiens');
+        $commande5->setReduction('0');
+        $commande5->setMoyenDePaiement('VISA');
+        $commande5->setDateCommande($datebis3);
+        
+        $commande5->setEtatLivraison('Commande livrée');
+        $livraison5->setCommande($commande5);
+        $manager->persist($commande5);
+        $manager->persist($livraison5);
+        
+        //SEPTEMBRE
+
+        $dateLiv2= new DateTime("now");
+        $dateLiv2->modify("+3 days");
+        $dateLiv2->modify("-2 month");
+
+        $datebis1 = new DateTimeImmutable("now -2 months");
+        $datebis1->modify("-2 months");
+
+        $commande4 = new Commande();
+        $livraison4 = new Livraison();
+        $commande4->setUser($user3);
+        $detail4 = new Detail();
+        $detailLiv4 = new DetailLivraison();
+        $produit = $produit4;
+        $detail4->setProduit($produit);
+        $detail4->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detailLiv4->setProduit($produit);
+        $detail4->setQuantiteCommandee(4);
+        $detailLiv4->setQuantite(4);
+        $detailLiv4->setDateLivraison($dateLiv2);
+        $commande4->addDetail($detail4);
+        $detailLiv4->setLivraison($livraison4);
+        $livraison4->addDetailLivraison($detailLiv4);
+        $livraison4->setNom("Relais colis");
+        $total=$produit->getPrixHT()*4;
+        $manager->persist($detail4);
+        $manager->persist($detailLiv4);
+        $commande4->setMontantCommandeHT($total);
+        $commande4->setMontantCommandeTTC($total*1.20);
+        $commande4->setAdresseFacturation('12 rue du Général de Gaulle');
+        $commande4->setVilleFacturation('Amiens');
+        $commande4->setAdresseLivraison('12 rue du Général de Gaulle');
+        $commande4->setVilleLivraison('Amiens');
+        $commande4->setReduction('0');
+        $commande4->setMoyenDePaiement('VISA');
+        $commande4->setDateCommande($datebis1);
+        
+        $commande4->setEtatLivraison('Commande livrée');
+        $livraison4->setCommande($commande4);
+        $manager->persist($commande4);
+        $manager->persist($livraison4);
+
+
+        //OCTOBRE
+        $dateLiv1= new DateTime("now");
+        $dateLiv1->modify("+3 days");
+        $dateLiv1->modify("-1 month");
+
+        $datebis = new DateTimeImmutable("now -1 month");
+        $datebis->modify("-1 month");
+
+
+      
+        $commande3 = new Commande();
+        $livraison3 = new Livraison();
+        $commande3->setUser($user3);
+        $detail3 = new Detail();
+        $detailLiv3 = new DetailLivraison();
+        $produit = $produit3;
+        $detail3->setProduit($produit);
+        $detail3->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detailLiv3->setProduit($produit);
+        $detail3->setQuantiteCommandee(4);
+        $detailLiv3->setQuantite(4);
+        $detailLiv3->setDateLivraison($dateLiv1);
+        $commande3->addDetail($detail3);
+        $detailLiv3->setLivraison($livraison3);
+        $livraison3->addDetailLivraison($detailLiv3);
+        $livraison3->setNom("Relais colis");
+        $total=$produit->getPrixHT()*4;
+        $manager->persist($detail3);
+        $manager->persist($detailLiv3);
+        $commande3->setMontantCommandeHT($total);
+        $commande3->setMontantCommandeTTC($total*1.20);
+        $commande3->setAdresseFacturation('12 rue du Général de Gaulle');
+        $commande3->setVilleFacturation('Amiens');
+        $commande3->setAdresseLivraison('12 rue du Général de Gaulle');
+        $commande3->setVilleLivraison('Amiens');
+        $commande3->setReduction('0');
+        $commande3->setMoyenDePaiement('VISA');
+        $commande3->setDateCommande($datebis);
+        
+        $commande3->setEtatLivraison('Commande livrée');
+        $livraison3->setCommande($commande3);
+        $manager->persist($commande3);
+        $manager->persist($livraison3);
         
         $commande = new Commande();
         $livraison = new Livraison();

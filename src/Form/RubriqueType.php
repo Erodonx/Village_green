@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Rubrique;
 use App\Entity\SousRubrique;
+use App\Repository\ProduitRepository;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -12,12 +14,41 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RubriqueType extends AbstractType
 {
+    private $produitRepo;    
+    public function __construct(ProduitRepository $produitRepo){
+        $this->produitRepo = $produitRepo;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $manip=$_SERVER['REQUEST_URI'];
+        if($manip[21]=='t')
+        {
+        $manip=substr($manip,16,strlen($manip));
+        $i=0;
+        do
+        {
+        $i=$i+1;
+        }while($manip[$i]!='/');
+        $manip=substr($manip,0,$i);
+        $images = $this->produitRepo->findImagesByIdR($manip);
+        //dd($images);
+        foreach($images as $liste)
+        {
+         $listeimage[$liste['image']] = $liste['image'];
+        }
+        if (empty($images))
+        {
+            $listeimage['Aucun produit relié a cette catégorie']='rajouter_des_produits_associés_a_cette_entite';
+    }
+    }else{
+        $listeimage['Editez l\'entité pour changer']='EDIT_REQUIRED';
+    }
         $builder
             ->add('nom')
             ->add('description')
-            ->add('image')
+            ->add('image', ChoiceType::class , [
+                'choices' => [$listeimage],
+            ])
             ->add('sousRubrique', EntityType::class, [
                 'class' => SousRubrique::class,
                 'choice_label' => 'nom',

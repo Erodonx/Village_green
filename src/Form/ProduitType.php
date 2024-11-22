@@ -29,10 +29,14 @@ class ProduitType extends AbstractType
             ->add('imageFile', FileType::class, [
                 'required' => false
             ])
-            ->add('stock')
+            ->add('stock', TextType::class,[
+                'disabled' => true,
+                'required' => false,
+            ])
             ->add('sousRubrique', EntityType::class, [
                 'class' => SousRubrique::class,
                 'choice_label' => 'nom',
+                'required' => false
             ])
             ->add('fournisseur', EntityType::class, [
                 'class' => Fournisseur::class,

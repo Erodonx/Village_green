@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Commande;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\ORM\EntityManagerInterface;
 /**
  * @extends ServiceEntityRepository<Commande>
  */
@@ -60,7 +60,7 @@ class CommandeRepository extends ServiceEntityRepository
             case 'client_desc':
                 $qb->select('c') 
                    ->leftJoin('App\Entity\User', 'u',\Doctrine\ORM\Query\Expr\Join::WITH, 'c.user = u')
-                   ->orderBy('u.    nom', 'DESC');
+                   ->orderBy('u.nom', 'DESC');
                 break;
             case 'référence':
                 $qb->orderBy('c.id', 'ASC');
@@ -78,6 +78,24 @@ class CommandeRepository extends ServiceEntityRepository
            ->leftJoin('App\Entity\User', 'u',\Doctrine\ORM\Query\Expr\Join::WITH, 'c.user = u');
            
         return $qb->getQuery()->getResult();
+    }
+
+    public function CAparan($annee)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT sum(montant_commande_ht) AS 'CHIFFRE D\'AFFAIRE DU MOIS', MONTH(date_commande) AS 'MOIS DE L\'ANNEE' from commande where YEAR(date_commande)=".$annee." GROUP BY MONTH(date_commande);";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->executeQuery();
+        return $result->fetchAllAssociative();
+
+        //$sql = 'SELECT sum(montant_commande_ttc), MONTH(date_commande) from commande where YEAR(date_commande)=2024 GROUP BY MONTH(date_commande);';
+        //return $this->createQueryBuilder('c')
+        //->select('sum(c.montantCommandeTTC)','MONTH(c.dateCommande)')
+        //->where('YEAR(c.dateCommande) = :annee')
+        //->setParameter('annee', $annee)
+        //->groupBy('MONTH(c.dateCommande)')
+        //->getQuery()
+        //->getResult();   
     }
 
 

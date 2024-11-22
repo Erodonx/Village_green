@@ -32,6 +32,7 @@ Encore
     .addEntry('app8', './react/app8/index.js')
     .addEntry('app9', './react/app9/index.js')
     .addEntry('app10','./react/app10/index.js')
+    .addEntry('app11','./react/app11/index.js')
   //  .addEntry('app9', './react/app9/index.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

@@ -62,3 +62,12 @@ Finir l'authentification JWT -> Questions a poser vis-à-vis de l'implémentatio
 Commencer un projet avec Angular et symfony.
 
 ** important
+
+
+Remplacer le champ prixTotalTTC par prixHTDateCom ce champ permettra de garder une certaine cohérence si jamais le prix d'un produit venait à changer.
+Pour de la visibilité, remplacer les valeurs null dans valeur_reduction par 1 lorsque le client ne bénéficie pas de réduction.
+Cela facilitera les requêtes SQL nécessitant le chiffre d'affaire
+Essayer d'implémenter le choix des images en fct des images de la rubrique ou sous rubrique du produit. DONE.
+
+Actualiser la documentation de l'administration.
+Refaire la gestion de la réduction client, valeur de base a 1.

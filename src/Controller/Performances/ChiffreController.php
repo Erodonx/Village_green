@@ -56,14 +56,14 @@ class ChiffreController extends AbstractController
 
         }
     }
-    // $result1 = [];
-     //$result1[] =  ["Fournisseur", "Chiffre d'affaire"];
-     //$calc = $detail->CAfournisseur();
-     //foreach ($calc as $ligne) {
-     //   $result1[] =  [$ligne["nom"], floatval($ligne[1])];
+     $result1 = [];
+     $result1[] =  ["Fournisseur", "Chiffre d'affaire"];
+     $calc = $detail->CAfournisseur();
+     foreach ($calc as $ligne) {
+     $result1[] =  [$ligne["nom"], floatval($ligne[1])];
        
-    //}
-    return $this->json($result);
+    }
+    return $this->json($result1);
     
    
     

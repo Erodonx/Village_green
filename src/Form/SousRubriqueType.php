@@ -22,6 +22,8 @@ class SousRubriqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $manip=$_SERVER['REQUEST_URI'];
+        if($manip[25]=='t')
+        {
         $manip=substr($manip,20,strlen($manip));
         $i=0;
         do
@@ -31,12 +33,17 @@ class SousRubriqueType extends AbstractType
         $manip=substr($manip,0,$i);
         $images = $this->produitRepo->findImagesByIdSR($manip);
         //dd($images);
-        $listimage =  [];
-        $j=0;
         foreach($images as $liste)
         {
          $listeimage[$liste['image']] = $liste['image'];
-         $j=$j+1; 
+        }
+        if (empty($images))
+        {
+            $listeimage['Aucun produit relié a cette catégorie']='rajouter_des_produits_associés_a_cette_entite';
+        }
+        }else{
+            $listimage = [];
+            $listeimage['Editez l\'entité pour changer']='EDIT_REQUIRED';
         }
         //dd($listeimage);
         $builder

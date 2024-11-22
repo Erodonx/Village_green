@@ -55,6 +55,7 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            $form->getData()->setStock(0);
             $em->persist($produit);
             $em->flush();
             $this->addFlash('success', 'L\'ajout du produit dans la table a été effectué, n\'hésitez pas a utiliser éditer pour modifier l\'image.');
