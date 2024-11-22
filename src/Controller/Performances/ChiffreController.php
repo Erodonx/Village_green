@@ -27,7 +27,6 @@ class ChiffreController extends AbstractController
         }
     }    
     }
-        dd($tabreduc);
         $result = [];
         $result[] =  ["Fournisseur", "Chiffre d'affaire"];
         //$calc = $detail->CAfournisseur();
@@ -57,14 +56,17 @@ class ChiffreController extends AbstractController
 
         }
     }
-        return $this->json($result);
-    }
+    // $result1 = [];
+     //$result1[] =  ["Fournisseur", "Chiffre d'affaire"];
+     //$calc = $detail->CAfournisseur();
+     //foreach ($calc as $ligne) {
+     //   $result1[] =  [$ligne["nom"], floatval($ligne[1])];
+       
+    //}
+    return $this->json($result);
     
-    //$result = [];
-    //$result[] =  ["Fournisseur", "Chiffre d'affaire"];
-    //$calc = $detail->CAfournisseur();
-    //foreach ($calc as $ligne) {
-    //    $result[] =  [$ligne["nom"], floatval($ligne[1])];
+   
     
     //select produit.nom, sum(detail.quantite_commandee*produit.prix_ht)*1.20 from produit join detail on detail.produit_id = produit.id group by produit.nom;
+}
 }
