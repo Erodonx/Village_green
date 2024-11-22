@@ -35,14 +35,14 @@ class ProduitController extends AbstractController
     #[Route('/produit/{slug}-{id}', name: 'app_produit_show', requirements: ['slug' => '[a-z0-9\-]*'])]
     public function show(Produit $produit, string $slug,RubriqueRepository $rubriqueRepository)
     {
-     //$produit = $this->produitRepository->find($id);
-     if ($produit->getSlug() !== $slug)
-     {
+        //$produit = $this->produitRepository->find($id);
+    if ($produit->getSlug() !== $slug)
+    {
         return $this->redirectToRoute('app_produit_show', [
             'id' => $produit->getId(),
             'slug' => $produit->getSlug()
         ], 301);
-     }
+    }
      $rubriques = $rubriqueRepository->findAll();
      return $this->render('produit/show.html.twig' , [
         'produit' => $produit,

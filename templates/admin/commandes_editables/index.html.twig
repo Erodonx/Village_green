@@ -32,7 +32,7 @@
             {% for detail in commande.details %}
                     <td>{{ detail.produit.nom }}</td>
                     <td>{{ detail.quantiteCommandee }}</td>
-                    <td colspan="2">{{ detail.Produit.prixHT * detail.quantiteCommandee}}</td>
+                    <td colspan="2">{{ detail.prixTotalTTC }} €</td>
                 </tr>
             {% endfor %}
             </tbody>

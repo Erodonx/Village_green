@@ -54,6 +54,31 @@ class DetailRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
         }
+        
+        public function CAfournisseur1()
+        {
+        return $this->createQueryBuilder('d')
+        ->select('f.nom','sum(p.prix_HT*d.quantiteCommandee*1.20)')
+        ->leftJoin('App\Entity\Produit','p',\Doctrine\ORM\Query\Expr\Join::WITH , 'p = d.Produit')
+        ->leftJoin('App\Entity\Fournisseur','f',\Doctrine\ORM\Query\Expr\Join::WITH, 'f = p.Fournisseur')
+        ->leftJoin('App\Entity\Commande', 'c' ,\Doctrine\ORM\Query\Expr\Join::WITH, 'c = d.Commande')
+        ->where('c.reduction=0')
+        ->groupBy('f.nom')
+        ->getQuery()
+        ->getResult();
+        }
+        public function CAfournisseurReduction()
+        {
+        return $this->createQueryBuilder('d')
+        ->select('f.nom','sum(p.prix_HT*d.quantiteCommandee*1.20)*c.valeurReduction')
+        ->leftJoin('App\Entity\Produit','p',\Doctrine\ORM\Query\Expr\Join::WITH , 'p = d.Produit')
+        ->leftJoin('App\Entity\Fournisseur','f',\Doctrine\ORM\Query\Expr\Join::WITH, 'f = p.Fournisseur')
+        ->leftJoin('App\Entity\Commande', 'c' ,\Doctrine\ORM\Query\Expr\Join::WITH, 'c = d.Commande')
+        ->where('c.reduction>0')
+        ->groupBy('f.nom')
+        ->getQuery()
+        ->getResult();
+        }
 
         public function ProduitLesPlusVendu()
         {
