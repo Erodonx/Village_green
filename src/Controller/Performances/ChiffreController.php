@@ -12,58 +12,14 @@ class ChiffreController extends AbstractController
     #[Route('/performances/chiffre/', name: 'app_performances_chiffre')]
     public function index(DetailRepository $detail): Response
     {
-        $calc1=$detail->CAfournisseur1();
-        $calc2=$detail->CAfournisseurReduction();
-        $tabreduc = [];
-        $tabreduc[] =  ["Fournisseur", "Chiffre d'affaire"];
-
-        foreach ($calc1 as $ligne)
-        {
-        foreach ($calc2 as $lignebis)
-        {
-        if($ligne['nom']==$lignebis['nom'])
-        {
-         $tabreduc[] = [$ligne['nom'],floatval($ligne[1]+$lignebis[1])];
-        }
-    }    
-    }
-        $result = [];
-        $result[] =  ["Fournisseur", "Chiffre d'affaire"];
-        //$calc = $detail->CAfournisseur();
-        //dd($calc);
-        foreach ($calc1 as $ligne) {
-            $result[] =  [$ligne["nom"], floatval($ligne[1])];
-        }
-        $longueurReduc=count($tabreduc);
-        $longueur=count($result);
-        if($longueur>$longueurReduc)
-        {
-        for ($i = 0; $i<count($tabreduc); $i++)
-        {
-            if($result[$i][1]<($tabreduc[$i][1]))
-            {
-                $result[$i][1]=$tabreduc[$i][1];
-            }
-
-        }
-    }else{
-        for ($i = 0; $i<count($result); $i++)
-        {
-            if($result[$i][1]<($tabreduc[$i][1]))
-            {
-                $result[$i][1]=$tabreduc[$i][1];
-            }
-
-        }
-    }
-     $result1 = [];
-     $result1[] =  ["Fournisseur", "Chiffre d'affaire"];
+     $result = [];
+     $result[] =  ["Fournisseur", "Chiffre d'affaire"];
      $calc = $detail->CAfournisseur();
      foreach ($calc as $ligne) {
-     $result1[] =  [$ligne["nom"], floatval($ligne[1])];
+     $result[] =  [$ligne["nom"], floatval($ligne[1])];
        
     }
-    return $this->json($result1);
+    return $this->json($result);
     
    
     

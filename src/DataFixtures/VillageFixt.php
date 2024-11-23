@@ -395,7 +395,8 @@ class VillageFixt extends Fixture
         $detailLiv6 = new DetailLivraison();
         $produit = $produit6;
         $detail6->setProduit($produit);
-        $detail6->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detail6->setReduction(1);
+        $detail6->setPrixHTDateCom($produit->getPrixHT());
         $detailLiv6->setProduit($produit);
         $detail6->setQuantiteCommandee(4);
         $detailLiv6->setQuantite(4);
@@ -408,11 +409,13 @@ class VillageFixt extends Fixture
         $manager->persist($detail6);
         $manager->persist($detailLiv6);
         $commande6->setMontantCommandeHT($total);
+        $commande6->setCoefficient($user3->getCoefficient());
         $commande6->setMontantCommandeTTC($total*1.20);
         $commande6->setAdresseFacturation('12 rue du Général de Gaulle');
         $commande6->setVilleFacturation('Amiens');
         $commande6->setAdresseLivraison('12 rue du Général de Gaulle');
         $commande6->setVilleLivraison('Amiens');
+        $commande6->setValeurReduction('1');
         $commande6->setReduction('0');
         $commande6->setMoyenDePaiement('VISA');
         $commande6->setDateCommande($datebis4);
@@ -438,7 +441,8 @@ class VillageFixt extends Fixture
         $detailLiv5 = new DetailLivraison();
         $produit = $produit5;
         $detail5->setProduit($produit);
-        $detail5->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detail5->setReduction(1);
+        $detail5->setPrixHTDateCom($produit->getPrixHT());
         $detailLiv5->setProduit($produit);
         $detail5->setQuantiteCommandee(4);
         $detailLiv5->setQuantite(4);
@@ -451,11 +455,13 @@ class VillageFixt extends Fixture
         $manager->persist($detail5);
         $manager->persist($detailLiv5);
         $commande5->setMontantCommandeHT($total);
+        $commande5->setCoefficient($user3->getCoefficient());
         $commande5->setMontantCommandeTTC($total*1.20);
         $commande5->setAdresseFacturation('12 rue du Général de Gaulle');
         $commande5->setVilleFacturation('Amiens');
         $commande5->setAdresseLivraison('12 rue du Général de Gaulle');
         $commande5->setVilleLivraison('Amiens');
+        $commande5->setValeurReduction('1');
         $commande5->setReduction('0');
         $commande5->setMoyenDePaiement('VISA');
         $commande5->setDateCommande($datebis3);
@@ -481,7 +487,8 @@ class VillageFixt extends Fixture
         $detailLiv4 = new DetailLivraison();
         $produit = $produit4;
         $detail4->setProduit($produit);
-        $detail4->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detail4->setReduction(1);
+        $detail4->setPrixHTDateCom($produit->getPrixHT());
         $detailLiv4->setProduit($produit);
         $detail4->setQuantiteCommandee(4);
         $detailLiv4->setQuantite(4);
@@ -494,12 +501,14 @@ class VillageFixt extends Fixture
         $manager->persist($detail4);
         $manager->persist($detailLiv4);
         $commande4->setMontantCommandeHT($total);
+        $commande4->setCoefficient($user3->getCoefficient());
         $commande4->setMontantCommandeTTC($total*1.20);
         $commande4->setAdresseFacturation('12 rue du Général de Gaulle');
         $commande4->setVilleFacturation('Amiens');
         $commande4->setAdresseLivraison('12 rue du Général de Gaulle');
         $commande4->setVilleLivraison('Amiens');
         $commande4->setReduction('0');
+        $commande4->setValeurReduction('1');
         $commande4->setMoyenDePaiement('VISA');
         $commande4->setDateCommande($datebis1);
         
@@ -526,9 +535,10 @@ class VillageFixt extends Fixture
         $detailLiv3 = new DetailLivraison();
         $produit = $produit3;
         $detail3->setProduit($produit);
-        $detail3->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detail3->setPrixHTDateCom($produit->getPrixHT());
         $detailLiv3->setProduit($produit);
         $detail3->setQuantiteCommandee(4);
+        $detail3->setReduction(1);
         $detailLiv3->setQuantite(4);
         $detailLiv3->setDateLivraison($dateLiv1);
         $commande3->addDetail($detail3);
@@ -539,12 +549,14 @@ class VillageFixt extends Fixture
         $manager->persist($detail3);
         $manager->persist($detailLiv3);
         $commande3->setMontantCommandeHT($total);
+        $commande3->setCoefficient($user3->getCoefficient());
         $commande3->setMontantCommandeTTC($total*1.20);
         $commande3->setAdresseFacturation('12 rue du Général de Gaulle');
         $commande3->setVilleFacturation('Amiens');
         $commande3->setAdresseLivraison('12 rue du Général de Gaulle');
         $commande3->setVilleLivraison('Amiens');
         $commande3->setReduction('0');
+        $commande3->setValeurReduction('1');
         $commande3->setMoyenDePaiement('VISA');
         $commande3->setDateCommande($datebis);
         
@@ -562,7 +574,8 @@ class VillageFixt extends Fixture
         $detail->setProduit($produit);
         $detailLiv->setProduit($produit);
         $detail->setQuantiteCommandee(4);
-        $detail->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detail->setReduction(1);
+        $detail->setPrixHTDateCom($produit->getPrixHT());
         $detailLiv->setQuantite(4);
         $detailLiv->setDateLivraison($dateLiv);
         $commande->addDetail($detail);
@@ -573,6 +586,8 @@ class VillageFixt extends Fixture
         $manager->persist($detail);
         $manager->persist($detailLiv);
         $commande->setMontantCommandeHT($total);
+        $commande->setValeurReduction('1');
+        $commande->setCoefficient($user3->getCoefficient());
         $commande->setMontantCommandeTTC($total*1.20);
         $commande->setAdresseFacturation('12 rue du Général de Gaulle');
         $commande->setVilleFacturation('Amiens');
@@ -596,7 +611,8 @@ class VillageFixt extends Fixture
         $detail1->setProduit($produit);
         $detailLiv1->setProduit($produit);
         $detail1->setQuantiteCommandee(4);
-        $detail1->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detail1->setReduction(1);
+        $detail1->setPrixHTDateCom($produit->getPrixHT());
         $detailLiv1->setQuantite(4);
         $detailLiv1->setDateLivraison($dateLiv);
         $detailLiv1->setLivraison($livraison1);
@@ -607,6 +623,8 @@ class VillageFixt extends Fixture
         $manager->persist($detail1);
         $manager->persist($detailLiv1);
         $commande1->setMontantCommandeHT($total);
+        $commande1->setValeurReduction('1');
+        $commande1->setCoefficient($user3->getCoefficient());
         $commande1->setMontantCommandeTTC($total*1.20);
         $commande1->setAdresseFacturation('12 rue du Général de Gaulle');
         $commande1->setVilleFacturation('Amiens');
@@ -628,7 +646,8 @@ class VillageFixt extends Fixture
         $detailLiv2 = new DetailLivraison();
         $produit = $produit3;
         $detail2->setProduit($produit);
-        $detail2->setPrixTotalTTC($produit->getPrixHT()*4*1.20);
+        $detail2->setReduction(1);
+        $detail2->setPrixHTDateCom($produit->getPrixHT());
         $detailLiv2->setProduit($produit);
         $detail2->setQuantiteCommandee(4);
         $detailLiv2->setQuantite(4);
@@ -641,6 +660,8 @@ class VillageFixt extends Fixture
         $manager->persist($detail2);
         $manager->persist($detailLiv2);
         $commande2->setMontantCommandeHT($total);
+        $commande2->setValeurReduction('1');
+        $commande2->setCoefficient($user3->getCoefficient());
         $commande2->setMontantCommandeTTC($total*1.20);
         $commande2->setAdresseFacturation('12 rue du Général de Gaulle');
         $commande2->setVilleFacturation('Amiens');

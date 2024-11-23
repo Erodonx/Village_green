@@ -39,7 +39,7 @@ class Detail
     private ?string $reduction = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $PrixTotalTTC = null;
+    private ?string $prixHTDateCom = null;
 
     public function getId(): ?int
     {
@@ -94,14 +94,14 @@ class Detail
         return $this;
     }
 
-    public function getPrixTotalTTC(): ?string
+    public function getPrixHTDateCom(): ?string
     {
-        return $this->PrixTotalTTC;
+        return $this->prixHTDateCom;
     }
 
-    public function setPrixTotalTTC(string $PrixTotalTTC): static
+    public function setPrixHTDateCom(string $prixHTDateCom): static
     {
-        $this->PrixTotalTTC = $PrixTotalTTC;
+        $this->prixHTDateCom = $prixHTDateCom;
 
         return $this;
     }

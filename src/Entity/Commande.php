@@ -74,6 +74,10 @@ class Commande
     #[Groups(['commande:lecture'])]
     private ?string $valeurReduction = null;
 
+    #[ORM\Column(length: 5, nullable: true)]
+    #[Groups(['commande:lecture'])]
+    private ?string $coefficient = null;
+
     /**
      * @var Collection<int, Livraison>
      */
@@ -90,6 +94,17 @@ class Commande
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function getCoefficient(): ?string
+    {
+        return $this->coefficient;
+    }
+
+    public function setCoefficient(string $coefficient)
+    {
+        $this->coefficient = $coefficient;
+
+        return $this;
     }
 
     public function getDateCommande(): ?\DateTimeInterface

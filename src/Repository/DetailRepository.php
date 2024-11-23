@@ -44,18 +44,7 @@ class DetailRepository extends ServiceEntityRepository
             ;
 
         }
-        public function CAfournisseur()
-        {
-        return $this->createQueryBuilder('d')
-        ->select('f.nom','SUM(d.PrixTotalTTC)')
-        ->leftJoin('App\Entity\Produit','p',\Doctrine\ORM\Query\Expr\Join::WITH , 'p = d.Produit')
-        ->leftJoin('App\Entity\Fournisseur','f',\Doctrine\ORM\Query\Expr\Join::WITH, 'f = p.Fournisseur')
-        ->groupBy('f.nom')
-        ->getQuery()
-        ->getResult();
-        }
-        
-        public function CAfournisseur1()
+        /*public function CAfournisseur1()
         {
         return $this->createQueryBuilder('d')
         ->select('f.nom','sum(p.prix_HT*d.quantiteCommandee*1.20)')
@@ -78,26 +67,46 @@ class DetailRepository extends ServiceEntityRepository
         ->groupBy('f.nom')
         ->getQuery()
         ->getResult();
-        }
+        }*/
 
-        public function ProduitLesPlusVendu()
+        public function ProduitLesPlusVenduSansReduc()
         {
          return $this->createQueryBuilder('d')
-                ->select('p.nom','f.nom as nomFournisseur','SUM(d.quantiteCommandee)','SUM(d.PrixTotalTTC)')
+                ->select('p.nom','f.nom as nomFournisseur','SUM(d.quantiteCommandee)','SUM(d.prixHTDateCom*d.quantiteCommandee)')
                 ->leftJoin('App\Entity\Produit','p',\Doctrine\ORM\Query\Expr\Join::WITH , 'p = d.Produit')
+                ->leftJoin('App\Entity\Commande', 'c' , \Doctrine\ORM\Query\Expr\Join::WITH , 'c = d.Commande')
                 ->leftJoin('App\Entity\Fournisseur','f',\Doctrine\ORM\Query\Expr\Join::WITH, 'f = p.Fournisseur')
+                ->where('d.reduction = 1 AND c.coefficient = 1')
                 ->orderBy('SUM(d.quantiteCommandee)','DESC')
                 ->groupBy('d.Produit')
                 ->getQuery()
                 ->getResult();
         }
-        public function TotalVentes()
+        public function CAfournisseur()
         {
-            return $this->createQueryBuilder('d')
-                        ->select('SUM(d.PrixTotalTTC)')
-                        ->getQuery()
-                        ->getResult();
+        return $this->createQueryBuilder('d')
+        ->select('f.nom','SUM(d.prixHTDateCom*d.quantiteCommandee*d.reduction*c.coefficient)')
+        ->leftJoin('App\Entity\Commande','c',\Doctrine\ORM\Query\Expr\Join::WITH , 'c = d.Commande')
+        ->leftJoin('App\Entity\Produit','p',\Doctrine\ORM\Query\Expr\Join::WITH , 'p = d.Produit')
+        ->leftJoin('App\Entity\Fournisseur','f',\Doctrine\ORM\Query\Expr\Join::WITH, 'f = p.Fournisseur')
+        ->groupBy('f.nom')
+        ->getQuery()
+        ->getResult();
         }
+        public function ProduitLesPlusVendu()
+        {
+         return $this->createQueryBuilder('d')
+                ->select('p.nom','f.nom as nomFournisseur','SUM(d.quantiteCommandee)','SUM(d.prixHTDateCom*d.quantiteCommandee)*c.coefficient*d.reduction','c.coefficient', 'd.reduction')
+                ->leftJoin('App\Entity\Produit','p',\Doctrine\ORM\Query\Expr\Join::WITH , 'p = d.Produit')
+                ->leftJoin('App\Entity\Commande', 'c' , \Doctrine\ORM\Query\Expr\Join::WITH , 'c = d.Commande')
+                ->leftJoin('App\Entity\Fournisseur','f',\Doctrine\ORM\Query\Expr\Join::WITH, 'f = p.Fournisseur')
+                ->where('d.reduction != 1 OR c.coefficient !=1')
+                ->orderBy('SUM(d.quantiteCommandee)','DESC')
+                ->groupBy('d.id')
+                ->getQuery()
+                ->getResult();
+        }
+
 
     //    public function findOneBySomeField($value): ?Detail
     //    {

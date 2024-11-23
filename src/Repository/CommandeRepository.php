@@ -79,6 +79,23 @@ class CommandeRepository extends ServiceEntityRepository
            
         return $qb->getQuery()->getResult();
     }
+    public function TotalVentesSansReduc()
+    {
+        return $this->createQueryBuilder('c')
+                    ->select('SUM(c.montantCommandeHT)')
+                    ->where('c.valeurReduction = 1 AND c.coefficient = 1')
+                    ->getQuery()
+                    ->getResult();
+    }
+    public function TotalVentes()
+    {
+        return $this->createQueryBuilder('c')
+                    ->select('SUM(c.montantCommandeHT)')
+                    ->where('c.valeurReduction != 1 OR c.coefficient != 1')
+                    ->getQuery()
+                    ->getResult();
+    }
+    
 
     public function CAparan($annee)
     {

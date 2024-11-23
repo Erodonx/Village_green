@@ -76,10 +76,11 @@ class CommandeController extends AbstractController
             $detail->setProduit($produit);
             if ($info->getReduction()!=null)
             {
-            $detail->setPrixTotalTTC(($produit->getPrixHT()*1.20)*$info->getReduction()*$quantite);
+            $detail->setPrixHTDateCom($produit->getPrixHT());
             $detail->setReduction($info->getReduction());
             }else{
-            $detail->setPrixTotalTTC(($produit->getPrixHT()*1.20)*$quantite);
+            $detail->setPrixHTDateCom($produit->getPrixHT());
+            $detail->setReduction(1);
             }
             $detailLivraison->setProduit($produit);
             $detail->setQuantiteCommandee($quantite);
@@ -92,11 +93,12 @@ class CommandeController extends AbstractController
             $em->persist($detailLivraison);
         }       
         $livraison->addDetailLivraison($detailLivraison);
-        $commande->setMontantCommandeHT($total); 
-         $commande->setMontantCommandeTTC(($total*1.20)*$info->getCoefficient());
+        $commande->setCoefficient($info->getCoefficient());
+        $commande->setMontantCommandeTTC(($total*1.20)*$info->getCoefficient());
          if ($info->getReduction()!=null)
          {
             $commande->setMontantCommandeTTC($commande->getMontantCommandeTTC()*$info->getReduction());
+            $commande->setMontantCommandeHT($total*$info->getReduction()*$info->getCoefficient()); 
             $commande->setReduction('1');
             $commande->setValeurReduction($info->getReduction());
             $info->setReduction(null);
@@ -104,8 +106,9 @@ class CommandeController extends AbstractController
          }else
          {
             $commande->setReduction('0');
+            $commande->setMontantCommandeHT($total*$info->getCoefficient());
+            $commande->setValeurReduction(1);
          }
-        //}
         $commande->setAdresseFacturation($form->get('adresseFacturation')->getData());
         $commande->setVilleFacturation($form->get('villeFacturation')->getData());
         $commande->setAdresseLivraison($form->get('adresseLivraison')->getData());

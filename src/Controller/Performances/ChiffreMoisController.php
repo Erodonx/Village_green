@@ -12,13 +12,29 @@ class ChiffreMoisController extends AbstractController
     #[Route('/performances/chiffre/{annee}', name: 'app_performances_chiffre_annee')]
     public function index($annee,CommandeRepository $commandes): Response
     {
-     $result = [];
-     $result[] =  ["Mois", "Ventes"];
-     $calc = $commandes->CAparan($annee);
+     $result [] = ["Mois", "Ventes"];
+     $result [] = ["01",floatval(0)];
+     $result [] = ["02",floatval(0)];
+     $result [] = ["03",floatval(0)];
+     $result [] = ["04",floatval(0)];
+     $result [] = ["05",floatval(0)];
+     $result [] = ["06",floatval(0)];
+     $result [] = ["07",floatval(0)];
+     $result [] = ["08",floatval(0)];
+     $result [] = ["09",floatval(0)];
+     $result [] = ["10",floatval(0)];
+     $result [] = ["11",floatval(0)];
+     $result [] = ["12",floatval(0)];
+    $calc = $commandes->CAparan($annee);
      foreach ($calc as $ligne) {
-     $result[] =  [strval($ligne["MOIS DE L'ANNEE"]),floatval($ligne["CHIFFRE D'AFFAIRE DU MOIS"])];
-       
+     for($i=0;$i<12;$i++)
+     {
+    if($result[$i][0]=="0".strval($ligne["MOIS DE L'ANNEE"]))
+    {
+     $result [$i] =  [strval($ligne["MOIS DE L'ANNEE"]),floatval($ligne["CHIFFRE D'AFFAIRE DU MOIS"])];
+     }
     }
+}
     return $this->json($result);
     
    
