@@ -31,7 +31,7 @@ class ChiffreMoisController extends AbstractController
      {
     if($result[$i][0]=="0".strval($ligne["MOIS DE L'ANNEE"]))
     {
-     $result [$i] =  [strval($ligne["MOIS DE L'ANNEE"]),floatval($ligne["CHIFFRE D'AFFAIRE DU MOIS"])];
+     $result [$i][1] = floatval($ligne["CHIFFRE D'AFFAIRE DU MOIS"]);
      }
     }
 }
