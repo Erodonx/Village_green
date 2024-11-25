@@ -2,16 +2,16 @@
         {% block body %}
          
 <div class="container">
-    <h2>Nos produits</h2>
+    <h2 class="pt-3">Nos produits</h2>
     <div class="row pt-3">
     {% set n = 1 %}
     {% for produit in produits %}
     {% if total % 3 == 2 %}
     {% if (total - n) == 1 or (total - n) == 0 %}
-    <div class="row pt-3 d-md-none">
+    <div class="row pt-3 d-lg-none">
     </div>
-    <div class ="col-md-1"></div>
-        <div class="col-md-5 card bg-white">
+    <div class ="col-lg-1"></div>
+        <div class="col-lg-5 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>
@@ -25,10 +25,10 @@
     </div>
     </div>
     {% else %}
-        <div class="row pt-3 d-md-none">
+        <div class="row pt-3 d-lg-none">
         </div>
-        <div class ="col-md-1"></div>
-        <div class="col-md-3 card bg-white">
+        <div class ="col-lg-1"></div>
+        <div class="col-lg-3 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>
@@ -45,10 +45,10 @@
     {% endif %}
     {% if total % 3 == 1 %}
     {% if (total - n) == 0 %}
-            <div class="row pt-3 d-md-none">
+            <div class="row pt-3 d-lg-none">
         </div>
-        <div class ="col-md-2"></div>
-        <div class="col-md-9 card bg-white">
+        <div class ="col-lg-2"></div>
+        <div class="col-lg-9 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>
@@ -61,12 +61,12 @@
         </div>
     </div>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-lg-1"></div>
     {% else %}
-        <div class="row pt-3 d-md-none">
+        <div class="row pt-3 d-lg-none">
         </div>
-        <div class ="col-md-1"></div>
-        <div class="col-md-3 card bg-white">
+        <div class ="col-lg-1"></div>
+        <div class="col-lg-3 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>
@@ -82,10 +82,10 @@
     {% endif %}
     {% endif %}
     {% if total % 3 == 0 %}
-        <div class="row pt-3 d-md-none">
+        <div class="row pt-3 d-lg-none">
         </div>
-         <div class ="col-md-1"></div>
-        <div class="col-md-3 card bg-white">
+         <div class ="col-lg-1"></div>
+        <div class="col-lg-3 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>
@@ -106,13 +106,13 @@
     {% set n = n + 1 %}
     {% endfor %}
     </div>
-    <h2 class='pt-3'>Nos produits en vedettes</h2>
+    <h2>Nos produits en vedettes</h2>
     <div class="row py-3">
     {% for topproduit in topprod %}
-        <div class="row pt-3 d-md-none">
+        <div class="row pt-3 d-lg-none">
         </div>
-        <div class ="col-md-1"></div>
-        <div class="col-md-3 card bg-white">
+        <div class ="col-lg-1"></div>
+        <div class="col-lg-3 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{topproduit[0].produit.image}}" alt="Product_image">
         </div>

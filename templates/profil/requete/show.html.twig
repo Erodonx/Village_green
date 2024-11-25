@@ -10,7 +10,7 @@
 {% endif %}
 <div class="card-title px-2"><p>{{contenu.auteur.email}}</p></div>
 <div class="card-text px-2"><p>{{contenu.message}}</p>
-<div class="row"><div class="col-8"></div><div class="col-4"><p>Message envoyé le {{contenu.dateMessage | date('d/m/y H:i:s')}}</p></div></div>
+<div class="row"><div class="col-8"></div><div class="col-4"><p>Message envoyé le {{(contenu.dateMessage) | date('d/m/y à H:i:s')}}</p></div></div>
 </div>
 </div>
 {% endfor %}

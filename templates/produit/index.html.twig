@@ -2,6 +2,7 @@
 {% block body %}
          
 <div class="container">
+    <h2 class="pt-3">Nos produits</h2>
 <div class="btn-group col-auto d-flex">
                 <button class="btn btn-sm dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <p>Filtre</p>
@@ -14,16 +15,15 @@
                     <li><a class="dropdown-item" href="{{ path('app_produit', { 'sort': 'popularity' }) }}">Les plus populaires</a></li>
                 </ul>
             </div>
-    <h2>Nos produits</h2>
     <div class="row pt-3">
     {% set n = 1 %}
     {% for produit in produits %}
     {% if total % 3 == 2 %}
     {% if (total - n) == 1 or (total - n) == 0 %}
-    <div class="row pt-3 d-md-none">
+    <div class="row pt-3 d-lg-none">
     </div>
-    <div class ="col-md-1"></div>
-        <div class="col-md-5 card bg-white">
+    <div class ="col-lg-1"></div>
+        <div class="col-lg-5 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>
@@ -37,10 +37,10 @@
     </div>
     </div>
     {% else %}
-        <div class="row pt-3 d-md-none">
+        <div class="row pt-3 d-lg-none">
         </div>
-        <div class ="col-md-1 pt-md-3"></div>
-        <div class="col-md-3 card bg-white">
+        <div class ="col-lg-1 pt-lg-3"></div>
+        <div class="col-lg-3 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>
@@ -57,10 +57,10 @@
     {% endif %}
     {% if total % 3 == 1 %}
     {% if (total - n) == 0 %}
-        <div class="row pt-3 d-md-none">
+        <div class="row pt-3 d-lg-none">
         </div>
-        <div class ="col-md-2 pt-md-3"></div>
-        <div class="col-md-9 card bg-white">
+        <div class ="col-lg-2 pt-lg-3"></div>
+        <div class="col-lg-9 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>
@@ -73,12 +73,12 @@
         </div>
     </div>
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-lg-1"></div>
     {% else %}
-        <div class="row pt-3 d-md-none">
+        <div class="row pt-3 d-lg-none">
         </div>
-        <div class ="col-md-1 pt-md-3"></div>
-        <div class="col-md-3 card bg-white">
+        <div class ="col-lg-1 pt-lg-3"></div>
+        <div class="col-lg-3 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>
@@ -94,10 +94,10 @@
     {% endif %}
     {% endif %}
     {% if total % 3 == 0 %}
-        <div class="row pt-3 d-md-none">
+        <div class="row pt-3 d-lg-none">
         </div>
-        <div class ="col-md-1 pt-md-3"></div>
-        <div class="col-md-3 card bg-white">
+        <div class ="col-lg-1 pt-lg-3"></div>
+        <div class="col-lg-3 card bg-white">
         <div class="card-body">
         <div class="row"><img src="/images/produits/{{produit.image}}" alt="Product_image">
         </div>

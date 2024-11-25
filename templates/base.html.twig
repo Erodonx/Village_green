@@ -33,9 +33,9 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">A propos</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-            <a class="dropdown-item" href="">Mentions légales</a>
+            <a class="dropdown-item" href="{{ path('app_about_mentions_legales')}}">Mentions légales</a>
             <a class="dropdown-item" href="{{ path('app_contact' )}}">Nous contacter</a>
-            <a class="dropdown-item" href="">Politique de confidentialité</a>
+            <a class="dropdown-item" href="{{ path('app_about_politique_de_confidentialite')}}">Politique de confidentialité</a>
           </div>
         </li>
         {% if is_granted('ROLE_ADMIN')%}
@@ -114,8 +114,8 @@
 <footer class="container-fluid">
   <div class="row redsocials align-self-center">
                
-                <div class="col-4 align-self-center">
-                    <ul class="list-inline justify-content-left mb-0 d-flex">
+                <div class="align-self-center">
+                    <ul class="list-inline justify-content-center mb-0 d-flex">
                         <li class="list-inline-item"><a href="https://twitter.com/?lang=fr">
                                 <img src="/images/footer/twitter.png" width="20" height="20" class="rounded"
                                     alt="twitter">
@@ -133,13 +133,13 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-3 grid justify-content-end align-self-center">
-                    <a class="text-light" href="mentions-legales.php">Mentions légales</a>
+                {# <div class="col-3 grid justify-content-end align-self-center">
+                    <a class="text-light" href="{{ path('app_about_mentions_legales')}}">Mentions légales</a>
                 </div>
                 <div class="col-5 grid justify-content-end align-self-center">
-                    <a class="text-light" href="politique-de-confidentialite.php">Politique de confidentialité</a>
+                    <a class="text-light" href="{{ path('app_about_politique_de_confidentialite')}}">Politique de confidentialité</a>
                 </div>
-            </div>
+            </div> #}
 </footer>
    {#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> #}
          {% block javascripts %}
