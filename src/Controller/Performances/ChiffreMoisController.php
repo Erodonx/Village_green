@@ -29,9 +29,9 @@ class ChiffreMoisController extends AbstractController
      foreach ($calc as $ligne) {
      for($i=0;$i<12;$i++)
      {
-    if($result[$i][0]=="0".strval($ligne["MOIS DE L'ANNEE"]))
+    if($result[$i][0]=="0".strval($ligne["MOIS_DE_L_ANNEE"]))
     {
-     $result [$i][1] = floatval($ligne["CHIFFRE D'AFFAIRE DU MOIS"]);
+     $result [$i][1] = floatval($ligne["CHIFFRE_D_AFFAIRE_MOIS"]);
      }
     }
 }

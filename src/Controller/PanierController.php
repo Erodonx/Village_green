@@ -23,15 +23,16 @@ class PanierController extends AbstractController
     #[Route('/', name:'_index')]
     public function index(SessionInterface $session, ProduitRepository $produitRepo)
     {
+        $reduction = 1;
+        $coefficient = 1;
         if($this->getUser()!=null)
         {
             $identifiant = $this->getUser()->getUserIdentifier();
         if($identifiant){
             $info = $this->userRepo->findOneBy(["email" =>$identifiant]);
-            if($info->getReduction()!=null)
-            {
+
                 $reduction = $info->getReduction();
-            }
+                $coefficient = $info->getCoefficient();
         }
         }
         $panier = $session->get('panier', []);
@@ -50,7 +51,7 @@ class PanierController extends AbstractController
     if (isset($reduction))
     {
 
-     return $this->render('panier/index.html.twig', ['data' => $data, 'total' => $total, 'reduction' => $reduction ]);
+     return $this->render('panier/index.html.twig', ['data' => $data, 'total' => $total, 'reduction' => $reduction, 'coefficient' => $coefficient ]);
     }else
     {
         return $this->render('panier/index.html.twig', compact('data', 'total'));

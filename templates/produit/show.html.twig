@@ -15,7 +15,11 @@
                 {% else %}
                 <div class="text-danger" style="font-size: 2rem;">Hors stock</div>
                 {% endif %}
-                <div class="position-absolute" style="bottom:0;">
+        </div>
+    </div>
+    </div>   
+    </div>
+    <div class="row py-4">
                  <form action="{{ path('app_panier_ajout' , {id: produit.id}) }}" method="post">
                <label for="quantite">Quantité :</label>
                 <select class="form-select" name="quantite" id="quantite">
@@ -30,11 +34,7 @@
                 <option value="8">8</option>
                 <option value="9">9</option>
                 </select>
-                <button type="submit commands" class="btn btn-primary">Acheter</a>
+                <button type="submit align-self-right" class="btn btn-primary">Acheter</a>
                 </div>
-        </div>
-    </div>
-    </div>
-    </div>
 {% endblock %}
 

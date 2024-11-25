@@ -96,7 +96,10 @@ class RegistrationFormType extends AbstractType
                 'required' => false
             ])
             ->add('coefficient',HiddenType::class, [
-                'data' => 1
+                'data' => 1,
+            ])
+            ->add('reduction', HiddenType::class, [
+                'data' => 1,
             ])
             ->add('save',SubmitType::class, [
                 'label' => 'S\'enregistrer' ])

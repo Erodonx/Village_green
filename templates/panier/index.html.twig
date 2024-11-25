@@ -3,7 +3,7 @@
 {% block title %}Votre panier{% endblock %}
 
 {% block body %}
-<main class="container">
+<div class="container">
     <section class="row">
         <div class="col-12">
             <h1>Panier</h1>
@@ -45,15 +45,27 @@
                         <td colspan="3">Total TTC</td>
                         <td>{{total * 1.20}} €</td>
                         <td>
-                            {% if reduction is not defined %}
+                            {% if reduction == 1 and coefficient == 1 %}
                             <a href="{{ path('app_panier_vider')}}" class="btn btn-danger">Vider</a>
                             {% endif %}
                         </td>
                     </tr>
-                    {% if reduction is defined %}
+                    {% if reduction != 1 and coefficient != 1  %}
                     <tr>
-                    <td colspan="3">Total TTC avec reduction de {{ 100 - (reduction * 100) }} % </td>
-                    <td> {{total * 1.20 * reduction }} </td>
+                    <td colspan="3">Total TTC avec reduction de {{ 100 - (reduction * 100) }} % et coefficient de réduction {{ 100 - (coefficient * 100) }} % </td>
+                    <td> {{total * 1.20 * reduction * coefficient }} € </td>
+                    <td>  <a href="{{ path('app_panier_vider')}}" class="btn btn-danger">Vider</a> </td>
+                    </tr>
+                    {% elseif reduction == 1 and coefficient != 1  %}
+                    <tr>
+                    <td colspan="3">Total TTC avec coefficient de réduction {{ 100 - (coefficient * 100) }} % </td>
+                    <td> {{total * 1.20 * coefficient }} € </td>
+                    <td>  <a href="{{ path('app_panier_vider')}}" class="btn btn-danger">Vider</a> </td>
+                    </tr>
+                    {% elseif coefficient == 1 and reduction != 1  %}
+                    <tr>
+                    <td colspan="3">Total TTC avec réduction {{ 100 - (reduction * 100) }} % </td>
+                    <td> {{total * 1.20 * reduction }} € </td>
                     <td>  <a href="{{ path('app_panier_vider')}}" class="btn btn-danger">Vider</a> </td>
                     </tr>
                     {% endif %}
@@ -63,5 +75,5 @@
          <a href="{{ path('app_commande')}}" class="btn btn-primary">Valider la commande</a>
         </div>
     </section>
-</main>
+</div>
 {% endblock %}

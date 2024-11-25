@@ -33,3 +33,13 @@ a{
 .commands{
     bottom:0; right:0;
 }
+.redsocials{
+    background-color:rgba(100, 5, 52); height:45px;
+}
+
+.footer {
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }

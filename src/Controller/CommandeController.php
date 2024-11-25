@@ -74,12 +74,12 @@ class CommandeController extends AbstractController
             $detail = new Detail;
             $produit = $prodRepo->find($item);
             $detail->setProduit($produit);
-            if ($info->getReduction()!=null)
-            {
             $detail->setPrixHTDateCom($produit->getPrixHT());
+            if ($info->getReduction()!=1)
+            {
             $detail->setReduction($info->getReduction());
             }else{
-            $detail->setPrixHTDateCom($produit->getPrixHT());
+            
             $detail->setReduction(1);
             }
             $detailLivraison->setProduit($produit);
@@ -95,13 +95,13 @@ class CommandeController extends AbstractController
         $livraison->addDetailLivraison($detailLivraison);
         $commande->setCoefficient($info->getCoefficient());
         $commande->setMontantCommandeTTC(($total*1.20)*$info->getCoefficient());
-         if ($info->getReduction()!=null)
+         if ($info->getReduction()!=1)
          {
             $commande->setMontantCommandeTTC($commande->getMontantCommandeTTC()*$info->getReduction());
             $commande->setMontantCommandeHT($total*$info->getReduction()*$info->getCoefficient()); 
             $commande->setReduction('1');
             $commande->setValeurReduction($info->getReduction());
-            $info->setReduction(null);
+            $info->setReduction(1);
             $em->persist($info);
          }else
          {

@@ -3,6 +3,7 @@
 {% block title %}Vos demandes{% endblock %}
 
 {% block body %}
+<div class="container">
 <h1>Bonjour  cher {{type}} </h1>
 
 {% for requete in requetes %}
@@ -38,4 +39,5 @@
 {% if type == 'client' %}
 <a class="btn btn-success btn-sm" href="/profil/requete/create"> Créer une requête </a>
 {% endif %}
+</div>
 {% endblock %}

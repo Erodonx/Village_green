@@ -99,20 +99,21 @@ class CommandeRepository extends ServiceEntityRepository
 
     public function CAparan($annee)
     {
-        $conn = $this->getEntityManager()->getConnection();
-        $sql = "SELECT sum(montant_commande_ht) AS 'CHIFFRE D\'AFFAIRE DU MOIS', MONTH(date_commande) AS 'MOIS DE L\'ANNEE' from commande where YEAR(date_commande)=".$annee." GROUP BY MONTH(date_commande);";
-        $stmt = $conn->prepare($sql);
-        $result = $stmt->executeQuery();
-        return $result->fetchAllAssociative();
+        //$conn = $this->getEntityManager()->getConnection();
+        //$sql = "SELECT sum(montant_commande_ht) AS 'CHIFFRE D\'AFFAIRE DU MOIS', MONTH(date_commande) AS 'MOIS DE L\'ANNEE' from commande where YEAR(date_commande)=".$annee." GROUP BY MONTH(date_commande);";
+        //$stmt = $conn->prepare($sql);
+        //$result = $stmt->executeQuery();
+        //return $result->fetchAllAssociative();
+
 
         //$sql = 'SELECT sum(montant_commande_ttc), MONTH(date_commande) from commande where YEAR(date_commande)=2024 GROUP BY MONTH(date_commande);';
-        //return $this->createQueryBuilder('c')
-        //->select('sum(c.montantCommandeTTC)','MONTH(c.dateCommande)')
-        //->where('YEAR(c.dateCommande) = :annee')
-        //->setParameter('annee', $annee)
-        //->groupBy('MONTH(c.dateCommande)')
-        //->getQuery()
-        //->getResult();   
+        return $this->createQueryBuilder('c')
+                    ->select('sum(c.montantCommandeTTC) AS CHIFFRE_D_AFFAIRE_MOIS','MONTH(c.dateCommande) AS MOIS_DE_L_ANNEE')
+                    ->where('YEAR(c.dateCommande) = :annee')
+                    ->setParameter('annee', $annee)
+                    ->groupBy('MOIS_DE_L_ANNEE')
+                    ->getQuery()
+                    ->getResult();   
     }
 
 

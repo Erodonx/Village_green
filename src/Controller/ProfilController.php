@@ -68,6 +68,11 @@ class ProfilController extends AbstractController
      $form->handleRequest($request);
      if ($form->isSubmitted() && $form->isValid())
      {
+         if($form->getData()->getReduction()<= 0 || ($form->getData()->getReduction()) >=1)
+         {
+            $this->addFlash('warning', 'La réduction ne peut pas être inférieure à 0 ou supérieure à 1.');
+            return $this->redirectToRoute('app_profil_index');
+         }
          $em->flush();
          $this->addFlash('succees', 'La réduction a bien été appliquée');
          return $this->redirectToRoute('app_profil_index');

@@ -132,7 +132,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'employeCharge')]
     private Collection $Employe;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?float $reduction = null;
 
     /**

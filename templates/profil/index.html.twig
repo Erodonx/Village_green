@@ -31,9 +31,14 @@
                     </tr>
                     </tbody>
                 </table>
-            {% if informations.reduction is not null %}
+            {% if informations.reduction != 1 %}
             <div class="row">
             <p>Vous bénéficiez d'une réduction de {{100-(informations.reduction  * 100 )}} % sur votre prochaine commande. </p>
+            </div>
+            {% endif %}
+            {% if informations.coefficient != 1 %}
+            <div class="row">
+            <p>Vous bénéficiez d'une réduction de {{100-(informations.coefficient * 100)}} % sur toutes les commandes que vous faites.</p>
             </div>
             {% endif %}
         {% for commande in commandes %}
@@ -53,7 +58,7 @@
             {% for detail in commande.details %}
                     <td>{{ detail.produit.nom }}</td>
                     <td>{{ detail.quantiteCommandee }}</td>
-                    <td>{{ detail.Produit.prixHT * detail.quantiteCommandee}}</td>
+                    <td>{{ detail.prixHTDateCom * commande.coefficient * commande.valeurReduction }}</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -92,8 +97,8 @@
                 <tr>
                     <td>{{ client.nom}} {{ client.prenom }}</td>
                     <td>{{ client.email }}</td>
-                    <td>{% if client.reduction is null %}
-                        <a class="btn btn-success btn-sm" href="{{ path('app_profil_edit', { id: client.id }) }}">Modifier le coefficient</a>
+                    <td>{% if client.reduction == 1 %}
+                        <a class="btn btn-success btn-sm" href="{{ path('app_profil_edit', { id: client.id }) }}">Appliquer une réduction</a>
                         {% else %}
                          <a class="btn btn-success btn-sm disabled" href="{{ path('app_profil_edit', { id: client.id }) }}">Réduction appliquée</a>
                         {% endif %}
@@ -111,4 +116,5 @@
             <a class="btn btn-success btn-sm" href="/profil/requete/">Soumettre une requête au commercial encadrant.</a>
             {% endif %}
     </div>
+</div>
 {% endblock %}
