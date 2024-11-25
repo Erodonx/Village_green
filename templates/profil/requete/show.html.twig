@@ -1,16 +1,16 @@
-{% extends 'baserequete.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block body %}
+<div class="container">
 <h1>{{ requete.sujet}}</h1>
 {% for contenu in requete.contenuRequetes %}
 {% if contenu.auteur.employeCharge is not null %}
-<div class="row card bg-primary my-2">
+<div class="card bg-primary my-2">
 {% else %}
-<div class="row card bg-danger my-2">
+<div class="card bg-danger my-2">
 {% endif %}
-<div class="card-head"><h5>{{contenu.auteur.email}}</h5></div>
-<div class="card-text">
-<div class="row">{{contenu.message}}</div>
-<div class="row"><div class="col-10"></div>{{contenu.dateMessage | date('d/m/y H:i:s')}}</div>
+<div class="card-title px-2"><p>{{contenu.auteur.email}}</p></div>
+<div class="card-text px-2"><p>{{contenu.message}}</p>
+<div class="row"><div class="col-8"></div><div class="col-4"><p>Message envoyé le {{contenu.dateMessage | date('d/m/y H:i:s')}}</p></div></div>
 </div>
 </div>
 {% endfor %}
@@ -18,4 +18,6 @@
 <div class="row my-5">
 <div class="col-6 d-flex justify-content-center"><a class="btn btn-success btn-sm" href="{{ path('app_requete_create_message', {id : requete.id})}}">Écrire un nouveau message</a></div>
 <div class="col-6 d-flex justify-content-center"><a class="btn btn-primary btn-sm" href="{{ path('app_requete_index')}}">Retourner vers l'index des demandes</a></div>
+</div>
+</div>
 {% endblock %}

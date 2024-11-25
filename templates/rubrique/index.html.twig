@@ -54,6 +54,8 @@
     </div>
     <div class="col-md-1"></div>
     {% else %}
+        <div class="row pt-3 d-md-none">
+        </div>
         <div class ="col-md-1"></div>
         <div class="col-md-3 card bg-white">
         <div class="card-body">
@@ -89,6 +91,8 @@
     <div class="row pt-3 ">
     {% endif %}
     {% set n = n + 1 %}
+    <div class="row pt-3 d-md-none">
+    </div>
     {% endfor %}
     </div>
 {% endblock %}

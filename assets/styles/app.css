@@ -1,6 +1,7 @@
-body {
+/* body {
     background-color: skyblue;
-}
+} */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 .card{
     transition: transform .5s;   
    }
@@ -43,3 +44,15 @@ a{
     left: 0;
     width: 100%;
   }
+  .parallax{
+    background-attachment: fixed;
+    background-size:cover;
+}
+h2,h1,label,p,td{
+        color:aliceblue;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    
+}

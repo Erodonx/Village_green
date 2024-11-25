@@ -2,9 +2,9 @@
 {% block body %}
          
 <div class="container">
-<div class="btn-group col-auto">
+<div class="btn-group col-auto d-flex">
                 <button class="btn btn-sm dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Filtre
+                    <p>Filtre</p>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="filterDropdown">
                     <li><a class="dropdown-item" href="{{ path('app_produit', { 'sort': 'price_asc' }) }}">Prix (asc)</a></li>
@@ -105,7 +105,7 @@
             <h5 class="card-title">
                 <a href="{{ path('app_produit_show', {id: produit.id, slug: produit.slug}) }}">{{produit.nom}}</a>
             </h5>
-        <p class="card-text tex t-dark">{{produit.description}}</p>
+        <p class="card-text text-dark">{{produit.description}}</p>
         <div class="text-primary" style="font-weight: bold; font-size: 2rem;">{{produit.formattedPrice}} € </div>
         </div>
     </div>

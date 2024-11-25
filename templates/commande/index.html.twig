@@ -4,12 +4,9 @@
 
 
 {% block body %}
-<div class="row mb-5">
-<div class="col-12">
+<div class="container-fluid">
     <h1>Validation de la commande</h1>
-</div>
-</div>
-<div class="row justify-content-center  d-grid">
+<div class="row mb-5">
     {{ form_errors(commande) }}
     {{ form_start(commande) }}
         {{ form_row(commande.adresseLivraison) }}
@@ -23,6 +20,7 @@
         
     {{ form_end(commande) }}
 
+</div>
 </div>
 {% endblock %}
   {% block javascripts %}

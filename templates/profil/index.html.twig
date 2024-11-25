@@ -43,7 +43,7 @@
             {% endif %}
         {% for commande in commandes %}
         
-        <div class="row">Commande du {{commande.dateCommande | date('d/m/y')}}#{{commande.id}}
+        <div class="row"><p>Commande du {{commande.dateCommande | date('d/m/y')}}#{{commande.id}}</p>
         <table class="table table-light table-hover table-striped">
             <thead>
                 <tr>
@@ -58,7 +58,12 @@
             {% for detail in commande.details %}
                     <td>{{ detail.produit.nom }}</td>
                     <td>{{ detail.quantiteCommandee }}</td>
-                    <td>{{ detail.prixHTDateCom * commande.coefficient * commande.valeurReduction }}</td>
+                    <td>{{ detail.prixHTDateCom * commande.coefficient * commande.valeurReduction }} €</td>
+                </tr>
+                <tr>
+                <td>{{detail.produit.nom}} x {{ detail.quantiteCommandee }}</td>
+                <td> = </td>
+                <td>{{detail.prixHTDateCom * commande.coefficient * commande.valeurReduction * detail.quantiteCommandee}} € HT</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -109,12 +114,18 @@
             </div>
             {% endfor %}
             </div>
+
+            <div class="row">
             <a class="btn btn-success btn-sm" href="/profil/requete">Consulter les requêtes de vos clients</a>
+            </div>
             {% endif %}
+
             {# {{informations.employeCharge.email}} #}
             {% if informations.employeCharge.email is defined %}
+    <div class="row">
             <a class="btn btn-success btn-sm" href="/profil/requete/">Soumettre une requête au commercial encadrant.</a>
-            {% endif %}
     </div>
+            {% endif %}
+</div>
 </div>
 {% endblock %}
