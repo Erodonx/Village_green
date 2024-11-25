@@ -4,24 +4,22 @@
 
  <div class="container mt-4">
     <div class="card bg-white">
-    <div class="card-body">
-     <div class="card-title d-flex text-center">{{produit.nom}}</div>
-        <div class="row"><div class="col-5"><img src="/images/produits/{{produit.image}}" style="align-self:center;" alt="Product_image"></div>
-        <div class="col-2"></div>
-        <div class="col-5"><p class="card-text text-dark">{{produit.description}}</p>
-           <div class="text-primary" style="font-weight: bold; font-size: 2rem;">{{produit.formattedPrice}} € </div>
+    <div class="card-title d-flex justify-content-center"><p class="desc-title">{{produit.nom}}</p></div>
+    <div class="card-body"> 
+        <div class="row justify-content-center"><img class="w-50" src="/images/produits/{{produit.image}}" style="align-self:center;" alt="Product_image"></div>
+        <div class="col"><p class="justify-content-center text-dark desc">{{produit.description}}</p>
+           <div class="text-primary d-flex justify-content-end" style="font-weight: bold; font-size: 2rem;">{{produit.formattedPrice}} € </div>
            {% if produit.stock > 0 %}
-                <div class="text-success" style="font-size: 2rem;">En stock</div>
+                <div class="text-success d-flex justify-content-end" style="font-size: 2rem;">En stock</div>
                 {% else %}
-                <div class="text-danger" style="font-size: 2rem;">Hors stock</div>
+                <div class="text-danger d-flex justify-content-end" style="font-size: 2rem;">Hors stock</div>
                 {% endif %}
         </div>
     </div>
     </div>   
-    </div>
     <div class="row py-4">
-                 <form action="{{ path('app_panier_ajout' , {id: produit.id}) }}" method="post">
-               <label for="quantite">Quantité :</label>
+               <form class="d-flex" action="{{ path('app_panier_ajout' , {id: produit.id}) }}" method="post">
+               <label for="quantite"></label>
                 <select class="form-select" name="quantite" id="quantite">
                 <option selected value="1">Choisissez la quantité</option>
                 <option value="1">1</option>
@@ -36,5 +34,6 @@
                 </select>
                 <button type="submit align-self-right" class="btn btn-primary">Acheter</a>
                 </div>
+   </div>
 {% endblock %}
 

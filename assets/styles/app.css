@@ -61,3 +61,12 @@ h2,h1,label,p,td,ul,li{
         box-sizing: border-box;
     
 }
+.desc{
+    font-size:22px;
+    font-weight:500;
+}
+.desc-title{
+    font-size:22px;
+    font-weight:500;
+    color:black;
+}
