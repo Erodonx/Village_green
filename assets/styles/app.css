@@ -38,6 +38,11 @@ a{
     background-color:rgba(26, 26, 26, 0.877); height:45px;
 }
 
+.dp{
+    background-color:rgba(26, 26, 26, 0.999);
+    border-radius:10px;
+}
+
 .footer {
     position:absolute;
     bottom: 0;
