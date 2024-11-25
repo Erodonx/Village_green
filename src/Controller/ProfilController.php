@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\CoefficientType;
 use App\Form\ModifyUserProType;
 use App\Form\ModifyUserType;
 use App\Form\ReductionType;
@@ -75,6 +76,28 @@ class ProfilController extends AbstractController
          }
          $em->flush();
          $this->addFlash('succees', 'La réduction a bien été appliquée');
+         return $this->redirectToRoute('app_profil_index');
+     }
+     return $this->render('/profil/edit.html.twig', [
+         'user' => $user,
+         'form' => $form
+     ]);
+    }
+    #[Route('/edit-coef/{id}', name:'edit-coef', requirements:['id' => Requirement::DIGITS])]
+    public function edit_coef(User $user, EntityManagerInterface $em,Request $request)
+    {
+     $this->denyAccessUnlessGranted('ROLE_EMPLOYE');
+     $form = $this->createForm(CoefficientType::class, $user);
+     $form->handleRequest($request);
+     if ($form->isSubmitted() && $form->isValid())
+     {
+         if($form->getData()->getCoefficient()<= 0 || ($form->getData()->getCoefficient()) >=1)
+         {
+            $this->addFlash('warning', 'Le coefficient ne peut pas être inférieure à 0 ou supérieure à 1.');
+            return $this->redirectToRoute('app_profil_index');
+         }
+         $em->flush();
+         $this->addFlash('succees', 'Le coefficient a bien été modifié');
          return $this->redirectToRoute('app_profil_index');
      }
      return $this->render('/profil/edit.html.twig', [

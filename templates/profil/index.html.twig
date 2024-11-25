@@ -95,18 +95,23 @@
                 <tr>
                     <th>Nom et prénom du client</th>
                     <th>Email</th>
-                    <th>Modifier le coefficient de sa prochaine commande</th>
+                    <th>Action : prochaine commande</th>
+                    <th>Action : réduction permanente</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>{{ client.nom}} {{ client.prenom }}</td>
                     <td>{{ client.email }}</td>
-                    <td>{% if client.reduction == 1 %}
+                    <td>
+                        {% if client.reduction == 1 %}
                         <a class="btn btn-success btn-sm" href="{{ path('app_profil_edit', { id: client.id }) }}">Appliquer une réduction</a>
                         {% else %}
                          <a class="btn btn-success btn-sm disabled" href="{{ path('app_profil_edit', { id: client.id }) }}">Réduction appliquée</a>
                         {% endif %}
+                    </td>
+                    <td>
+                        <a class="btn btn-success btn-sm" href="{{ path('app_profil_edit-coef', { id: client.id }) }}">Changer le coefficient</a>
                     </td>
                 </tr>
             </tbody>
