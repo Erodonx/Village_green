@@ -47,16 +47,12 @@ https://www.thomann.de/fr/thomann_celtic_harp_ashwood_36_str.htm harpe
 
 ETAT /!\
 
-25/11/12
+26/11/12
 To do next: 
-Créer d'autres fixtures produits, d'autres rubriques sous rubriques. DONE
-**Avec le query builder finir l'affichage de certaines demandes du projet fil rouge. DONE
-**Mise en page de la partie Administration DONE
-**UML A FAIRE
-
-
+Si j'ai le temps changer les entités.
+** UML A FAIRE
+** Faires des tests unitaires.
 
 ** important
-Actualiser la documentation de l'administration.
 module de recherche input type submit, vers le repository;
 Commencer un projet avec Angular et symfony.

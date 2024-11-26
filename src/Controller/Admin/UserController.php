@@ -38,11 +38,13 @@ class UserController extends AbstractController{
             $roles= $form->getData()->getRoles();
             $EmployeCharge = $form->getData()->getEmployeCharge();
             $errorEmployeCharge=false;
+            $errorRole=false;
             $rightRoleToSubmit=false;
             foreach($roles as $role)
             {
             if($role=="ROLE_EMPLOYE"||$role=="ROLE_ADMIN")
             {
+             $errorRole=true;
             if(isset($EmployeCharge))          
             {
              $errorEmployeCharge=true;   
@@ -69,10 +71,15 @@ class UserController extends AbstractController{
                 $this->addFlash('success', 'La modification de l\'utilisateur concerné a été enregistrée.');
                 return $this->redirectToRoute('app_admin_utilisateur_index');
             }
-            if($rightRoleToSubmit==true)
+            if($rightRoleToSubmit==true && $errorRole==false)
             {
                 $em->flush();
                 $this->addFlash('success', 'La modification de l\'utilisateur concerné a été enregistrée.');
+                return $this->redirectToRoute('app_admin_utilisateur_index');
+            }
+            if($rightRoleToSubmit==true && $errorRole==true)
+            {
+                $this->addFlash('warning','Vous ne pouvez pas être un employé et avoir un rôle de client professionnel.');
                 return $this->redirectToRoute('app_admin_utilisateur_index');
             }
         }
