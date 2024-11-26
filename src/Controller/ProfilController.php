@@ -41,15 +41,9 @@ class ProfilController extends AbstractController
         if($identifiant){
             $info = $this->userRepo->findOneBy(["email" =>$identifiant]); //<--- ICI on vérifie qu'on a bien un utilisateur dans la base de donnée qui a ce mail 
             $commandes=$commande->findByUser2($info->getId());
-            /*if ($commande[0]!=null)
-            {
 
-            $livraisons= $commandes[0]->getLivraisons();
-                            
-        }*/
         }
-        //dd($livraisons[0]->getDetailLivraisons());
-        //dd($info);
+        
         return $this->render('profil/index.html.twig', [
             'informations' => $info,
             'commandes' => $commandes
@@ -62,9 +56,28 @@ class ProfilController extends AbstractController
     }
 
     #[Route('/edit/{id}', name:'edit', requirements:['id' => Requirement::DIGITS])]
-    public function edit(User $user, EntityManagerInterface $em,Request $request)
+    public function edit(User $user, EntityManagerInterface $em,Request $request,)
     {
      $this->denyAccessUnlessGranted('ROLE_EMPLOYE');
+     $identifiant = $this->getUser()->getUserIdentifier();
+     $info = $this->userRepo->findOneBy(["email" =>$identifiant]);
+     $Verif=false;
+     
+     //dd(intval(substr($_SERVER['REQUEST_URI'],13,strlen($_SERVER['REQUEST_URI']))));
+     foreach($info->getEmploye() as $Client)
+     {
+      if ($Client->getId() == intval(substr($_SERVER['REQUEST_URI'],13,strlen($_SERVER['REQUEST_URI']))))
+      {
+        $Verif = true;
+      }
+     }
+     if ($Verif == false)
+     {
+        $this->addFlash('warning', 'Cet utilisateur n\'est pas un de vos clients, vous allez être redirigé à l\'accueil du profil');
+        return $this->redirectToRoute('app_profil_index');
+     }
+     else if ($Verif == true)
+     {
      $form = $this->createForm(ReductionType::class, $user);
      $form->handleRequest($request);
      if ($form->isSubmitted() && $form->isValid())
@@ -83,10 +96,29 @@ class ProfilController extends AbstractController
          'form' => $form
      ]);
     }
+}
     #[Route('/edit-coef/{id}', name:'edit-coef', requirements:['id' => Requirement::DIGITS])]
     public function edit_coef(User $user, EntityManagerInterface $em,Request $request)
     {
      $this->denyAccessUnlessGranted('ROLE_EMPLOYE');
+     $identifiant = $this->getUser()->getUserIdentifier();
+     $info = $this->userRepo->findOneBy(["email" =>$identifiant]);
+     $Verif=false;
+     
+     //dd(intval(substr($_SERVER['REQUEST_URI'],13,strlen($_SERVER['REQUEST_URI']))));
+     foreach($info->getEmploye() as $Client)
+     {
+      if ($Client->getId() == intval(substr($_SERVER['REQUEST_URI'],18,strlen($_SERVER['REQUEST_URI']))))
+      {
+        $Verif = true;
+      }
+     }
+     if ($Verif == false)
+     {
+        $this->addFlash('warning', 'Cet utilisateur n\'est pas un de vos clients, vous allez être redirigé à l\'accueil du profil');
+        return $this->redirectToRoute('app_profil_index');
+     } else if ($Verif == true)
+     {
      $form = $this->createForm(CoefficientType::class, $user);
      $form->handleRequest($request);
      if ($form->isSubmitted() && $form->isValid())
@@ -104,6 +136,7 @@ class ProfilController extends AbstractController
          'user' => $user,
          'form' => $form
      ]);
+    }
     }
     #[Route('/modify/{id}', name:'modify', requirements:['id' => Requirement::DIGITS])]
     public function modify(User $user, EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $userPasswordHasher)

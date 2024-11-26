@@ -2,7 +2,7 @@
 {% block body %}
 <div class="container">
     <h2 class="pt-3">Nos {{srubriques[0].getRubrique.nom}}</h2>
-    <div class="row pt-3">
+    <div class="row py-3">
     {% set n = 1 %}
     {% for sr in srubriques %}
     {% for produit in sr.produits %}
@@ -94,7 +94,7 @@
     <div class="row py-3 ">
     {% endif %}
     {% set n = n + 1 %}
-    <div class="row pt-3 d-lg-none">
+    <div class="row py-3 d-lg-none">
     </div>
     {% endfor %}
     {% endfor %}

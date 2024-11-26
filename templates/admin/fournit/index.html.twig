@@ -28,13 +28,22 @@
         <td>{{ fourni.Fournisseur.getNom | default('')}}</td>
         <td>{{ fourni.Fournisseur.getType}}</td>
         <td>{{ fourni.getDateLivraison | date('d/m/y')}}</td>
-        <td><div class="d-flex gap-1">
-         <li class="action2">
+        <td>         <div class="d-flex gap-1">
+            <li class="action1">
               <a class="edit" href="{{ path('app_admin_commande_fournisseur_edit', { id: fourni.id }) }}">
-                  <i class='bx bxs-wrench command' style="align-self:center"></i>
+                  <i class='bx bxs-wrench' style="align-self:center"></i>
               </a>
             </li>
-            </div></td>  
+                <form class="action" action="{{ path('app_admin_commande_fournisseur_delete' , {id: fourni.id}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+            <li class="action2">
+              <button class="action" type="submit">
+                  <i class='bx bxs-trash'></i>
+              </button>
+              </a>
+            </li>
+                </form>          
+           </div>
     </tr>
     {% endfor %}
     </tbody>

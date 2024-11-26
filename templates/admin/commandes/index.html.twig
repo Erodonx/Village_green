@@ -48,6 +48,11 @@
                     <td>{{ detail.quantiteCommandee }}</td>
                     <td>{{ detail.prixHTDateCom * commande.valeurReduction * 1.20 * commande.coefficient }} €</td>
                 </tr>
+                 <tr>
+                <td>{{detail.produit.nom}} x {{ detail.quantiteCommandee }}</td>
+                <td> = </td>
+                <td>{{detail.prixHTDateCom * commande.coefficient * commande.valeurReduction * detail.quantiteCommandee}} € HT</td>
+                </tr>
             {% endfor %}
             </tbody>
             <tfoot>

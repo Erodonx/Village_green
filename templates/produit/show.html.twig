@@ -7,7 +7,7 @@
     <div class="card-title d-flex justify-content-center"><p class="desc-title">{{produit.nom}}</p></div>
     <div class="card-body"> 
         <div class="row justify-content-center"><img class="w-50" src="/images/produits/{{produit.image}}" style="align-self:center;" alt="Product_image"></div>
-        <div class="col"><p class="justify-content-center text-dark desc">{{produit.description}}</p>
+        <div class="col"><div class="d-flex justify-content-center align-center"><p class="d-flex text-center text-dark desc">{{produit.description}}</p></div>
            <div class="text-primary d-flex justify-content-end" style="font-weight: bold; font-size: 2rem;">{{produit.formattedPrice}} € </div>
            {% if produit.stock > 0 %}
                 <div class="text-success d-flex justify-content-end" style="font-size: 2rem;">En stock</div>

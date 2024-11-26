@@ -61,4 +61,13 @@ class FournitController extends AbstractController
             'form' => $form
         ]);
     }
+    #[Route('/{id}', name:'delete', methods:['DELETE'])]
+    public function remove(Fournit $fournit, EntityManagerInterface $em)
+    {
+        $em->remove($fournit);
+        $em->flush();
+        $this->addFlash('success', 'La commande fournisseur a bien été supprimée');
+        return $this->redirectToRoute('app_admin_commande_fournisseur_index');
+
+    }
 }
