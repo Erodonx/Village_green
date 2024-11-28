@@ -49,10 +49,13 @@ ETAT /!\
 
 26/11/12
 To do next: 
-Si j'ai le temps changer les entités.
-** UML A FAIRE
-** Faires des tests unitaires.
+Si j'ai le temps changer les entités. -> Prix d'achat fournisseur
+** FINIR L'UML.
+** Faires des tests d'affichages cat sous_cat.?? comprend pas
+BOUGER LE A PROPOS DANS LE FOOTER
 
+Regarder les bonnes pratiques en UI/UX design.
+diviser la commande en +sieurs formulaires. -> saisie adresse , puis mode de livraison puis coordonnées bancaires.
 ** important
 module de recherche input type submit, vers le repository;
 Commencer un projet avec Angular et symfony.
