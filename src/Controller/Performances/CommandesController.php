@@ -26,10 +26,6 @@ class CommandesController extends AbstractController
             $result[$i]['montantCommandeTTC']=floatval($ligne['montantCommandeTTC']);
             $i=$i+1;
         }
-        //dd($calc);
-        //foreach ($calc as $ligne) {
-        //    $result[] =  [$ligne["nom"], floatval($ligne[1])];
-        //}
         return $this->json($result);
     }
     
