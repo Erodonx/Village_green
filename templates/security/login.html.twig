@@ -17,9 +17,9 @@
 
     <h1>Veuillez vous connecter</h1>
     <label for="inputEmail">Adresse mail</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="Veuillez saisir votre adresse mail" class="form-control" autocomplete="email" required autofocus>
     <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Veuillez saisir votre mot de passe" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
@@ -31,7 +31,7 @@
         </label>
     </div>
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    <button id="tests" class="btn btn-lg btn-primary" type="submit">
         Se connecter
     </button>
     <p><a href="{{ path('app_mot_de_passe_oublie')}}">Mot de passe oublié</a></p>
