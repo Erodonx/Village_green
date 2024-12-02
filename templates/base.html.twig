@@ -30,14 +30,14 @@
         <li class="nav-item">
           <a class="nav-link {% if app.request.attributes.get('_route') == 'app_panier_index' %}active{% endif %}" href="/panier/">Panier</a>
         </li>
-        <li class="nav-item dropdown">
+        {# <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">A propos</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
             <a class="dropdown-item" href="{{ path('app_about_mentions_legales')}}">Mentions légales</a>
             <a class="dropdown-item" href="{{ path('app_contact' )}}">Nous contacter</a>
             <a class="dropdown-item" href="{{ path('app_about_politique_de_confidentialite')}}">Politique de confidentialité</a>
           </div>
-        </li>
+        </li> #}
         {% if is_granted('ROLE_ADMIN')%}
         <li class="nav-item">
         <a class="nav-link" href="{{path('app_admin_index')}}">ADMINISTRATION</a>
@@ -113,8 +113,16 @@
 </div>
 <footer class="container-fluid">
   <div class="row redsocials align-self-center">
-               
-                <div class="align-self-center">
+    <div class="col-3 grid justify-content-end align-self-center">
+                    <a class="text-light" href="{{ path('app_about_mentions_legales')}}">Mentions légales</a>
+                </div>
+                <div class="col-3 grid justify-content-end align-self-center">
+                    <a class="text-light" href="{{ path('app_about_politique_de_confidentialite')}}">Politique de confidentialité</a>
+                </div>
+                <div class="col-3 grid justify-content-end align-self-center">
+                  <a class="text-light" href="{{ path('app_contact' )}}">Nous contacter</a>
+                </div>
+                <div class="col-3 align-self-center">
                     <ul class="list-inline justify-content-center mb-0 d-flex">
                         <li class="list-inline-item"><a href="https://twitter.com/?lang=fr">
                                 <img src="/images/footer/twitter.png" width="20" height="20" class="rounded"

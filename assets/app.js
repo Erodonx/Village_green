@@ -18,7 +18,7 @@ const footer = document.querySelector('footer');
 
 if (document.body.scrollHeight<window.innerHeight)
     {
-        footer.className+=" footer";
+        footer.className="container-fluid footer";
     }else{
         footer.className="container-fluid";
     }
