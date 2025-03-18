@@ -6,7 +6,7 @@ const app5 = () => {
   const [liste, setListe] = useState([])
   useEffect(() => {
     console.log("le composant est chargé")
-    fetch("https://localhost:8000/performances/chiffre/2024", {
+    fetch("https://localhost:8000/performances/chiffre/2025", {
       headers: {
         'Accept': 'application/json'
       }

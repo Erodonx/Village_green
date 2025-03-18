@@ -21,8 +21,7 @@ class ChiffreController extends AbstractController
     }
     return $this->json($result);
     
-   
-    
+
     //select produit.nom, sum(detail.quantite_commandee*produit.prix_ht)*1.20 from produit join detail on detail.produit_id = produit.id group by produit.nom;
 }
 }
